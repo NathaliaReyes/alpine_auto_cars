@@ -1,10 +1,10 @@
 import React from 'react';
 
-function About() {
+function Update() {
   return (
     <>
     </>
   )
 };
 
-export default About;
+export default Update;
