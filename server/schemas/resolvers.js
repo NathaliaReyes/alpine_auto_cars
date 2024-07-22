@@ -39,10 +39,10 @@ const resolvers = {
       }
     },
 
-    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at}) => {
+    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at, description, images}) => {
       try {
         // Create the car
-        const car = await Car.create({ make, model, year, color, price, mileage, created_at, updated_at });
+        const car = await Car.create({ make, model, year, color, price, mileage, created_at, updated_at, description, images });
 
         // Save the car
         await car.save();
@@ -76,11 +76,11 @@ const resolvers = {
       return { token, user };
     },
 
-    updateCar: async (parent, { _id, make, model, year, color, price, mileage, updated_at }) => {
+    updateCar: async (parent, { _id, make, model, year, color, price, mileage, updated_at, description, images }) => {
       try {
         const car = await Car.findOneAndUpdate(
           { _id },
-          { make, model, year, color, price, mileage, updated_at },
+          { make, model, year, color, price, mileage, updated_at, description, images },
           { new: true }
         );
 

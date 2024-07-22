@@ -26,6 +26,15 @@ const carSchema = new Schema(
             type: Number,
             required: true,
         },
+        description: {
+            type: String,
+            maxlength: 1000,
+        },
+        images: [
+            {
+                type: String,
+            },
+        ],
         created_at: {
             type: Date,
             default: Date.now,
