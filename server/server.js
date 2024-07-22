@@ -5,6 +5,7 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const cors = require('cors');
 
+
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -22,6 +23,7 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use(cors());
+
 
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
