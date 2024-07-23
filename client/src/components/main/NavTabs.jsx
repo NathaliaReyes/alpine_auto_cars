@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { AdminMenu } from '@/components/main/AdminMenu';
 // import logo from '@/assets/logo/new.png';
 // import Image from '@/assets/images/cover.png';
 // import '../styles/Navbar.css';
@@ -72,6 +73,7 @@ function NavTabs() {
             <Link to="/" onClick={toggleMenu} className={getLinkClass('/')}>Home</Link>
             <Link to="/Inventory" onClick={toggleMenu} className={getLinkClass('/Inventory')}>Inventory</Link>
             <Link to="/Contact" onClick={toggleMenu} className={getLinkClass('/Contact')}>Contact Us</Link>
+            <AdminMenu className={getLinkClass('/Contact')}/>
           </div>
         </div>
       </nav>
