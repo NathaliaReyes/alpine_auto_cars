@@ -73,7 +73,7 @@ function NavTabs() {
             <Link to="/" onClick={toggleMenu} className={getLinkClass('/')}>Home</Link>
             <Link to="/Inventory" onClick={toggleMenu} className={getLinkClass('/Inventory')}>Inventory</Link>
             <Link to="/Contact" onClick={toggleMenu} className={getLinkClass('/Contact')}>Contact Us</Link>
-            <AdminMenu className={getLinkClass('/Contact')}/>
+            <AdminMenu className={getLinkClass} onClick={toggleMenu}/>
           </div>
         </div>
       </nav>
