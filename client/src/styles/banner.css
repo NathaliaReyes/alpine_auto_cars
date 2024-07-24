@@ -1,0 +1,92 @@
+.banner-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+}
+
+.banner-text {
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo semitransparente */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.left {
+  left: 10%;
+}
+
+.right {
+  right: 10%;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+p {
+  margin: 10px 0 0;
+  font-size: 16px;
+}
+
+@media (max-width: 975px) {
+  .bannerRes {
+    position: absolute;
+    top: 19%;
+    transform: translateY(-70%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 823px) {
+  .bannerRes2 {
+    position: absolute;
+    top: 15%;
+    transform: translateY(-70%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 481px) {
+  .bannerRes3 {
+    position: absolute;
+    top: 13%;
+    transform: translateY(-70%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 437px) {
+  .bannerRes4 {
+    position: absolute;
+    top: 10%;
+    transform: translateY(-70%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
