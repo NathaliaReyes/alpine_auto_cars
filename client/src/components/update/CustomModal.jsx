@@ -12,10 +12,10 @@ const CustomModal = ({ isOpen, onClose, onConfirm, children }) => {
       overlayClassName="modal-overlay"
     >
       {children}
-      <div className="modal-footer">
+      {/* <div className="modal-footer">
         <button onClick={onConfirm} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
         <button onClick={onClose} className="modal-button bg-gray-500 text-white hover:bg-gray-700">Cancel</button>
-      </div>
+      </div> */}
     </Modal>
   );
 };

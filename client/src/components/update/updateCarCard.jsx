@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/carForm.css';
+// import '../../styles/carForm.css';
 
 import {
     Card,
@@ -12,10 +12,8 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-import Modal from 'react-modal'; 
-import CustomModal from '@/components/update/CustomModal'; 
+import CustomModal from '@/components/update/CustomModal';
 import EditCarForm from '@/components/update/EditCarForm.jsx';
-// import DeleteCarForm from '@/components/update/DeleteCarForm.jsx';
 
 import { Button } from "@/components/ui/button";
 import carPlaceholder from "@/assets/images/placeholder-car.png";
@@ -210,28 +208,41 @@ const UpdateCarCard = ({ car }) => {
                 </CardHeader>
                 <CardFooter>
                     <div className="flex flex-col sm:flex-row justify-evenly items-center w-full gap-8">
-                        <Button onClick={openEditModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:bg-blue-900 hover:border-blue-300  transition-colors'>Edit {car.year} {car.make} {car.model}</Button>
-                        <Button onClick={openDeleteModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:border-blue-300 hover:bg-blue-900 transition-colors'>Delete {car.year} {car.make} {car.model}</Button>
+                        <Button onClick={openEditModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:bg-blue-900 hover:border-blue-300 transition-colors'>
+                            Edit {car.year} {car.make} {car.model}
+                        </Button>
+                        <Button onClick={openDeleteModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:border-blue-300 hover:bg-blue-900 transition-colors'>
+                            Delete {car.year} {car.make} {car.model}
+                        </Button>
                     </div>
                 </CardFooter>
             </Card>
-            <Modal
-                contentLabel='Edit Car'
-                className='modal'
-                overlayClassName='modal-overlay'
+            <CustomModal
                 isOpen={editModalIsOpen}
                 onClose={closeEditModal}
-                onConfirm={() => {}}
+                contentLabel="Edit Car"
+                className="modal"
+                style={{ width: '80%' }}
+                overlayClassName="modal-overlay"
+
+                onConfirm={() => { }}
             >
-                <EditCarForm closeModal={closeEditModal} />
-            </Modal>
+                <EditCarForm closeModal={closeEditModal} carData={car} />
+            </CustomModal>
             <CustomModal
-                isOpen={deleteModalIsOpen}
-                onClose={closeDeleteModal}
-                onConfirm={handleDelete}
-            >
-                <div className="modal-body">
-                    <p>Are you sure you want to delete this car?</p>
+                isOpen={deleteModalIsOpen}            >
+                <div className="modal-body flex justify-center">
+                    <h1 className='block font-bold'>Are you sure you want to delete this car?</h1>
+                </div>
+                <div className="modal-body flex justify-center">
+                    <h2 className=' font-bold block text-xl'>{car.year} {car.make} {car.model}</h2>
+                </div>
+                <div className="modal-footer">
+                    <button onClick={handleDelete} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
+                    <button onClick={closeDeleteModal} className="modal-button bg-gray-500 text-white hover:bg-gray-700">Cancel</button>
+                </div>
+                <div className="modal-body font-bold flex justify-center">
+                    <p className='block text-base'><i>* You will have to manually add this vehicle again to restore it once it is deleted * </i></p>
                 </div>
             </CustomModal>
         </>

@@ -1,4 +1,31 @@
-/* modal.css */
+/* Modal Overlay Styles */
+.ReactModal__Overlay {
+  z-index: 1000; /* Ensure it’s on top */
+  overflow: hidden; /* Prevent background scroll */
+}
+
+/* Modal Content Styles */
+.modal {
+  position: relative;
+  max-width: 90vw; /* Adjust width as needed */
+  max-height: 80vh; /* Adjust height as needed */
+  margin: auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Allow content to scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add styles to make sure the modal is centered */
+.ReactModal__Content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -18,7 +45,7 @@
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 425px;
+  max-width: 80vw;
 }
 
 .modal-header, .modal-body, .modal-footer {
