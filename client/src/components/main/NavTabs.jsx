@@ -68,12 +68,13 @@ function NavTabs() {
             <div className="w-3 h-0.5 bg-stone"></div>
           </button>
         </div>
+        <AdminMenu />
+
         <div className={`w-full ${isActive ? 'block' : 'hidden'} md:flex md:items-center md:w-auto`} id="navMenu">
           <div className="lg:text-lg md:text-base sm:text-sm md:flex-grow ml-1 ">
             <Link to="/" onClick={toggleMenu} className={getLinkClass('/')}>Home</Link>
             <Link to="/Inventory" onClick={toggleMenu} className={getLinkClass('/Inventory')}>Inventory</Link>
             <Link to="/Contact" onClick={toggleMenu} className={getLinkClass('/Contact')}>Contact Us</Link>
-            <AdminMenu className={getLinkClass} onClick={toggleMenu}/>
           </div>
         </div>
       </nav>
