@@ -39,7 +39,7 @@ function AdminMenu() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Admin Tools</NavigationMenuTrigger>
-          <NavigationMenuContent>
+          <NavigationMenuContent style={{ backgroundColor: 'white', zIndex: 100 }}>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map((component) => (
                 <ListItem key={component.title} title={component.title} href={component.href}>
