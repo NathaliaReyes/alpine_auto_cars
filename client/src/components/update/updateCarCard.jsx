@@ -1,6 +1,7 @@
-import * as React from "react";
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/carForm.css';
 
 import {
     Card,
@@ -10,6 +11,11 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+
+import Modal from 'react-modal'; 
+import CustomModal from '@/components/update/CustomModal'; 
+import EditCarForm from '@/components/update/EditCarForm.jsx';
+// import DeleteCarForm from '@/components/update/DeleteCarForm.jsx';
 
 import { Button } from "@/components/ui/button";
 import carPlaceholder from "@/assets/images/placeholder-car.png";
@@ -149,63 +155,98 @@ const cars = {
 };
 
 const UpdateCarCard = ({ car }) => {
+    const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+
+    const openEditModal = () => setEditModalIsOpen(true);
+    const closeEditModal = () => setEditModalIsOpen(false);
+    const openDeleteModal = () => setDeleteModalIsOpen(true);
+    const closeDeleteModal = () => setDeleteModalIsOpen(false);
+
+    const handleDelete = () => {
+        // Implement delete logic here
+        closeDeleteModal();
+    };
+
     return (
-        <Card className="mt-3 ml-0 mr-0">
-            <CardHeader>
-                <CardTitle className="tracking-normal">{car.name}</CardTitle>
-                <CardDescription>
-                    <div className="flex items-center pt-1">
-                        {/* <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" /> */}
-                        <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
-                            {car.description}
-                        </span>
-                    </div>
-                </CardDescription>
-                <CardContent>
-                    <div className="flex flex-col lg:flex-row justify-between p-0">
-                        <div className="md:flex justify-evenly w-full">
-                            <div className="w-full">
-                                <div className="grid sm:grid-cols-2 gap-4 hiddenList">
-                                    <ul className="flex flex-col text-left space-y-2">
-                                        <li><strong>Make: </strong>{car.make}</li>
-                                        <li><strong>Model: </strong>{car.model}</li>
-                                        <li><strong>Year: </strong>{car.year}</li>
-                                        <li><strong>Price: </strong>${car.price}</li>
-                                    </ul>
-                                    <ul className="flex flex-col text-left space-y-2">
-                                        <li><strong>Mileage: </strong>{car.mileage}</li>
-                                        <li><strong>Color: </strong>{car.color}</li>
-                                        <li><strong>Engine: </strong>{car.engine}</li>
-                                        <li><strong>Trans: </strong>{car.transmission}</li>
-                                    </ul>
+        <>
+            <Card className="mt-3 ml-0 mr-0">
+                <CardHeader>
+                    <CardTitle className="tracking-normal">{car.name}</CardTitle>
+                    <CardDescription>
+                        <div className="flex items-center pt-1">
+                            <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                {car.description}
+                            </span>
+                        </div>
+                    </CardDescription>
+                    <CardContent>
+                        <div className="flex flex-col lg:flex-row justify-between p-0">
+                            <div className="md:flex justify-evenly w-full">
+                                <div className="w-full">
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                        <ul className="flex flex-col text-left space-y-2">
+                                            <li><strong>Make: </strong>{car.make}</li>
+                                            <li><strong>Model: </strong>{car.model}</li>
+                                            <li><strong>Year: </strong>{car.year}</li>
+                                            <li><strong>Price: </strong>${car.price}</li>
+                                        </ul>
+                                        <ul className="flex flex-col text-left space-y-2">
+                                            <li><strong>Mileage: </strong>{car.mileage}</li>
+                                            <li><strong>Color: </strong>{car.color}</li>
+                                            <li><strong>Engine: </strong>{car.engine}</li>
+                                            <li><strong>Trans: </strong>{car.transmission}</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                            <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
+                                <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
+                                    Price: ${car.price}
+                                </Button>
+                            </div>
                         </div>
-                        <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
-                            <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors">
-                                Price: ${car.price}
-                            </Button>
-                        </div>
+                    </CardContent>
+                </CardHeader>
+                <CardFooter>
+                    <div className="flex flex-col sm:flex-row justify-evenly items-center w-full gap-8">
+                        <Button onClick={openEditModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:bg-blue-900 hover:border-blue-300  transition-colors'>Edit {car.year} {car.make} {car.model}</Button>
+                        <Button onClick={openDeleteModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:border-blue-300 hover:bg-blue-900 transition-colors'>Delete {car.year} {car.make} {car.model}</Button>
                     </div>
-                </CardContent>
-            </CardHeader>
-            <CardFooter>
-                <div className="flex flex-col sm:flex-row justify-evenly items-center w-full gap-8">
-                    <Button className='sm:w-full lg:w-1/2 bg-blue-500 text-white hover:bg-blue-700 transition-colors'>Edit</Button>
-                    <Button className='sm:w-full lg:w-1/2 bg-blue-500 text-white hover:bg-blue-700 transition-colors'>Delete</Button>
+                </CardFooter>
+            </Card>
+            <Modal
+                contentLabel='Edit Car'
+                className='modal'
+                overlayClassName='modal-overlay'
+                isOpen={editModalIsOpen}
+                onClose={closeEditModal}
+                onConfirm={() => {}}
+            >
+                <EditCarForm closeModal={closeEditModal} />
+            </Modal>
+            <CustomModal
+                isOpen={deleteModalIsOpen}
+                onClose={closeDeleteModal}
+                onConfirm={handleDelete}
+            >
+                <div className="modal-body">
+                    <p>Are you sure you want to delete this car?</p>
                 </div>
-            </CardFooter>
-        </Card>
+            </CustomModal>
+        </>
     );
 };
 
 const UpdateCarList = () => {
     return (
-        <div className="flex flex-wrap justify-center">
-            {Object.keys(cars).map(key => (
-                <UpdateCarCard key={key} car={cars[key]} />
-            ))}
-        </div>
+        <>
+            <div className="flex flex-wrap justify-center">
+                {Object.keys(cars).map(key => (
+                    <UpdateCarCard key={key} car={cars[key]} />
+                ))}
+            </div>
+        </>
     );
 };
 
