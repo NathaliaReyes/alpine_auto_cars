@@ -6,7 +6,7 @@ import { BackgroundBeams } from '@/components/ui/background-beams';
 import LoginForm from '@/screens/LoginForm';
 import AboutUs from '@/components/homepage/about/AboutUs';
 import LocationMap from '@/components/homepage/homepageMap';
-
+import BusinessInfo from '@/components/homepage/about/BusinessInfo';
 
 function Home() {
   return (
@@ -27,6 +27,7 @@ function Home() {
       </div> */}
       <BackgroundBeams className="bg-black absolute inset-0 z-[-1]" />
       <AboutUs />
+      <BusinessInfo />
       <LocationMap />
       </div>
       <LoginForm />
