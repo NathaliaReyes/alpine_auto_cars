@@ -8,6 +8,17 @@ const typeDefs = `
     email: String!
     created_at: Date
   }
+  
+  type Client {
+    _id: ID
+    firstName: String!
+    lastName: String!
+    email: String!
+    phone: String!
+    inquiry: String!
+    message: String!
+    created_at: Date
+  }
 
   type Car {
     _id: ID
@@ -30,6 +41,7 @@ const typeDefs = `
   
   type Query {
     me: User
+    client(_id: ID!): Client
   }
     
   type Mutation {
@@ -38,6 +50,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     updateCar(_id: ID!, make: String, model: String, year: Int, price: Int, color: String, mileage: Int, description: String,  images: [String]): Car
     deleteCar(_id: ID!): Car
+    addClient(firstName: String!, lastName: String!, email: String!, phone: String!, inquiry: String!, message: String!): Client
   }
 `;
 
