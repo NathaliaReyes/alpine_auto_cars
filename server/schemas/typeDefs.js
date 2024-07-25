@@ -34,6 +34,18 @@ const typeDefs = `
     updated_at: Date
   }
 
+  input CarInput {
+    carId: ID!
+    make: String
+    model: String
+    year: Int
+    price: Int
+    color: String
+    mileage: Int
+    description: String
+    images: [String]
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -42,13 +54,14 @@ const typeDefs = `
   type Query {
     me: User
     client(_id: ID!): Client
+    cars: [Car]
   }
     
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addCar(make: String!, model: String!, year: Int!, price: Int!, color: String!, mileage: Int!, created_at: Date, updated_at: Date, description: String, images: [String]): Car
+    addCar(make: String, model: String, year: Int, price: Int, color: String, mileage: Int, description: String,  images: [String]): Car
     login(email: String!, password: String!): Auth
-    updateCar(_id: ID!, make: String, model: String, year: Int, price: Int, color: String, mileage: Int, description: String,  images: [String]): Car
+    updateCar(carData: CarInput!): Car
     deleteCar(_id: ID!): Car
     addClient(firstName: String!, lastName: String!, email: String!, phone: String!, inquiry: String!, message: String!): Client
   }

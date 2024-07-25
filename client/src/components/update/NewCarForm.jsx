@@ -32,7 +32,7 @@ function NewCarForm({ closeModal }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
+    // Handle add new car form submission
     closeModal();
   };
 

@@ -1,5 +1,6 @@
 const { User, Car, Client } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 const { DateResolver } = require('graphql-scalars');
 
 const resolvers = {
@@ -15,6 +16,13 @@ const resolvers = {
       console.log('User found', foundUser);
       return foundUser;
     },
+    cars: async (parent, args, context) => {
+      const cars = await Car.find();
+      if (!cars) {
+        console.log("No cars found.");
+      }
+      return cars;
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password, _id }) => {
@@ -39,30 +47,11 @@ const resolvers = {
       }
     },
 
-    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at, description, images }) => {
-      try {
-        // Create the car
-        const car = await Car.create({ make, model, year, color, price, mileage, created_at, updated_at, description, images });
-
-        // Save the car
-        await car.save();
-
-        console.log('Car created successfully...');
-
-        // Return the car object
-        return car;
-      } catch (error) {
-        console.error('Error creating car:', error.message);
-        // Handle error appropriately, maybe throw an error or return an error message
-        throw new Error('Failed to create car', error.message);
-      }
-    },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw AuthenticationError;
+        throw AuthenticationError('Not logged in.');
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -76,38 +65,71 @@ const resolvers = {
       return { token, user };
     },
 
-    updateCar: async (parent, { _id, make, model, year, color, price, mileage, updated_at, description, images }) => {
-      try {
-        const car = await Car.findOneAndUpdate(
-          { _id },
-          { make, model, year, color, price, mileage, updated_at, description, images },
-          { new: true }
-        );
-
-        if (!car) {
-          throw new Error('No car found with this id!');
+    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at, description, images }) => {
+      // if (context.user) {
+        try {
+          // Create the car
+          const car = await Car.create({ make, model, year, color, price, mileage, created_at, updated_at, description, images });
+          // Save the car
+          await car.save();
+          console.log('Car created successfully...');
+          // Return the car object
+          return car;
+        } catch (error) {
+          console.error('Error creating car:', error.message);
+          // Handle error appropriately, maybe throw an error or return an error message
+          throw new Error('Failed to create car', error.message);
         }
+      // }
+      // throw new AuthenticationError('Not logged in.');
+    },
 
-        return car;
-      } catch (error) {
-        console.error('Error updating car:', error.message);
-        throw new Error('Failed to update car', error.message);
-      }
+    updateCar: async (parent, { carData }) => {
+      // if (context.user) {
+        try {
+          // Prepare an object for $set operation with only provided fields
+          const updateFields = {};
+          for (const [key, value] of Object.entries(carData)) {
+            if (value !== undefined) {
+              updateFields[key] = value;
+            }
+          }
+      
+          const updatedCar = await Car.findOneAndUpdate(
+            { _id: carData.carId },
+            { $set: updateFields },
+            { new: true, runValidators: true }
+          );
+      
+          if (!updatedCar) {
+            throw new Error('No car found with this id!');
+          }
+      
+          return updatedCar;
+        } catch (error) {
+          console.error('Error updating car:', error.message);
+          throw new Error('Failed to update car');
+        }
+      // }
+      // throw new AuthenticationError;
     },
 
     deleteCar: async (parent, { _id }) => {
-      try {
-        const car = await Car.findOneAndDelete({ _id });
-
-        if (!car) {
-          throw new Error('No car found with this id!');
+      // if (context.user) {
+        try {
+          const car = await Car.findOneAndDelete({ _id });
+  
+          if (!car) {
+            throw new Error('No car found with this id!');
+          }
+  
+          return car;
+        } catch (error) {
+          console.error('Error deleting car:', error.message);
+          throw new Error('Failed to delete car', error.message);
         }
-
-        return car;
-      } catch (error) {
-        console.error('Error deleting car:', error.message);
-        throw new Error('Failed to delete car', error.message);
-      }
+      // }
+      // throw new AuthenticationError('Not logged in.');
     },
 
     addClient: async (parent, { firstName, lastName, email, phone, inquiry, message, _id }) => {

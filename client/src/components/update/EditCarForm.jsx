@@ -37,7 +37,7 @@ const EditCarForm = ({ closeModal, carData }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
+        // Handle edit car form submission logic here
         closeModal();
     };
 
