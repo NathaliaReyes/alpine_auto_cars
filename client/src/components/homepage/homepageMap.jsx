@@ -9,7 +9,7 @@ const LocationMap = () => {
           width="400"
           height="400"
           className="border-0 w-full ml-2 mr-2 shadow-lg p-4"
-          allowfullscreen=""
+          allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade">
         </iframe>

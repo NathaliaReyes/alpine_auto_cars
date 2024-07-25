@@ -25,3 +25,17 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_CLIENT = gql`
+  mutation addClient($firstName: String!, $lastName: String!, $email: String!, $phone: String!, $inquiry: String!, $message: String!) {
+    addClient(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, inquiry: $inquiry, message: $message) {
+      _id
+      firstName
+      lastName
+      email
+      phone
+      inquiry
+      message
+    }
+  }
+`;

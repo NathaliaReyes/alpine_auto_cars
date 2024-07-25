@@ -1,4 +1,4 @@
-const { User, Car } = require('../models');
+const { User, Car, Client } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { DateResolver } = require('graphql-scalars');
 
@@ -20,7 +20,7 @@ const resolvers = {
     addUser: async (parent, { username, email, password, _id }) => {
       try {
         // Create the user
-        const user = await User.create({ username, email, password, _id});
+        const user = await User.create({ username, email, password, _id });
 
         // Save the user
         await user.save();
@@ -39,7 +39,7 @@ const resolvers = {
       }
     },
 
-    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at, description, images}) => {
+    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at, description, images }) => {
       try {
         // Create the car
         const car = await Car.create({ make, model, year, color, price, mileage, created_at, updated_at, description, images });
@@ -109,7 +109,31 @@ const resolvers = {
         throw new Error('Failed to delete car', error.message);
       }
     },
-  }
+
+    addClient: async (parent, { firstName, lastName, email, phone, inquiry, message, _id }) => {
+      try {
+        console.log('Get the try...');
+        if(!firstName || !lastName || !email || !phone || !inquiry || !message) {
+          throw new Error('Please fill out all fields');
+        }
+        const newClient = new Client({ 
+          firstName, 
+          lastName, 
+          email, 
+          phone, 
+          inquiry, 
+          message, 
+          _id 
+        });
+        await newClient.save();
+        console.log('Client created successfully...');
+        return newClient;
+      } catch (error) {
+        console.error('Error adding client:', error.message);
+        throw new Error('Failed to add client', error.message);
+      }
+    },
+  },
 };
 
 module.exports = resolvers;

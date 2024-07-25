@@ -3,10 +3,14 @@ import { useForm } from '@formspree/react';
 import emailIcon from '@/assets/icons/email.svg';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
+import { useMutation } from '@apollo/client';
+import { ADD_CLIENT } from '@/utils/mutations';
 
 function ContactForm() {
   const [state, handleSubmitFormspree] = useForm("uig7uug");
-  const [fullName, setFullName] = useState('');
+  const [addClient] = useMutation(ADD_CLIENT);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [inquiry, setInquiry] = useState('');
@@ -22,8 +26,12 @@ function ContactForm() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     switch (name) {
-      case 'fullName':
-        setFullName(value);
+      case 'firstName':
+        setFirstName(value);
+        setNameRequired(!value);
+        break;
+      case 'lastName':
+        setLastName(value);
         setNameRequired(!value);
         break;
       case 'email':
@@ -59,16 +67,40 @@ function ContactForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!fullName || !email || !phone || !message) {
+    if (!firstName || !lastName || !email || !phone || !message) {
       setFieldsCompleted(false);
       return;
     } else if (!emailValid) {
       return;
     }
-    handleSubmitFormspree(event).then(() => {
+    try {
+      // Submit the form to Formspree
+      await handleSubmitFormspree(event);
+
+      // Call the mutation to add the client
+      await addClient({
+          variables: {
+            firstName,
+            lastName,
+            email,
+            phone,
+            inquiry,
+            message,
+          },
+      });
+
+      // Reset the form and show the success modal
       setSubmitted(true);
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPhone('');
+      setInquiry('');
+      setMessage('');
       document.querySelector('#success-modal').classList.add('is-active');
-    });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const handleCancel = () => {
@@ -101,17 +133,34 @@ function ContactForm() {
           <h2 className="text-2xl font-extrabold  mt-5 mb-5 tracking-normal">Get in touch</h2>
           <p className="text-black mb-6">We are here for you! How can we help?</p>
           <h2 className="text-xl font-bold tracking-normal mt-4 md:mt-8 mb-5 md:mb-10">Drop us a line</h2>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-base font-semibold ">Your name</label>
-            <input
-              name="fullName"
-              value={fullName}
-              className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Please enter your name"
-              onChange={handleChange}
-            />
-            {nameRequired && <p className="text-red-500 text-xs mt-2">Name is required.</p>}
+
+          <div className='flex flex-row justify-between space-x-4'>
+            <div className="mb-6 flex-1">
+              <label className="block text-gray-700 text-base font-semibold ">Your first name</label>
+              <input
+                name="firstName"
+                value={firstName}
+                className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="Please enter your first name"
+                onChange={handleChange}
+              />
+              {nameRequired && <p className="text-red-500 text-xs mt-2">Name is required.</p>}
+            </div>
+
+            <div className="mb-6 flex-1">
+              <label className="block text-gray-700 text-base font-semibold ">Your last name</label>
+              <input
+                name="lastName"
+                value={lastName}
+                className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="Please enter your last name"
+                onChange={handleChange}
+              />
+              {nameRequired && <p className="text-red-500 text-xs mt-2">Last name is required.</p>}
+
+            </div>
           </div>
 
           <div className="mb-6">
@@ -145,15 +194,6 @@ function ContactForm() {
               defaultCountry="US"
             />
             {phoneRequired && <p className="text-red-500 text-xs mt-2">Phone Number is required.</p>}
-            {/* <input
-              name="phone"
-              value={phone}
-              className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="tel"
-              placeholder="e.g. (123) 456-7890"
-              onChange={handleChange}
-            /> */}
-            {/* {phoneRequired && <p className="text-red-500 text-xs mt-2">Phone number is required.</p>} */}
           </div>
 
           <div className="mb-6">
