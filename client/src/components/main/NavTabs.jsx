@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AdminMenu } from '@/components/main/AdminMenu';
+import Auth from '../../utils/auth';
 // import logo from '@/assets/logo/new.png';
 // import Image from '@/assets/images/cover.png';
 // import '../styles/Navbar.css';
@@ -68,7 +69,13 @@ function NavTabs() {
             <div className="w-3 h-0.5 bg-stone"></div>
           </button>
         </div>
-        <AdminMenu />
+        {console.log('Auth.loggedIn():', Auth.loggedIn())}
+        {Auth.loggedIn() && (
+          <>
+            {/* <Link to="/Admin" onClick={toggleMenu} className={getLinkClass('/Admin')}>Logout</Link> */}
+            <AdminMenu />
+          </>
+        )}
 
         <div className={`w-full ${isActive ? 'block' : 'hidden'} md:flex md:items-center md:w-auto`} id="navMenu">
           <div className="lg:text-lg md:text-base sm:text-sm md:flex-grow ml-1 ">
