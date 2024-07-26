@@ -54,7 +54,11 @@ const typeDefs = `
   type Query {
     me: User
     client(_id: ID!): Client
+<<<<<<< HEAD
     cars: [Car]
+=======
+    allClients: [Client]
+>>>>>>> main
   }
     
   type Mutation {
@@ -64,6 +68,7 @@ const typeDefs = `
     updateCar(carData: CarInput!): Car
     deleteCar(_id: ID!): Car
     addClient(firstName: String!, lastName: String!, email: String!, phone: String!, inquiry: String!, message: String!): Client
+    allClients: [Client]  
   }
 `;
 
