@@ -9,6 +9,7 @@ import Home from '@/pages/Home.jsx';
 import Inventory from '@/pages/Inventory.jsx';
 import Contact from '@/pages/Contact.jsx';
 import Update from '@/pages/Update.jsx';
+import AllClients from '@/pages/AllClients.jsx';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql', // Replace with your GraphQL server URI
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/Update',
         element: <Update />
+      },
+      {
+        path: '/clients',
+        element: <AllClients />
       }
     ]
   }

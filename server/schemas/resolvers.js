@@ -15,6 +15,15 @@ const resolvers = {
       console.log('User found', foundUser);
       return foundUser;
     },
+    allClients: async (parent, args, context) => {
+      try {
+        const clients = await Client.find({});
+        return clients;
+      } catch (error) {
+        console.error('Error getting clients:', error.message);
+        throw new Error('Failed to get clients', error.message);
+      }
+    },
   },
   Mutation: {
     addUser: async (parent, { username, email, password, _id }) => {
@@ -134,6 +143,8 @@ const resolvers = {
         throw new Error('Failed to add client', error.message);
       }
     },
+
+    
   },
 };
 

@@ -31,6 +31,11 @@ const components = [
     description:"Logout of admin tools.",
     onClick: Auth.logout,
   },
+  {
+    title: "See All Clients",
+    href: "/clients",
+    description:"See a list of all clients.",
+  },
 ];
 
 function AdminMenu() {
