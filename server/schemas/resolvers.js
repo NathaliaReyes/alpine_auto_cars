@@ -16,7 +16,6 @@ const resolvers = {
       console.log('User found', foundUser);
       return foundUser;
     },
-<<<<<<< HEAD
     cars: async (parent, args, context) => {
       const cars = await Car.find();
       if (!cars) {
@@ -24,17 +23,15 @@ const resolvers = {
       }
       return cars;
     }
-=======
-    allClients: async (parent, args, context) => {
-      try {
-        const clients = await Client.find({});
-        return clients;
-      } catch (error) {
-        console.error('Error getting clients:', error.message);
-        throw new Error('Failed to get clients', error.message);
-      }
-    },
->>>>>>> main
+  },
+  allClients: async (parent, args, context) => {
+    try {
+      const clients = await Client.find({});
+      return clients;
+    } catch (error) {
+      console.error('Error getting clients:', error.message);
+      throw new Error('Failed to get clients', error.message);
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password, _id }) => {
@@ -73,14 +70,9 @@ const resolvers = {
       }
 
       const token = signToken(user);
-<<<<<<< HEAD
-      console.log('resolvertoken', token);
+      // console.log('resolvertoken', token);
 
       // console.log("logged in");
-=======
-      console.log('token from resolver', token);
-      console.log("logged in");
->>>>>>> main
       return { token, user };
     },
 
@@ -174,8 +166,6 @@ const resolvers = {
         throw new Error('Failed to add client', error.message);
       }
     },
-
-    
   },
 };
 
