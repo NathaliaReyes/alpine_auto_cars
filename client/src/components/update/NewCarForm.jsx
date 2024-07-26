@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useMutation } from '@apollo/client';
 import { ADD_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
+import { add } from 'nodemon/lib/rules';
 
 
 function NewCarForm({ closeModal }) {
@@ -19,6 +20,8 @@ function NewCarForm({ closeModal }) {
     description: '',
     images: [],
   });
+
+  const [addCar] = useMutation(ADD_CAR);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,8 +38,25 @@ function NewCarForm({ closeModal }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await addCar({
+        variables: {...carDetails}
+      })
+      if (data) {
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
+      return error
+    }
     // Handle add new car form submission
     closeModal();
   };
