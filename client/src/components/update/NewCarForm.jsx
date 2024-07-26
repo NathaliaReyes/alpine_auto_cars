@@ -3,6 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
+import { useMutation } from '@apollo/client';
+import { ADD_CAR } from '@/utils/mutations';
+import Auth from '@/utils/auth';
+
+
 function NewCarForm({ closeModal }) {
   const [carDetails, setCarDetails] = useState({
     make: '',

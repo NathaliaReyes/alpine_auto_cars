@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
+
+
+import { useQuery } from '@apollo/client';
+import { GET_CARS } from '@/utils/queries';
+
 import UpdateCarList from '@/components/update/UpdateCarCard';
 import { Button } from "@/components/ui/button";
 import NewCarForm from '@/components/update/NewCarForm';
 import '../styles/carForm.css';
 
-Modal.setAppElement('#root'); // Ensure this matches your root element
-
 function Update() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { loading, data, error } = useQuery(GET_CARS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) {
+    console.log('GraphQL Error:', error);
+    return <p>Error: {error.message}</p>
+  }
+
+  const cars = data?.cars || {};
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
@@ -25,7 +37,7 @@ function Update() {
             Add a New Vehicle
           </Button>
         </div>
-        <UpdateCarList />
+        <UpdateCarList cars={cars}/>
 
         <Modal
           isOpen={modalIsOpen}

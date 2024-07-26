@@ -51,17 +51,19 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw AuthenticationError('Not logged in.');
+        throw new AuthenticationError('Not logged in.');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw AuthenticationError;
+        throw new AuthenticationError('Incorrect credentials.');
       }
 
       const token = signToken(user);
-      console.log("logged in");
+      console.log('resolvertoken', token);
+
+      // console.log("logged in");
       return { token, user };
     },
 
