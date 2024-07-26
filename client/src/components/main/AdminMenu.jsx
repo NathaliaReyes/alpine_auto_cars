@@ -11,6 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
+import Auth from "@/utils/auth";
 
 const components = [
   {
@@ -27,9 +28,8 @@ const components = [
   },
   {
     title: "Logout",
-    href: "/logout",
-    description:
-      "Logout of admin tools.",
+    description:"Logout of admin tools.",
+    onClick: Auth.logout,
   },
 ];
 
@@ -42,7 +42,12 @@ function AdminMenu() {
           <NavigationMenuContent style={{ backgroundColor: 'white', zIndex: 100 }}>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map((component) => (
-                <ListItem key={component.title} title={component.title} href={component.href}>
+                <ListItem 
+                  key={component.title} 
+                  title={component.title} 
+                  href={component.href}
+                  onClick={component.onClick}
+                >
                   {component.description}
                 </ListItem>
               ))}
@@ -54,7 +59,7 @@ function AdminMenu() {
   );
 }
 
-const ListItem = React.forwardRef(({ className, title, children, ...props }, ref) => {
+const ListItem = React.forwardRef(({ className, title, children, onClick, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -64,6 +69,7 @@ const ListItem = React.forwardRef(({ className, title, children, ...props }, ref
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
+          onClick={onClick}
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>

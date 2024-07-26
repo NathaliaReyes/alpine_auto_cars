@@ -3,7 +3,7 @@ import '../styles/banner.css';
 import img from '../assets/images/justbanner.png';
 import { Button } from '@/components/ui/button';
 import { BackgroundBeams } from '@/components/ui/background-beams';
-import LoginForm from '@/screens/LoginForm';
+// import LoginForm from '@/screens/LoginForm';
 import AboutUs from '@/components/homepage/about/AboutUs';
 import LocationMap from '@/components/homepage/homepageMap';
 import BusinessInfo from '@/components/homepage/about/BusinessInfo';
@@ -30,7 +30,6 @@ function Home() {
       <BusinessInfo />
       <LocationMap />
       </div>
-      <LoginForm />
     </>
   )
 }

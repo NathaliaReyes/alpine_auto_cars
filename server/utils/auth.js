@@ -16,11 +16,17 @@ module.exports = {
   }),
   // function for our authenticated routes
   authMiddleware: function ({ req }) {
+    console.log('secret', secret);
+    console.log('authMiddleware ---')
 
-    console.log("THIS IS THE REQ...: ", req);
+    // console.log("THIS IS THE REQ...: ", req);
+    // console.log("THIS IS THE REQ.BODY...: ", req.body);
+    // console.log("THIS IS THE REQ.QUERY...: ", req.query);
+    // console.log("THIS IS THE REQ.HEADERS...: ", req.headers);
+
 
     // allows token to be sent via req.query or headers
-    let token = req.body.token || req.query.token || req.headers.authorization || req.headers['Authorization'];
+    let token = req.body.variables?.token || req.query.token || req.headers.authorization || req.headers['Authorization'];
     console.log("This is the token : ", token);
   
     if (req.headers.authorization != null) {
@@ -33,17 +39,21 @@ module.exports = {
       return req;
     }
 
-    console.log('Token received: ', token);
+    console.log('req.headers.authorization: ',req.headers.authorization);
+    console.log('Token received outside: ', token);
+    // console.log('Secret used for verification outside: ', secret);
 
 
     // verify token and get user data out of it
     try {
+      console.log('Token inside the try: ', token);
+      console.log('Secret inside the try: ', secret);
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-      console.log('Data: ', data);
+      console.log('Data from login: ', data);
 
-    } catch {
-      console.log('Invalid token:');
+    } catch (error){
+      console.log('Invalid token: ', error.message);
     }
 
     return req;
@@ -51,6 +61,7 @@ module.exports = {
   signToken: function ({ username, email, password, _id }) {
     const payload = { username, email, password, _id };
     console.log('Payload: ', payload);
+    console.log('Secret used for signing: ', secret);
     const token = jwt.sign({ data: payload }, secret, { expiresIn: expiration });
     console.log('SignToken: ', token);
     return token;
