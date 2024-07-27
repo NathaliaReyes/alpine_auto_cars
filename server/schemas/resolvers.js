@@ -77,13 +77,13 @@ const resolvers = {
       return { token, user };
     },
 
-    addCar: async (parent, { make, model, year, color, price, mileage, created_at, updated_at, description, images }) => {
+    addCar: async (parent, { make, model, year, color, price, mileage, description, images }) => {
       // if (context.user) {
         try {
           // Create the car
-          const car = await Car.create({ make, model, year, color, price, mileage, created_at, updated_at, description, images });
+          const car = await Car.create({ make, model, year, color, price, mileage, description, images });
           // Save the car
-          await car.save();
+          // await car.save();
           console.log('Car created successfully...');
           // Return the car object
           return car;
@@ -99,16 +99,10 @@ const resolvers = {
     updateCar: async (parent, { carData }) => {
       // if (context.user) {
         try {
-          // Prepare an object for $set operation with only provided fields
-          const updateFields = {};
-          for (const [key, value] of Object.entries(carData)) {
-            if (value !== undefined) {
-              updateFields[key] = value;
-            }
-          }
+          const { carId, ...updateFields } = carData;
       
-          const updatedCar = await Car.findOneAndUpdate(
-            { _id: carData.carId },
+          const updatedCar = await Car.findByIdAndUpdate(
+            carId,
             { $set: updateFields },
             { new: true, runValidators: true }
           );

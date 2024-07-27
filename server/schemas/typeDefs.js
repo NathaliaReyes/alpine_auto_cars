@@ -44,6 +44,8 @@ const typeDefs = `
     mileage: Int
     description: String
     images: [String]
+    created_at: Date
+    updated_at: Date
   }
 
   type Auth {
@@ -54,11 +56,8 @@ const typeDefs = `
   type Query {
     me: User
     client(_id: ID!): Client
-<<<<<<< HEAD
     cars: [Car]
-=======
     allClients: [Client]
->>>>>>> main
   }
     
   type Mutation {

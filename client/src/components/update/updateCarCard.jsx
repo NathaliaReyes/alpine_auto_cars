@@ -16,13 +16,12 @@ import EditCarForm from '@/components/update/EditCarForm.jsx';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_CARS } from '@/utils/queries';
+import { useMutation } from '@apollo/client';
+// import { GET_CARS } from '@/utils/queries';
 import { DELETE_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
 
-const UpdateCarCard = ({ car }) => {
-
+const UpdateCarCard = ({ refetchCars, car }) => {
     const [deleteCar] = useMutation(DELETE_CAR);
 
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
@@ -34,6 +33,7 @@ const UpdateCarCard = ({ car }) => {
     const closeDeleteModal = () => setDeleteModalIsOpen(false);
 
     const handleDelete = async () => {
+        document.getElementById('carId') 
         const token = Auth.loggedIn() ? Auth.getToken(): null;
 
         if (!token) {
@@ -41,22 +41,17 @@ const UpdateCarCard = ({ car }) => {
         }
 
         try {
-            await deleteCar({
-                variables: { carId },
-                update: (cache, { data: { deletedCar } }) => {
-                    const { cars } = cache.readQuery({ query: GET_CARS });
-                    cache.writeQuery({
-                      query: GET_CARS,
-                      data: { cars: { ...cars} },
-                    });
-                  },
+            const data = await deleteCar({
+                variables: { carId: car._id },
             })
+            if (data) {
+                refetchCars();
+                closeDeleteModal();
+            }
         } catch (err) {
             console.log(err);
             return err;
         }
-
-        closeDeleteModal();
     };
 
     return (
@@ -85,8 +80,9 @@ const UpdateCarCard = ({ car }) => {
                                         <ul className="flex flex-col text-left space-y-2">
                                             <li><strong>Mileage: </strong>{car.mileage}</li>
                                             <li><strong>Color: </strong>{car.color}</li>
-                                            <li><strong>Engine: </strong>{car.engine}</li>
-                                            <li><strong>Trans: </strong>{car.transmission}</li>
+                                            <li className='hidden' id='carId'>{car._id}</li>
+                                            {/* <li><strong>Engine: </strong>{car.engine}</li>
+                                            <li><strong>Trans: </strong>{car.transmission}</li> */}
                                         </ul>
                                     </div>
                                 </div>
@@ -104,7 +100,7 @@ const UpdateCarCard = ({ car }) => {
                         <Button onClick={openEditModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:bg-blue-900 hover:border-blue-300 transition-colors'>
                             Edit {car.year} {car.make} {car.model}
                         </Button>
-                        <Button onClick={openDeleteModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:border-blue-300 hover:bg-blue-900 transition-colors'>
+                        <Button onClick={openDeleteModal} id={car._id} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:border-blue-300 hover:bg-blue-900 transition-colors'>
                             Delete {car.year} {car.make} {car.model}
                         </Button>
                     </div>
@@ -120,9 +116,10 @@ const UpdateCarCard = ({ car }) => {
 
                 onConfirm={() => { }}
             >
-                <EditCarForm closeModal={closeEditModal} carData={car} />
+                <EditCarForm closeModal={closeEditModal} refetchCars={refetchCars} carData={car} />
             </CustomModal>
             <CustomModal
+                carId={car._id}
                 isOpen={deleteModalIsOpen}            >
                 <div className="modal-body flex justify-center">
                     <h1 className='block font-bold'>Are you sure you want to delete this car?</h1>
@@ -142,12 +139,12 @@ const UpdateCarCard = ({ car }) => {
     );
 };
 
-const UpdateCarList = ({ cars }) => {
+const UpdateCarList = ({ cars, refetchCars }) => {
     return (
         <>
             <div className="flex flex-wrap justify-center">
                 {Object.keys(cars).map(key => (
-                    <UpdateCarCard key={key} car={cars[key]} />
+                    <UpdateCarCard key={key} car={cars[key]} refetchCars={refetchCars} />
                 ))}
             </div>
         </>

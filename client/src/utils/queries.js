@@ -27,7 +27,7 @@ query Cars {
     updated_at
     year
   }
-}`
+}`;
 
 export const ALL_CLIENTS = gql`
 query All_CLIENTS {

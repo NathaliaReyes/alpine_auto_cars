@@ -13,7 +13,7 @@ import '../styles/carForm.css';
 
 function Update() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { loading, data, error } = useQuery(GET_CARS);
+  const { loading, data, refetch, error } = useQuery(GET_CARS);
 
   if (loading) return <p>Loading...</p>;
   if (error) {
@@ -37,7 +37,7 @@ function Update() {
             Add a New Vehicle
           </Button>
         </div>
-        <UpdateCarList cars={cars}/>
+        <UpdateCarList refetchCars={refetch} cars={cars} />
 
         <Modal
           isOpen={modalIsOpen}
@@ -46,7 +46,7 @@ function Update() {
           className="modal"
           overlayClassName="modal-overlay"
         >
-          <NewCarForm closeModal={closeModal} />
+          <NewCarForm closeModal={closeModal} refetchCars={refetch} />
         </Modal>
       </div>
     </>

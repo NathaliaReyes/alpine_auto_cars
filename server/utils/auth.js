@@ -18,7 +18,7 @@ module.exports = {
   authMiddleware: function ({ req }) {
 
     // console.log("THIS IS THE REQ...: ", req);
-    console.log('Middleware hit');
+    // console.log('Middleware hit');
     // console.log('Headers:', JSON.stringify(req.headers, null, 2));
     // console.log('Query:', JSON.stringify(req.query, null, 2));
     // console.log('Body:', JSON.stringify(req.body, null, 2));

@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-
 import { useMutation } from '@apollo/client';
 import { UPDATE_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
-
-
 import '../../styles/EditCarForm.css'; // Import your CSS file
 
-const EditCarForm = ({ closeModal, carData }) => {
+const EditCarForm = ({ closeModal, refetchCars, carData }) => {
+  const [updateCar] = useMutation(UPDATE_CAR);
+
   const [carDetails, setCarDetails] = useState({
-    name: '',
+    carId: '',
     make: '',
     model: '',
     year: '',
@@ -20,11 +19,6 @@ const EditCarForm = ({ closeModal, carData }) => {
     price: '',
     mileage: '',
     color: '',
-    engine: '',
-    transmission: '',
-    doors: '',
-    seats: '',
-    features: [],
     images: []
   });
 
@@ -36,9 +30,9 @@ const EditCarForm = ({ closeModal, carData }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCarDetails(prevState => ({
-      ...prevState,
-      [name]: value
+    setCarDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: name === 'year' || name === 'price' || name === 'mileage' ? parseInt(value) : value,
     }));
   };
 
@@ -49,18 +43,44 @@ const EditCarForm = ({ closeModal, carData }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle edit car form submission logic here
-    closeModal();
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+  
+    const { __typename, ...filteredCarDetails } = carDetails;
+    console.log(filteredCarDetails);
+    const { _id, ...rest } = filteredCarDetails;
+    const transformedCarDetails = {
+      carId: _id,
+      ...rest
+    };
+    console.log(transformedCarDetails);
+
+    try {
+      const updatedCar = await updateCar({
+        variables: { carData: transformedCarDetails },
+      });
+      if (updatedCar) {
+        refetchCars();
+        closeModal();
+      }
+    } catch (error) {
+      console.log('Failed to update car, ', error.message);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="edit-car-form">
       <div className='flex justify-center'>
-        <h1>Insert a new vehicle into Inventory</h1>
+        <h1>Edit {carData.year} {carData.make} {carData.model}</h1>
       </div>
-      <Button type="close" onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:bg-red-700 transition-colors rounded-full">✕</Button>
+      <Button type="button" onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:bg-red-700 transition-colors rounded-full">×</Button>
+      <Input type="hidden" name="carId" value={carDetails.carId} />
       <Input className='mt-8' name="make" label="Make" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
       <Input name="model" label="Model" placeholder="Car Model" value={carDetails.model} onChange={handleChange} required />
       <Input type="number" name="year" label="Year" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
