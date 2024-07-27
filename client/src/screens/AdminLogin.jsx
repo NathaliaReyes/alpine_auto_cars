@@ -16,61 +16,49 @@ import { Label } from "@/components/ui/label"
 import { CogIcon } from '@heroicons/react/solid';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-
+import AlertDestructive from '../components/admin/AlertAuth';
 
 export default function AdminLogin() {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [login, { loading, error }] = useMutation(LOGIN_USER);
   const [validated] = useState(false);
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const Navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ 
-      ...userFormData, 
-      [name]: value });
+    setUserFormData({
+      ...userFormData,
+      [name]: value
+    });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("user: ", userFormData);
 
     try {
       const { data } = await login({
-
         variables: { ...userFormData },
       });
       console.log('data from try: ', data);
 
       Auth.login(data.login.token);
-      console.log('Auth-Login:' , Auth.loggedIn())
+      console.log('Auth-Login:', Auth.loggedIn())
+      setDialogOpen(false); // Close the dialog
+      Navigate('/'); // Redirect to the homepage
     } catch (err) {
-      console.error('something happened!!', err);
+      // <AlertDestructive />
       setShowAlert(true);
+      // console.error('something happened!!', err);
     }
 
     setUserFormData({
       email: '',
       password: '',
     });
-    // login({ variables: { email, password } })
-    // Auth.login(data.login.token)
-    // console.log('from the form: ', data.login);
-    // console.log(data.login);
-    // console.log('Form submitted');
-    // console.log('Email:', email);
-    // console.log('Password:', password);
-    // console.log('Login Data:', res);
-    setDialogOpen(false); // Close the dialog
-    Navigate('/'); // Redirect to the homepage
-    // .catch(err => {
-    //   console.log('Login Error:', err);
-    // });
-    // email = '';
-    // password = '';
+
   };
 
   // if (loading) return <p>Loading...</p>;
@@ -90,9 +78,9 @@ export default function AdminLogin() {
         <DialogContent className="sm:max-w-[425px]" style={{ backgroundColor: 'white', zIndex: 100 }}>
           <form onSubmit={handleSubmit}>
             <DialogHeader>
-              <DialogTitle>Login</DialogTitle>
+              <DialogTitle className="mb-3 text-blue-600 font-bold">Login</DialogTitle>
               <DialogDescription>
-                Make changes to your profile here. Click save when you're done.
+                Welcome, please login to access the admin dashboard.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -127,9 +115,11 @@ export default function AdminLogin() {
             </div>
             <DialogFooter>
               <Button className="bg-blue-500" type="submit">Login</Button>
-              {/* {data && <p>Login Successful</p>} */}
+              {/* {data && } */}
+              {/* {<p>Login Successful</p>} */}
             </DialogFooter>
           </form>
+          {showAlert && <AlertDestructive />}
         </DialogContent>
       </Dialog>
     </div>
