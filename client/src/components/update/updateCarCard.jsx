@@ -32,24 +32,24 @@ const UpdateCarCard = ({ refetchCars, car }) => {
     const openDeleteModal = () => setDeleteModalIsOpen(true);
     const closeDeleteModal = () => setDeleteModalIsOpen(false);
 
-    const handleDelete = async () => {
-        document.getElementById('carId') 
-        const token = Auth.loggedIn() ? Auth.getToken(): null;
+    const handleDelete = async (carId) => {
+        // console.log(carId);
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
             return false;
         }
 
         try {
-            const data = await deleteCar({
-                variables: { carId: car._id },
+            const deletedCar = await deleteCar({
+                variables: { id: carId },
             })
-            if (data) {
+            if (deletedCar) {
                 refetchCars();
                 closeDeleteModal();
             }
         } catch (err) {
-            console.log(err);
+            console.log('Failed to delete car: ', err.message);
             return err;
         }
     };
@@ -128,7 +128,7 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                     <h2 className=' font-bold block text-xl'>{car.year} {car.make} {car.model}</h2>
                 </div>
                 <div className="modal-footer">
-                    <button onClick={handleDelete} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
+                    <button onClick={() => handleDelete(car._id)} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
                     <button onClick={closeDeleteModal} className="modal-button bg-gray-500 text-white hover:bg-gray-700">Cancel</button>
                 </div>
                 <div className="modal-body font-bold flex justify-center">
