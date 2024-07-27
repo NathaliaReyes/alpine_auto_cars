@@ -77,23 +77,35 @@ const resolvers = {
       return { token, user };
     },
 
-    addCar: async (parent, { make, model, year, color, price, mileage, description, images }) => {
-      // if (context.user) {
-        try {
-          // Create the car
-          const car = await Car.create({ make, model, year, color, price, mileage, description, images });
-          // Save the car
-          // await car.save();
-          console.log('Car created successfully...');
-          // Return the car object
-          return car;
-        } catch (error) {
-          console.error('Error creating car:', error.message);
-          // Handle error appropriately, maybe throw an error or return an error message
-          throw new Error('Failed to create car', error.message);
-        }
-      // }
-      // throw new AuthenticationError('Not logged in.');
+    addCar: async (parent, args, context) => {
+      // Ensure the user is authenticated (optional)
+      // if (!context.user) throw new AuthenticationError('Not logged in.');
+    
+      try {
+        const { make, model, year, color, price, mileage, description, images } = args;
+        console.log(images);
+    
+        // Process the image paths if necessary
+        // const imagePaths = images.map(file => file.path.replace(/\\/g, '/'));
+    
+        // Create the car with image paths
+        const car = await Car.create({
+          make,
+          model,
+          year,
+          color,
+          price,
+          mileage,
+          description,
+          images,
+        });
+    
+        console.log('Car created successfully...');
+        return car;
+      } catch (error) {
+        console.error('Error creating car:', error.message);
+        throw new Error('Failed to create car', error.message);
+      }
     },
 
     updateCar: async (parent, { carData }) => {
