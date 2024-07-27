@@ -12,6 +12,23 @@ query Me {
 }
 `;
 
+export const GET_CARS = gql`
+query Cars {
+  cars {
+    _id
+    color
+    created_at
+    description
+    images
+    make
+    mileage
+    model
+    price
+    updated_at
+    year
+  }
+}`;
+
 export const ALL_CLIENTS = gql`
 query All_CLIENTS {
   allClients {

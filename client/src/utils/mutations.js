@@ -39,3 +39,56 @@ export const ADD_CLIENT = gql`
     }
   }
 `;
+
+export const ADD_CAR = gql`
+mutation AddCar($make: String!, $model: String!, $year: Int!, $price: Int!, $color: String!, $mileage: Int!, $description: String) {
+  addCar(make: $make, model: $model, year: $year, price: $price, color: $color, mileage: $mileage, description: $description) {
+    _id
+    color
+    created_at
+    description
+    images
+    make
+    mileage
+    model
+    price
+    updated_at
+    year
+  }
+}
+`;
+
+export const UPDATE_CAR = gql`
+mutation UpdateCar($carData: CarInput!) {
+  updateCar(carData: $carData) {
+    _id
+    color
+    created_at
+    description
+    images
+    make
+    mileage
+    model
+    price
+    updated_at
+    year
+  }
+}
+`;
+
+export const DELETE_CAR = gql`
+mutation DeleteCar($id: ID!) {
+  deleteCar(_id: $id) {
+    _id
+    color
+    created_at
+    description
+    images
+    make
+    mileage
+    model
+    price
+    updated_at
+    year
+  }
+}`;
