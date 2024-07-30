@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useMutation } from '@apollo/client';
 import { ADD_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
+import axios from 'axios';
 
 function NewCarForm({ closeModal, refetchCars }) {
   const [carDetails, setCarDetails] = useState({
@@ -19,6 +20,7 @@ function NewCarForm({ closeModal, refetchCars }) {
   });
 
   const [addCar] = useMutation(ADD_CAR);
+  const [files, setFiles] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,25 +31,41 @@ function NewCarForm({ closeModal, refetchCars }) {
   };
 
   const handleFileChange = (e) => {
-    setCarDetails((prevDetails) => ({
-      ...prevDetails,
-      images: Array.from(e.target.files),
-    }));
+    setFiles(e.target.files);
+  };
+
+  const uploadFiles = async () => {
+    const uploadedImagePaths = [];
+    for (let file of files) {
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const response = await axios.post('http://localhost:3001/upload', formData);
+        console.log('File upload response:', response.data); // Debug response
+        if (response.data.filePath) {
+          uploadedImagePaths.push(response.data.filePath);
+        } else {
+          console.error('No file path in response:', response.data);
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
+    return uploadedImagePaths;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
     if (!token) {
       return false;
     }
-
     try {
+      const imagePaths = await uploadFiles();
+      console.log('imagePaths', imagePaths);
       const { data } = await addCar({
-        variables: { ...carDetails },
+        variables: { ...carDetails, images: imagePaths },
       });
-
       if (data) {
         refetchCars(); // Refetch the cars query to update the UI
         closeModal();  // Close the modal after successful submission

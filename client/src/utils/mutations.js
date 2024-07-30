@@ -41,8 +41,8 @@ export const ADD_CLIENT = gql`
 `;
 
 export const ADD_CAR = gql`
-mutation AddCar($make: String!, $model: String!, $year: Int!, $price: Int!, $color: String!, $mileage: Int!, $description: String) {
-  addCar(make: $make, model: $model, year: $year, price: $price, color: $color, mileage: $mileage, description: $description) {
+mutation AddCar($make: String!, $model: String!, $year: Int!, $price: Int!, $color: String!, $mileage: Int!, $description: String, $images: [String]) {
+  addCar(make: $make, model: $model, year: $year, price: $price, color: $color, mileage: $mileage, description: $description, images: $images) {
     _id
     color
     created_at

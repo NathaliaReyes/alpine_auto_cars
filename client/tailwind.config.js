@@ -1,12 +1,14 @@
+/** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+const withMT = require("@material-tailwind/react/utils/withMT");
 const colors = require("tailwindcss/colors");
 const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
 
 
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = withMT({
   darkMode: ["class"],
   content: [
+    "./index.html",
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
@@ -16,13 +18,18 @@ export default {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        neutral: colors.neutral,
+      }
+    },
   },
   plugins: [
     addVariablesForColors,
+    require("tailwindcss-animate"),
     require('flowbite/plugin')
   ],
-}
+});
 
 function addVariablesForColors({ addBase, theme }) {
   let allColors = flattenColorPalette(theme("colors"));

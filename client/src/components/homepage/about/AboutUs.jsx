@@ -16,7 +16,7 @@ function AboutUs() {
         machine for those weekend getaways, we have the perfect vehicle waiting for you.
       </p>
 
-      <p style={{ lineHeight: '1.5' }} className="text-neutral-400 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-2 lg:text-lg md:text-base text-sm text-start hidden md:block">
+      <p style={{ lineHeight: '1.5' }} className="text-neutral-400 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-4 lg:text-lg md:text-base text-sm text-start hidden md:block">
         Located in the heart of Durango / Bayfield area, our dealership is more than just a place to buy a car. It’s a
         community of car enthusiasts and experts dedicated to helping you find the ride that fits your
         lifestyle and needs. Our team of experienced professionals is passionate about cars and committed

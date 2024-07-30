@@ -42,12 +42,9 @@ const resolvers = {
 
         // Save the user
         await user.save();
-
         console.log('User created successfully...');
-
         // Generate token for the user
         const token = signToken(user);
-
         // Return token and user object
         return { token, user };
       } catch (error) {
@@ -63,16 +60,12 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError('Not logged in.');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials.');
       }
-
       const token = signToken(user);
       // console.log('resolvertoken', token);
-
       // console.log("logged in");
       return { token, user };
     },
@@ -101,6 +94,7 @@ const resolvers = {
         });
     
         console.log('Car created successfully...');
+        console.log(car);
         return car;
       } catch (error) {
         console.error('Error creating car:', error.message);

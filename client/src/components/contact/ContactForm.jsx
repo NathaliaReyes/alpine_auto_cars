@@ -128,8 +128,8 @@ function ContactForm() {
         </div>
       )}
 
-      <div className="flex justify-center items-center">
-        <form onSubmit={handleSubmit} className="p-5 md:w-9/12 w-full ml-4 mr-4 mb-4 bg-gray-100 rounded-lg mt-5">
+      <div className="flex justify-center">
+        <form onSubmit={handleSubmit} className="p-5 md:w-9/12 w-full ml-4 mr-4 mb-5 bg-gray-100 rounded-lg mt-10">
           <h2 className="text-2xl font-extrabold  mt-5 mb-5 tracking-normal">Get in touch</h2>
           <p className="text-black mb-6">We are here for you! How can we help?</p>
           <h2 className="text-xl font-bold tracking-normal mt-4 md:mt-8 mb-5 md:mb-10">Drop us a line</h2>
@@ -213,13 +213,13 @@ function ContactForm() {
                 <option value="Other">Other</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
+                {/* <svg
                   className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                </svg> */}
               </div>
             </div>
           </div>

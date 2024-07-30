@@ -7,6 +7,7 @@ import { BackgroundBeams } from '@/components/ui/background-beams';
 import AboutUs from '@/components/homepage/about/AboutUs';
 import LocationMap from '@/components/homepage/homepageMap';
 import BusinessInfo from '@/components/homepage/about/BusinessInfo';
+import CarouselTestimonials from '@/components/homepage/about/testimonials/Review';
 
 function Home() {
   return (
@@ -27,9 +28,10 @@ function Home() {
       </div> */}
       <BackgroundBeams className="bg-black absolute inset-0 z-[-1]" />
       <AboutUs />
-      <BusinessInfo />
-      <LocationMap />
       </div>
+      <BusinessInfo />
+      <CarouselTestimonials />
+      <LocationMap />
     </>
   )
 }
