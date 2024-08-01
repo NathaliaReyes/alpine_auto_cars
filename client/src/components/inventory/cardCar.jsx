@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { Carousel } from "@material-tailwind/react";
+
 
 import {
     Card,
@@ -42,9 +44,13 @@ function CarCard() {
                 {cars.map((car, index) => (
                     <div key={index} className="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
                         <div className="hover:scale-105  transition-transform duration-300">
-                            <a href="#">
-                                <img src={car.images[0]} alt={`${car.name}`} className="w-full h-auto object-cover rounded overflow-hidden hover:scale-100 hover:shadow-lg transition-transform duration-300 mb-5 border-4 border-white" />
-                            </a>
+                            <Carousel className="rounded-xl ">
+                                {car.images.map((image, index) => (
+                                    <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
+                                        <img src={image} alt="image 1" className="h-96 w-full object-cover" />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
                         <div className="flex flex-col justify-evenly space-y-4">
                             <CardTitle className="tracking-normal">{car.name}</CardTitle>

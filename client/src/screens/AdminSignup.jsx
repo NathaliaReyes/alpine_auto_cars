@@ -14,17 +14,15 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CogIcon } from '@heroicons/react/solid';
-import { ADD_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
-import AlertDestructive from '../components/admin/AlertAuth';
+import { ADD_USER } from '@/utils/mutations';
+import AlertDestructive from '@/components/admin/AlertAuth';
 
-export default function AdminLogin() {
+export default function AdminSignup({ dialogOpen, setDialogOpen }) {
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   const [addUser, { loading, error }] = useMutation(ADD_USER);
-  const [validated] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const Navigate = useNavigate();
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,22 +34,16 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("user: ", userFormData);
 
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
-      console.log('data from try: ', data);
 
-      Auth.login(data.login.token);
-      console.log('Auth-Login:', Auth.loggedIn())
-      setDialogOpen(false); // Close the dialog
-      Navigate('/'); // Redirect to the homepage
+      setDialogOpen(false); // Close the signup dialog
+      setSuccessDialogOpen(true); // Open the success dialog
     } catch (err) {
-      // <AlertDestructive />
       setShowAlert(true);
-      // console.error('something happened!!', err);
     }
 
     setUserFormData({
@@ -59,19 +51,15 @@ export default function AdminLogin() {
       email: '',
       password: '',
     });
-
   };
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
+  const handleSuccessDialogClose = () => {
+    setSuccessDialogOpen(false);
+    navigate('/'); // Redirect to the homepage
+  };
 
   return (
-    <div>
-      <a href="#link1" className="flex text-sm opacity-50 mt-3" onClick={() => setDialogOpen(true)}>
-        <CogIcon className="w-4 h-4 mr-1" />
-        Admin Login
-      </a>
-
+    <>
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild>
           <span />
@@ -81,7 +69,7 @@ export default function AdminLogin() {
             <DialogHeader>
               <DialogTitle className="mb-3 text-blue-600 font-bold">Login</DialogTitle>
               <DialogDescription>
-                Welcome, please enter in the following credentials to gain to access the admin dashboard.
+                Welcome, please enter in the following credentials to gain access to the admin dashboard.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -116,7 +104,6 @@ export default function AdminLogin() {
                   Password
                 </Label>
                 <Input
-                  // type="password" //check this because is overwriting the style
                   id="password"
                   name="password"
                   placeholder="********"
@@ -128,14 +115,29 @@ export default function AdminLogin() {
               </div>
             </div>
             <DialogFooter>
-              <Button className="bg-blue-500" type="submit">Login</Button>
-              {/* {data && } */}
-              {/* {<p>Login Successful</p>} */}
+              <Button className="bg-blue-500" type="submit">Sign Up</Button>
             </DialogFooter>
           </form>
           {showAlert && <AlertDestructive />}
         </DialogContent>
       </Dialog>
-    </div>
-  )
+
+      <Dialog open={successDialogOpen} onOpenChange={handleSuccessDialogClose}>
+        <DialogTrigger asChild>
+          <span />
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]" style={{ backgroundColor: 'white', zIndex: 100 }}>
+          <DialogHeader>
+            <DialogTitle className="mb-3 text-green-600 font-bold">Success</DialogTitle>
+            <DialogDescription>
+              The new admin user has been created successfully.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button className="bg-green-500" onClick={handleSuccessDialogClose}>OK</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 }
