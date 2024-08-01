@@ -9,14 +9,24 @@ import axios from 'axios';
 
 function NewCarForm({ closeModal, refetchCars }) {
   const [carDetails, setCarDetails] = useState({
+    year: '',
     make: '',
     model: '',
-    year: '',
-    price: '',
+    retailPrice: '',
+    askingPrice: '',
     color: '',
     mileage: '',
     description: '',
     images: [],
+    cabType: '',
+    doors: '',
+    driveTrain: '',
+    engine: '',
+    engineType: '',
+    stock: '',
+    transmission: '',
+    trim: '',
+    vin: ''
   });
 
   const [addCar] = useMutation(ADD_CAR);
@@ -26,7 +36,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     const { name, value } = e.target;
     setCarDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: name === 'year' || name === 'mileage' || name === 'price' ? parseInt(value, 10) : value,
+      [name]: name === 'year' || name === 'mileage' || name === 'retailPrice' || name == 'askingPrice' || name == 'stock' || name == 'doors' ? parseInt(value, 10) : value,
     }));
   };
 
@@ -86,18 +96,28 @@ function NewCarForm({ closeModal, refetchCars }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 overfow-hidden overflow-y-scroll z-50">
       <div className="flex justify-center">
         <h1>Insert a new vehicle into Inventory</h1>
       </div>
       <Button type="button" onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:bg-red-700 transition-colors rounded-full">✕</Button>
-      <Input className="mt-8" name="make" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
-      <Input name="model" placeholder="Car Model" value={carDetails.model} onChange={handleChange} required />
-      <Input type="number" name="year" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
-      <Input type="number" name="price" placeholder="Car Price" value={carDetails.price} onChange={handleChange} required />
-      <Input name="color" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
-      <Input type="number" name="mileage" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} required />
-      <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />
+      <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
+      <Input name="make" type="text" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
+      <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
+        onChange={handleChange} required />
+      <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
+      <Input name="trim" type="text" placeholder="Trim Color" value={carDetails.trim} onChange={handleChange} required />
+      <Input name="mileage" type="number" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} required />
+      <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} required />
+      <Input name="engine" type="text" placeholder="Car Engine" value={carDetails.engine} onChange={handleChange} required />
+      <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
+      <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} required />
+      <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
+      <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
+      <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
+      <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
+      <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
+      <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />      
       <div>
         <label className="block text-sm font-medium text-gray-700">Upload Images</label>
         <input type="file" name="images" multiple onChange={handleFileChange} className="mt-1 block w-full" />

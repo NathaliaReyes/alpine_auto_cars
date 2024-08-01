@@ -23,9 +23,19 @@ query Cars {
     make
     mileage
     model
-    price
     updated_at
     year
+    asking_price
+    cabType
+    doors
+    driveTrain
+    engine
+    engineType
+    retail_price
+    stock
+    transmission
+    trim
+    vin
   }
 }`;
 
