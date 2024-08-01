@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/components//lib/utils";
-// import { Icons } from "@/components/icons";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,56 +10,62 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
+import AdminSignup from "@/screens/AdminSignup";
 import Auth from "@/utils/auth";
 
-const components = [
-  {
-    title: "Update Inventory",
-    href: "/Update",
-    description:
-      "Add, edit, or delete cars in inventory.",
-  },
-  {
-    title: "Create new Admin user",
-    href: "/signup",
-    description:
-      "Allow access to these tools for a new user.",
-  },
-  {
-    title: "Logout",
-    description:"Logout of admin tools.",
-    onClick: Auth.logout,
-  },
-  {
-    title: "See All Clients",
-    href: "/clients",
-    description:"See a list of all clients.",
-  },
-];
 
 function AdminMenu() {
+
+  const components = [
+    {
+      title: "Update Inventory",
+      href: "/Update",
+      description: "Add, edit, or delete cars in inventory.",
+    },
+    {
+      title: "Create new Admin user",
+      description: "Add a new administrator to this page.",
+      onClick: () => setDialogOpen(true), // Update this part
+    },
+    {
+      title: "Logout",
+      description: "Logout of admin tools.",
+      onClick: Auth.logout,
+    },
+    {
+      title: "See All Clients",
+      href: "/clients",
+      description: "See a list of all clients.",
+    },
+  ];
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Admin Tools</NavigationMenuTrigger>
-          <NavigationMenuContent style={{ backgroundColor: 'white', zIndex: 100 }}>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {components.map((component) => (
-                <ListItem 
-                  key={component.title} 
-                  title={component.title} 
-                  href={component.href}
-                  onClick={component.onClick}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Admin Tools</NavigationMenuTrigger>
+            <NavigationMenuContent style={{ backgroundColor: 'white', zIndex: 100 }}>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                {components.map((component) => (
+                  <ListItem 
+                    key={component.title} 
+                    title={component.title} 
+                    href={component.href}
+                    onClick={component.onClick}
+                  >
+                    {component.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+      <AdminSignup dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} />
+    </>
   );
 }
 

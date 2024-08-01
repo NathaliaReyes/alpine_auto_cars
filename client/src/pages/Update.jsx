@@ -6,7 +6,7 @@ Modal.setAppElement('#root');
 import { useQuery } from '@apollo/client';
 import { GET_CARS } from '@/utils/queries';
 
-import UpdateCarList from '@/components/update/updateCarCard';
+import UpdateCarList from '@/components/update/UpdateCarCard';
 import { Button } from "@/components/ui/button";
 import NewCarForm from '@/components/update/NewCarForm';
 import '../styles/carForm.css';
