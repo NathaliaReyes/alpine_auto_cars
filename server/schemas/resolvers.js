@@ -75,26 +75,32 @@ const resolvers = {
       // if (!context.user) throw new AuthenticationError('Not logged in.');
     
       try {
-        const { make, model, year, color, price, mileage, description, images } = args;
-        console.log(images);
-    
+        const { make, model, year, stock, mileage, retail_price, asking_price, color, trim, engine, vin, transmission, description, engineType, driveTrain, doors, cabType, images } = args;
         // Process the image paths if necessary
         // const imagePaths = images.map(file => file.path.replace(/\\/g, '/'));
     
-        // Create the car with image paths
         const car = await Car.create({
           make,
           model,
           year,
-          color,
-          price,
+          stock,
           mileage,
+          retail_price,
+          asking_price,
+          color,
+          trim,
+          engine,
+          vin,
+          transmission,
           description,
+          engineType,
+          driveTrain,
+          doors,
+          cabType,
           images,
         });
     
         console.log('Car created successfully...');
-        console.log(car);
         return car;
       } catch (error) {
         console.error('Error creating car:', error.message);

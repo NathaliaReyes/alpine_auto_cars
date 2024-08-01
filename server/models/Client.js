@@ -38,6 +38,7 @@ const clientSchema = new Schema(
         toJSON: {
             virtuals: true,
         },
+        versionKey: false,
     }
 );
 

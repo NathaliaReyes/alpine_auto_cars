@@ -15,6 +15,7 @@ import '../../styles/inventory.css';
 import { useQuery } from "@apollo/client";
 import { GET_CARS } from "@/utils/queries";
 import ModalCar from './modalCarCard';
+import { formatPrice } from "../../utils/helpers";
 
 
 function CarCard() {
@@ -65,7 +66,7 @@ function CarCard() {
                                                     <li><strong>Make: </strong>{car.make}</li>
                                                     <li><strong>Model: </strong>{car.model}</li>
                                                     <li><strong>Year: </strong>{car.year}</li>
-                                                    <li><strong>Price: </strong>${car.price}</li>
+                                                    <li><strong>Price: </strong>${formatPrice(car.price)}</li>
                                                 </ul>
                                                 <ul className="flex flex-col text-left space-y-2">
                                                     <li><strong>Mileage: </strong>{car.mileage}</li>
@@ -78,7 +79,7 @@ function CarCard() {
                                     </div>
                                     <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
                                         <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors">
-                                            Price: ${car.price}
+                                            Price: ${formatPrice(car.price)}
                                         </Button>
                                     </div>
                                 </div>

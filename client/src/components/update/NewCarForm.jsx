@@ -26,7 +26,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     const { name, value } = e.target;
     setCarDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: name === 'year' || name === 'price' || name === 'mileage' ? parseInt(value) : value,
+      [name]: name === 'year' || name === 'mileage' || name === 'price' ? parseInt(value, 10) : value,
     }));
   };
 
@@ -56,6 +56,7 @@ function NewCarForm({ closeModal, refetchCars }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
@@ -64,14 +65,23 @@ function NewCarForm({ closeModal, refetchCars }) {
       const imagePaths = await uploadFiles();
       console.log('imagePaths', imagePaths);
       const { data } = await addCar({
-        variables: { ...carDetails, images: imagePaths },
+        variables: {
+          ...carDetails,
+          images: imagePaths
+        },
       });
       if (data) {
         refetchCars(); // Refetch the cars query to update the UI
         closeModal();  // Close the modal after successful submission
       }
     } catch (error) {
-      console.log(error);
+      if (error.networkError) {
+        console.error('Network error:', error.networkError);
+      }
+      if (error.graphQLErrors) {
+        console.error('GraphQL errors:', error.graphQLErrors);
+      }
+      console.error('Error:', error);
     }
   };
 

@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const { passwordValidator } = require('../utils/helpers');
 
 const userSchema = new Schema(
   {
@@ -17,6 +18,12 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
+      minlength: 8,
+      maxLength: 12,
+      validate : {
+        validator: passwordValidator,
+        message: 'Password must have at least one lowercase letter, one uppercase letter, one number, and one special character',
+      }
     },
     created_at: {
       type: Date,
@@ -27,6 +34,7 @@ const userSchema = new Schema(
     toJSON: {
       virtuals: true,
     },
+    versionKey: false,
   }
 );
 

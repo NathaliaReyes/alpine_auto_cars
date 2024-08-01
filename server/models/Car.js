@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { yearValidator } = require('../utils/helpers');
 
 const carSchema = new Schema(
     {
@@ -13,8 +14,23 @@ const carSchema = new Schema(
         year: {
             type: Number,
             required: true,
+            validate: {
+                validator: yearValidator,
+                message: 'Please provide a valid year',
+            },
         },
-        price: {
+        stock: {
+            type: Number,
+        },
+        mileage: {
+            type: Number,
+            required: true,
+        },
+        retail_price: {
+            type: Number,
+            required: true,
+        },
+        asking_price: {
             type: Number,
             required: true,
         },
@@ -22,13 +38,36 @@ const carSchema = new Schema(
             type: String,
             required: true,
         },
-        mileage: {
-            type: Number,
+        trim: {
+            type: String,
+        },
+        engine: {
+            type: String,
+            required: true,
+        },
+        vin : {
+            type: String,
+            required: true,
+        },
+        transmission: {
+            type: String,
             required: true,
         },
         description: {
             type: String,
             maxlength: 1000,
+        },
+        engineType: {
+            type: String,
+        },
+        driveTrain: {
+            type: String,
+        },
+        doors: {
+            type: Number,
+        },
+        cabType:{
+            type: String,
         },
         images: [
             {
@@ -48,6 +87,7 @@ const carSchema = new Schema(
         toJSON: {
             virtuals: true,
         },
+        versionKey: false,
     }
 );
 
