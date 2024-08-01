@@ -4,7 +4,8 @@ const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const cors = require('cors');
-const upload = require('./utils/upload');
+// const upload = require('./utils/upload');
+const multer = require('multer');
 
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -17,6 +18,16 @@ const server = new ApolloServer({
   resolvers,
 });
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '../client/public/images'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+})
+
+const upload = multer({ storage });
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
@@ -24,12 +35,24 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use(cors());
-  app.use('/upload', express.static(path.join(__dirname, 'upload')));
+
+  // app.use('/upload', express.static(path.join(__dirname, 'upload')));
+  app.post('/upload', upload.single('file'), (req, res) => {
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+    }
+    const filePath = `/images/${req.file.filename}`;
+    res.json({ filePath });
+
+    console.log('File uploaded:', req.file);
+  });
 
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
   }));
 }
+
+
 
 
 if (process.env.NODE_ENV === 'production') {
