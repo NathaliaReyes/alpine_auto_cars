@@ -115,6 +115,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
       <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
       <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
+      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
       <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
       <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
       <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />      
