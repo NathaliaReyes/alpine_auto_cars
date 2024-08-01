@@ -54,7 +54,7 @@ function CarCard() {
                             </Carousel>
                         </div>
                         <div className="flex flex-col justify-evenly space-y-4">
-                            <CardTitle className="tracking-normal">{car.name}</CardTitle>
+                            <CardTitle className="tracking-normal">{car.year} {car.make} {car.model}</CardTitle>
                             <CardDescription >
                                 <div className="flex items-center pt-1">
                                     <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
