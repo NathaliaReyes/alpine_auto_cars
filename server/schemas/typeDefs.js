@@ -49,10 +49,20 @@ const typeDefs = `
     make: String
     model: String
     year: Int
-    price: Int
-    color: String
+    stock: Int
     mileage: Int
+    retail_price: Int
+    asking_price: Int
+    color: String
+    trim: String
+    engine: String
+    vin: String
+    transmission: String
     description: String
+    engineType: String
+    driveTrain: String
+    doors: Int
+    cabType: String
     images: [String]
     created_at: Date
     updated_at: Date
