@@ -69,9 +69,19 @@ mutation UpdateCar($carData: CarInput!) {
     make
     mileage
     model
-    price
     updated_at
     year
+    asking_price
+    cabType
+    doors
+    driveTrain
+    engine
+    engineType
+    retail_price
+    stock
+    transmission
+    trim
+    vin
   }
 }
 `;
@@ -87,8 +97,18 @@ mutation DeleteCar($id: ID!) {
     make
     mileage
     model
-    price
     updated_at
     year
+    asking_price
+    cabType
+    doors
+    driveTrain
+    engine
+    engineType
+    retail_price
+    stock
+    transmission
+    trim
+    vin
   }
 }`;
