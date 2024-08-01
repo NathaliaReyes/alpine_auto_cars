@@ -45,16 +45,16 @@ export default function AdminSignup({ dialogOpen, setDialogOpen }) {
     } catch (err) {
       setShowAlert(true);
     }
-
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
   };
 
   const handleSuccessDialogClose = () => {
     setSuccessDialogOpen(false);
+
+    setUserFormData({
+        username: '',
+        email: '',
+        password: '',
+      });
     navigate('/'); // Redirect to the homepage
   };
 
@@ -130,7 +130,7 @@ export default function AdminSignup({ dialogOpen, setDialogOpen }) {
           <DialogHeader>
             <DialogTitle className="mb-3 text-green-600 font-bold">Success</DialogTitle>
             <DialogDescription>
-              The new admin user has been created successfully.
+              The new admin user has been created successfully. <br></br><br></br> Credentials for login are: <br></br><br></br><strong>Email: {userFormData.email} <br></br><br></br>Password: {userFormData.password}</strong>
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
