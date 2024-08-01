@@ -1,4 +1,6 @@
 import React from 'react';
+import { Carousel } from "@material-tailwind/react";
+
 
 const ModalCar = ({ isOpen, onClose, carInfo }) => {
   if (!isOpen) return null;
@@ -9,8 +11,13 @@ const ModalCar = ({ isOpen, onClose, carInfo }) => {
         <h2 className="text-xl font-bold mb-4">{carInfo.model} {carInfo.make}</h2>
         <div className='flex flex-col sm:flex-row gap-4'>
           <div className='flex-1'>
-            <img src={carInfo.images[0]} alt={carInfo.make} className="w-full h-64 object-cover" />
-          </div>
+            <Carousel className="rounded-xl ">
+              {carInfo.images.map((image, index) => (
+                <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
+                  <img src={image} alt="image 1" className="h-96 w-full object-cover" />
+                </div>
+              ))}
+            </Carousel>          </div>
           <div className='flex-1'>
             <p><strong>Make:</strong> {carInfo.make}</p>
             <p><strong>Model:</strong> {carInfo.model}</p>
