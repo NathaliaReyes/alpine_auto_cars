@@ -8,7 +8,7 @@ const ModalCar = ({ isOpen, onClose, carInfo }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-4 rounded shadow-lg w-11/12 sm:w-11/12 md:w-3/4 lg:w-2/3">
-        <h2 className="text-xl font-bold mb-4">{carInfo.model} {carInfo.make}</h2>
+        <h2 className="text-xl font-bold mb-4">{carInfo.year} {carInfo.make} {carInfo.model}</h2>
         <div className='flex flex-col sm:flex-row gap-4'>
           <div className='flex-1'>
             <Carousel className="rounded-xl ">
