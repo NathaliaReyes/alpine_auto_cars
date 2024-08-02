@@ -22,23 +22,23 @@ const typeDefs = `
 
   type Car {
     _id: ID
-    make: String!
-    model: String!
-    year: Int!
-    stock: Int!
-    mileage: Int!
-    retail_price: Int!
-    asking_price: Int!
-    color: String!
-    trim: String!
-    engine: String!
-    vin: String!
-    transmission: String!
+    make: String
+    model: String
+    year: Int
+    stock: Int
+    mileage: Int
+    retail_price: Int
+    asking_price: Int
+    color: String
+    trim: String
+    engine: String
+    vin: String
+    transmission: String
     description: String
     engineType: String
     driveTrain: String
     vehicleType: String
-    fuelType: String!
+    fuelType: String
     images: [String]
     created_at: Date
     updated_at: Date
@@ -46,9 +46,9 @@ const typeDefs = `
 
   input CarInput {
     carId: ID!
-    make: String
-    model: String
-    year: Int
+    make: String!
+    model: String!
+    year: Int!
     stock: Int
     mileage: Int
     retail_price: Int

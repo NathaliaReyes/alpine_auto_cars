@@ -74,6 +74,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     try {
       const imagePaths = await uploadFiles();
       console.log('imagePaths', imagePaths);
+      
       const { data } = await addCar({
         variables: {
           ...carDetails,
@@ -94,6 +95,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       console.error('Error:', error);
     }
   };
+)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 overfow-hidden overflow-y-scroll z-50">
@@ -104,19 +106,19 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="year" type="number" placeholder="Year" value={carDetails.year} onChange={handleChange} required />
       <Input name="make" type="text" placeholder="Make" value={carDetails.make} onChange={handleChange} required />
       <Input name="model" type="text" placeholder="Model" value={carDetails.model} onChange={handleChange} required />
-      <Input name="color" type="text" placeholder="Color" value={carDetails.color} onChange={handleChange} required />
-      <Input name="trim" type="text" placeholder="Trim" value={carDetails.trim} onChange={handleChange} required />
-      <Input name="mileage" type="number" placeholder="Mileage" value={carDetails.mileage} onChange={handleChange} required />
-      <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} required />
-      <Input name="engine" type="text" placeholder="Engine Size" value={carDetails.engine} onChange={handleChange} required />
-      <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
-      <Input name="transmission" type="text" placeholder="Transmission" value={carDetails.transmission} onChange={handleChange} required />
-      <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
-      <Input name="vehicleType" type="text" placeholder="Vehicle/Cab Type" value={carDetails.vehicleType} onChange={handleChange} required />
-      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
-      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange} required />
-      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
-      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
+      <Input name="color" type="text" placeholder="Color" value={carDetails.color} onChange={handleChange}  />
+      <Input name="trim" type="text" placeholder="Trim" value={carDetails.trim} onChange={handleChange}  />
+      <Input name="mileage" type="number" placeholder="Mileage" value={carDetails.mileage} onChange={handleChange}  />
+      <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange}  />
+      <Input name="engine" type="text" placeholder="Engine Size" value={carDetails.engine} onChange={handleChange}  />
+      <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange}  />
+      <Input name="transmission" type="text" placeholder="Transmission" value={carDetails.transmission} onChange={handleChange}  />
+      <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange}  />
+      <Input name="vehicleType" type="text" placeholder="Vehicle/Cab Type" value={carDetails.vehicleType} onChange={handleChange}  />
+      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange}  />
+      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange}  />
+      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange}  />
+      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange}  />
       <Textarea name="description" placeholder="Optional Description" value={carDetails.description} onChange={handleChange} />      
       <div>
         <label className="block text-sm font-medium text-gray-700">Upload Images</label>
