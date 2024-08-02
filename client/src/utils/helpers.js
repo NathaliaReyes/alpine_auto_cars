@@ -13,7 +13,7 @@ export function formatPrice(price) {
     // Insert the dot in the third position from the end which is the decimal point
     priceStr = priceStr.slice(0, -2) + '.' + priceStr.slice(-2);
     
-    // Insert the comma every three digits from the right to the left of the decimal point 
+    // Insert the comma every three digits from the right to the left of the decimal point
     priceStr = priceStr.slice(0, -6) + ',' + priceStr.slice(-6);
     
     return priceStr;
