@@ -18,8 +18,6 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      minlength: 8,
-      maxLength: 12,
       validate : {
         validator: passwordValidator,
         message: 'Password must have at least one lowercase letter, one uppercase letter, one number, and one special character',

@@ -6,7 +6,7 @@ function passwordValidator(password) {
   const hasLowercase = /[a-z]/.test(password);
   const hasDigit = /[0-9]/.test(password);
   const hasCapitalCase = /[A-Z]/.test(password);
-  const hasSpecialChar = /[^a-zA-Z0-9]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
   return hasLowercase && hasDigit && hasCapitalCase && hasSpecialChar;
 }
 

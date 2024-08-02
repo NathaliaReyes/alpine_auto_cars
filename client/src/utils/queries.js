@@ -16,26 +16,26 @@ export const GET_CARS = gql`
 query Cars {
   cars {
     _id
+    asking_price
+    cabType
     color
     created_at
     description
-    images
-    make
-    mileage
-    model
-    updated_at
-    year
-    asking_price
-    cabType
     doors
     driveTrain
     engine
     engineType
+    images
+    make
+    mileage
+    model
     retail_price
     stock
     transmission
     trim
+    updated_at
     vin
+    year
   }
 }`;
 
