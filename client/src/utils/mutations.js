@@ -41,16 +41,17 @@ export const ADD_CLIENT = gql`
 `;
 
 export const ADD_CAR = gql`
+<<<<<<< HEAD
 mutation addCar($make: String!, $model: String!, $year: Int!, $price: Int!, $color: String!, $mileage: Int!, $description: String, $stock: Int, $retailPrice: Int, $askingPrice: Int, $trim: String, $engine: String, $vin: String, $transmission: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
   addCar(make: $make, model: $model, year: $year, price: $price, color: $color, mileage: $mileage, description: $description, stock: $stock, retail_price: $retailPrice, asking_price: $askingPrice, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
+=======
+mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mileage: Int, $retail_price: Int, $asking_price: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
+  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retail_price, asking_price: $asking_price, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
+>>>>>>> main
     _id
-    color
-    created_at
-    description
-    images
     make
-    mileage
     model
+<<<<<<< HEAD
     updated_at
     year
     asking_price
@@ -64,6 +65,26 @@ mutation addCar($make: String!, $model: String!, $year: Int!, $price: Int!, $col
     transmission
     trim
     vin
+=======
+    year
+    stock
+    mileage
+    retail_price
+    asking_price
+    color
+    trim
+    engine
+    vin
+    transmission
+    description
+    engineType
+    driveTrain
+    doors
+    cabType
+    images
+    created_at
+    updated_at
+>>>>>>> main
   }
 }
 `;

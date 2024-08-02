@@ -76,7 +76,7 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                                             <li><strong>Make: </strong>{car.make}</li>
                                             <li><strong>Model: </strong>{car.model}</li>
                                             <li><strong>Year: </strong>{car.year}</li>
-                                            <li><strong>Price: </strong>${formatPrice(car.price)}</li>
+                                            <li><strong>Price: </strong>${formatPrice(car.asking_price)}</li>
                                         </ul>
                                         <ul className="flex flex-col text-left space-y-2">
                                             <li><strong>Mileage: </strong>{car.mileage}</li>
@@ -90,7 +90,7 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                             </div>
                             <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
                                 <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
-                                    Price: ${formatPrice(car.price)}
+                                    Price: ${formatPrice(car.asking_price)}
                                 </Button>
                             </div>
                         </div>
