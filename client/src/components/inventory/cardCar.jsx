@@ -72,13 +72,15 @@ function CarCard() {
                                                     <li><strong>Make: </strong>{car.make}</li>
                                                     <li><strong>Model: </strong>{car.model}</li>
                                                     <li><strong>Year: </strong>{car.year}</li>
-                                                    <li><strong>Price: </strong>${formatPrice(car.asking_price)}</li>
+                                                    <li><strong>Mileage: </strong>{car.mileage}</li>
                                                 </ul>
                                                 <ul className="flex flex-col text-left space-y-2">
-                                                    <li><strong>Mileage: </strong>{car.mileage}</li>
+
                                                     <li><strong>Color: </strong>{car.color}</li>
-                                                    <li><strong>Description: </strong>{car.description}</li>
-                                                    <li><strong>Transmission: </strong>{car.transmission}</li>
+                                                    <li><strong>Trim: </strong>{car.trim}</li>
+                                                    <li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li>
+                                                    <li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -94,8 +96,6 @@ function CarCard() {
                         </div>
                         <CardFooter>
                             <div className="flex flex-col sm:flex-row justify-evenly items-center w-full">
-                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">View</Button>
-                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">Buy</Button>
                                 <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>Details</Button>
                             </div>
                         </CardFooter>
