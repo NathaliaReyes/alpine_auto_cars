@@ -95,7 +95,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       console.error('Error:', error);
     }
   };
-)
+
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 overfow-hidden overflow-y-scroll z-50">
