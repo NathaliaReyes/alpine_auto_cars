@@ -12,8 +12,8 @@ function NewCarForm({ closeModal, refetchCars }) {
     year: '',
     make: '',
     model: '',
-    retailPrice: '',
-    askingPrice: '',
+    retail_price: '',
+    asking_price: '',
     color: '',
     mileage: '',
     description: '',
@@ -36,7 +36,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     const { name, value } = e.target;
     setCarDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: name === 'year' || name === 'mileage' || name === 'retailPrice' || name == 'askingPrice' || name == 'stock' || name == 'doors' ? parseInt(value, 10) : value,
+      [name]: name === 'year' || name === 'mileage' || name === 'retail_price' || name == 'asking_price' || name == 'stock' || name == 'doors' ? parseInt(value, 10) : value,
     }));
   };
 
@@ -66,7 +66,7 @@ function NewCarForm({ closeModal, refetchCars }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(carDetails);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
@@ -116,8 +116,8 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
       <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
       <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
-      <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
-      <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
+      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
+      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
       <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />      
       <div>
         <label className="block text-sm font-medium text-gray-700">Upload Images</label>

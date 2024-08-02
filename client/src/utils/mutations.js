@@ -41,8 +41,8 @@ export const ADD_CLIENT = gql`
 `;
 
 export const ADD_CAR = gql`
-mutation AddCar($make: String!, $model: String!, $year: Int!, $price: Int!, $color: String!, $mileage: Int!, $description: String, $images: [String]) {
-  addCar(make: $make, model: $model, year: $year, price: $price, color: $color, mileage: $mileage, description: $description, images: $images) {
+mutation addCar($make: String!, $model: String!, $year: Int!, $price: Int!, $color: String!, $mileage: Int!, $description: String, $stock: Int, $retailPrice: Int, $askingPrice: Int, $trim: String, $engine: String, $vin: String, $transmission: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
+  addCar(make: $make, model: $model, year: $year, price: $price, color: $color, mileage: $mileage, description: $description, stock: $stock, retail_price: $retailPrice, asking_price: $askingPrice, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
     _id
     color
     created_at
@@ -51,9 +51,19 @@ mutation AddCar($make: String!, $model: String!, $year: Int!, $price: Int!, $col
     make
     mileage
     model
-    price
     updated_at
     year
+    asking_price
+    cabType
+    doors
+    driveTrain
+    engine
+    engineType
+    retail_price
+    stock
+    transmission
+    trim
+    vin
   }
 }
 `;
