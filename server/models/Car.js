@@ -63,10 +63,10 @@ const carSchema = new Schema(
         driveTrain: {
             type: String,
         },
-        doors: {
-            type: Number,
+        vehicleType: {
+            type: String,
         },
-        cabType:{
+        fuelType: {
             type: String,
         },
         images: [

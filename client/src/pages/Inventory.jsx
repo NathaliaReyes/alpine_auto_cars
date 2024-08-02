@@ -5,7 +5,9 @@ function Inventory() {
   return (
     
     <>
-      <CarList />
+    <div className="z-1">
+    <CarList />
+    </div>
     </>
     
   )

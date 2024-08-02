@@ -20,15 +20,15 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
     mileage: '',
     description: '',
     images: [],
-    cabType: '',
-    doors: '',
+    vehicleType: '',
     driveTrain: '',
     engine: '',
     engineType: '',
     stock: '',
     transmission: '',
     trim: '',
-    vin: ''
+    vin: '',
+    fuelType: ''
   });
 
   useEffect(() => {
@@ -89,24 +89,23 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
         <h1>Edit {carData.year} {carData.make} {carData.model}</h1>
       </div>
       <Button type="button" onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:bg-red-700 transition-colors rounded-full">×</Button>
-      <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
-      <Input name="make" type="text" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
-      <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
-        onChange={handleChange} required />
-      <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
-      <Input name="trim" type="text" placeholder="Trim Color" value={carDetails.trim} onChange={handleChange} required />
-      <Input name="mileage" type="number" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} required />
+      <Input name="year" type="number" placeholder="Year" value={carDetails.year} onChange={handleChange} required />
+      <Input name="make" type="text" placeholder="Make" value={carDetails.make} onChange={handleChange} required />
+      <Input name="model" type="text" placeholder="Model" value={carDetails.model} onChange={handleChange} required />
+      <Input name="color" type="text" placeholder="Color" value={carDetails.color} onChange={handleChange} required />
+      <Input name="trim" type="text" placeholder="Trim" value={carDetails.trim} onChange={handleChange} required />
+      <Input name="mileage" type="number" placeholder="Mileage" value={carDetails.mileage} onChange={handleChange} required />
       <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} required />
-      <Input name="engine" type="text" placeholder="Car Engine" value={carDetails.engine} onChange={handleChange} required />
+      <Input name="engine" type="text" placeholder="Engine Size" value={carDetails.engine} onChange={handleChange} required />
       <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
-      <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} required />
+      <Input name="transmission" type="text" placeholder="Transmission" value={carDetails.transmission} onChange={handleChange} required />
       <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
-      <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
-      <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
+      <Input name="vehicleType" type="text" placeholder="Vehicle/Cab Type" value={carDetails.vehicleType} onChange={handleChange} required />
       <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
-      <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
-      <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
-      <Textarea name="description" label="Description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />
+      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange} required />
+      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
+      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
+      <Textarea name="description" placeholder="Optional Description" value={carDetails.description} onChange={handleChange} />      
       <div className="form-group">
         <label htmlFor="images">Images:</label>
         <textarea id="images" name="images" value={carDetails.images.join(', ')} onChange={(e) => setCarDetails(prevState => ({

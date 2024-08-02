@@ -41,8 +41,8 @@ export const ADD_CLIENT = gql`
 `;
 
 export const ADD_CAR = gql`
-mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mileage: Int, $retail_price: Int, $asking_price: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
-  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retail_price, asking_price: $asking_price, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
+mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mileage: Int, $retail_price: Int, $asking_price: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $vehicleType: String, $images: [String], $fuelType: String) {
+  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retail_price, asking_price: $asking_price, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, vehicleType: $vehicleType, images: $images, fuelType: $fuelType) {
     _id
     make
     model
@@ -59,9 +59,9 @@ mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mile
     description
     engineType
     driveTrain
-    doors
-    cabType
+    vehicleType
     images
+    fuelType
     created_at
     updated_at
   }
@@ -82,8 +82,7 @@ mutation UpdateCar($carData: CarInput!) {
     updated_at
     year
     asking_price
-    cabType
-    doors
+    vehicleType
     driveTrain
     engine
     engineType
@@ -92,6 +91,7 @@ mutation UpdateCar($carData: CarInput!) {
     transmission
     trim
     vin
+    fuelType
   }
 }
 `;
@@ -110,8 +110,7 @@ mutation DeleteCar($id: ID!) {
     updated_at
     year
     asking_price
-    cabType
-    doors
+    vehicleType
     driveTrain
     engine
     engineType
@@ -120,5 +119,6 @@ mutation DeleteCar($id: ID!) {
     transmission
     trim
     vin
+    fuelType
   }
 }`;

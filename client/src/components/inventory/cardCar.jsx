@@ -55,14 +55,16 @@ function CarCard() {
                         </div>
                         <div className="flex flex-col justify-evenly space-y-4">
                             <CardTitle className="tracking-normal">{car.year} {car.make} {car.model}</CardTitle>
-                            <CardDescription >
-                                <div className="flex items-center pt-1">
-                                    <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
-                                    <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
-                                        {car.description}
-                                    </span>
-                                </div>
-                            </CardDescription>
+                            {car.description ? (
+                                <CardDescription >
+                                    <div className="flex items-center pt-1">
+                                        <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
+                                        <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                            {car.description}
+                                        </span>
+                                    </div>
+                                </CardDescription>
+                            ) : ''}
                             <CardContent>
                                 <div className="flex flex-col lg:flex-row justify-between p-0">
                                     <div className="md:flex justify-evenly w-full">
@@ -75,20 +77,15 @@ function CarCard() {
                                                     <li><strong>Mileage: </strong>{car.mileage}</li>
                                                 </ul>
                                                 <ul className="flex flex-col text-left space-y-2">
-
+                                                    <li><strong>Vehicle/Cab Type: </strong>{car.vehicleType}</li>
                                                     <li><strong>Color: </strong>{car.color}</li>
                                                     <li><strong>Trim: </strong>{car.trim}</li>
-                                                    <li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li>
-                                                    <li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li>
-
                                                 </ul>
                                             </div>
+                                            <Button className="mt-8 sm:w-full w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors">
+                                                Asking Price: ${formatPrice(car.asking_price)}
+                                            </Button>
                                         </div>
-                                    </div>
-                                    <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
-                                        <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors">
-                                            Price: ${formatPrice(car.asking_price)}
-                                        </Button>
                                     </div>
                                 </div>
 
@@ -96,7 +93,7 @@ function CarCard() {
                         </div>
                         <CardFooter>
                             <div className="flex flex-col sm:flex-row justify-evenly items-center w-full">
-                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>Details</Button>
+                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>View More Details</Button>
                             </div>
                         </CardFooter>
                     </div>
