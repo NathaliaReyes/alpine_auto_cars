@@ -8,8 +8,10 @@ import AboutUs from '@/components/homepage/about/AboutUs';
 import LocationMap from '@/components/homepage/homepageMap';
 import BusinessInfo from '@/components/homepage/about/BusinessInfo';
 import CarouselTestimonials from '@/components/homepage/about/testimonials/Review';
+import { Navigate } from 'react-router-dom';
 
 const reviewLink = 'https://www.google.com/search?q=alpine+auto+sales+bayfield+co+owner&sca_esv=584386099&rlz=1C5CHFA_enUS939US939&sxsrf=AM9HkKkmP-xu8fhTBWHs3DzZ1bZZImAGtw%3A1700606556120&ei=XDJdZY3mBrClqtsPifCUOA&ved=0ahUKEwiNhLiNldaCAxWwkmoFHQk4BQcQ4dUDCBE&uact=5&oq=alpine+auto+sales+bayfield+co+owner&gs_lp=Egxnd3Mtd2l6LXNlcnAiI2FscGluZSBhdXRvIHNhbGVzIGJheWZpZWxkIGNvIG93bmVyMgUQIRigATIFECEYoAEyBRAhGKABSK0jUKwCWNQhcAJ4AJABAJgBcqAB_gWqAQM1LjO4AQPIAQD4AQHCAg4QLhiABBjHARivARiwA8ICBhAAGBYYHsICBRAhGKsCwgIHECEYoAEYCuIDBBgBIEGIBgGQBgE&sclient=gws-wiz-serp#ip=1&lrd=0x873c21adba3328e5:0xa17770b3fcd18eb9,1,,,,';
+
 
 function Home() {
   return (
@@ -20,7 +22,7 @@ function Home() {
           <h1 className='sm:text-base text-lg md:text-3xl lg:text-4xl uppercase text-center md:tracking-wider font-bold md:leading-relaxed'>Conquer <br />every road </h1>
           <p className='text-sm md:text-lg text-center tracking-widest leading-4'>with the power<br /> that drives you beyond <br />your limits</p>
           <Button className="w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors mt-2 md:mt-4">
-            Check your next car
+            <a href='/Inventory'>Browse for your next car</a>
           </Button>
         </div>
         {/* <div className="banner-text right ">
