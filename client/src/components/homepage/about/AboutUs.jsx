@@ -3,7 +3,7 @@ import React from 'react';
 function AboutUs() {
 
   return (
-    <div className='p-5 mb-4'>
+    <div className='pt-5 pb-5 mb-4'>
 
       <h1 style={{ lineHeight: '1.5' }} className="text-white sm:text-lg font-bold mt-5 ml-3 mr-2 relative z-10 text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-sans">
         We Specialize in Quality Pre-Owned Vehicles
