@@ -4,7 +4,7 @@ import BgTest from "../../../../assets/images/bg-route.jpg";
 export default function CarouselTestimonials() {
   return (
     <div className=" justify-center items-center p-4">
-      <h2 className="text-xl font-bold text-center text-gray-800 my-4 italic">Testimonials</h2>
+      <h2 className="text-xl font-bold text-center text-gray-800 my-4 italic">Customer Testimonials</h2>
       <Carousel className="rounded-xl ">
       <div className="relative h-full w-full ">
           <img
