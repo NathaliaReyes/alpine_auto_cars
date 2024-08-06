@@ -41,6 +41,7 @@ const ModalCar = ({ isOpen, onClose, carInfo }) => {
             <p><strong>Stock No.:</strong> {carInfo.stock}</p>
             <p><strong>Retail Price:</strong> ${formatPrice(carInfo.retail_price)}</p>
             <p><strong>Asking Price:</strong> ${formatPrice(carInfo.asking_price)}</p>
+            <p className='text-blue-900'><strong>CARFAX available for this vehicle - call us today!</strong></p>
           </div>
         </div>
       </div>

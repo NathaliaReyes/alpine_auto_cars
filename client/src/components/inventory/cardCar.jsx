@@ -80,6 +80,7 @@ function CarCard() {
                                                     <li><strong>Vehicle/Cab Type: </strong>{car.vehicleType}</li>
                                                     <li><strong>Color: </strong>{car.color}</li>
                                                     <li><strong>Trim: </strong>{car.trim}</li>
+                                                    <li className="text-blue-700"><strong>CARFAX Available</strong></li>
                                                 </ul>
                                             </div>
                                             <Button className="mt-8 sm:w-full w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors">
