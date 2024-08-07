@@ -40,11 +40,11 @@ function CarCard() {
     };
 
     return (
-        <Card className="mt-3 ml-0 mr-0">
+        <Card className="m-2 max-w-7xl md:p-4 shadow-md mx-auto">
             <CardHeader>
                 {cars.map((car, index) => (
                     <div key={index} className="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div className="hover:scale-105  transition-transform duration-300">
+                        <div className="hover:scale-105  transition-transform duration-300 relative">
                             <Carousel className="rounded-xl ">
                                 {car.images.map((image, index) => (
                                     <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
@@ -52,40 +52,50 @@ function CarCard() {
                                     </div>
                                 ))}
                             </Carousel>
+                            <Button className="absolute right-1 bottom-0 lg:bottom-4 lg:left-1/2 transform lg:-translate-x-1/2 mb-4 h-10 w-24 bg-red-600 border border-1 border-gray-700 text-white rounded-full flex items-center justify-center text-sm md:text-base" onClick={() => handleOpenModal(car)}>
+                                Details
+                            </Button>
+
                         </div>
-                        <div className="flex flex-col justify-evenly space-y-4">
-                            <CardTitle className="tracking-normal">{car.year} {car.make} {car.model}</CardTitle>
+                        <div className="flex flex-col justify-evenly space-y-4 md:ml-2">
+                            <CardTitle className="tracking-normal text-base md:text-lg">{car.year} {car.make} {car.model}</CardTitle>
                             <CardDescription >
-                                <div className="flex items-center pt-1">
+                                <div className="flex items-center">
                                     <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
-                                    <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                    <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
                                         {car.description}
                                     </span>
                                 </div>
                             </CardDescription>
                             <CardContent>
-                                <div className="flex flex-col lg:flex-row justify-between p-0">
-                                    <div className="md:flex justify-evenly w-full">
-                                        <div className="w-full">
-                                            <div className="grid sm:grid-cols-2 gap-4 hiddenList">
-                                                <ul className="flex flex-col text-left space-y-2">
-                                                    <li><strong>Make: </strong>{car.make}</li>
-                                                    <li><strong>Model: </strong>{car.model}</li>
-                                                    <li><strong>Year: </strong>{car.year}</li>
-                                                    <li><strong>Price: </strong>${formatPrice(car.asking_price)}</li>
-                                                </ul>
-                                                <ul className="flex flex-col text-left space-y-2">
-                                                    <li><strong>Mileage: </strong>{car.mileage}</li>
-                                                    <li><strong>Color: </strong>{car.color}</li>
-                                                    <li><strong>Description: </strong>{car.description}</li>
-                                                    <li><strong>Transmission: </strong>{car.transmission}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                <div className="flex flex-col justify-between">
+                                    <div className="w-full grid grid-cols-2 gap-2 text-xs md:text-base mb-3">
+                                        <ul className="flex flex-col text-left space-y-2">
+                                            <li><strong>Make: </strong>{car.make}</li>
+                                            <li><strong>Model: </strong>{car.model}</li>
+                                            <li><strong>Year: </strong>{car.year}</li>
+                                            <li><strong>Color: </strong>{car.color}</li>
+                                            <li><strong>Trim: </strong>{car.trim}</li>
+                                            <li><strong>Doors: </strong>{car.doors}</li>
+                                            <li><strong>Drive Train: </strong>{car.driveTrain}</li>
+                                            <li><strong>Engine Type: </strong>{car.engineType}</li>
+                                        </ul>
+                                        <ul className="flex flex-col text-left space-y-2">
+                                        <li><strong>Stock: </strong>{car.stock}</li>
+                                            <li><strong>Color: </strong>{car.color}</li>
+                                            <li><strong>Engine: </strong>{car.engine}</li>
+                                            <li><strong>Transmission: </strong>{car.transmission}</li>
+                                            <li><strong>Cabine Type: </strong>{car.cabType}</li>
+                                            <li><strong>VIN: </strong>{car.trim}</li>
+                                            <li><strong>Mileage: </strong>{car.mileage}</li>
+                                        </ul>
                                     </div>
-                                    <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
-                                        <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-700 transition-colors">
-                                            Price: ${formatPrice(car.asking_price)}
+                                    <div className="flex flex-col sm:mt-4 w-full space-y-2 items-center">
+                                        <Button className="w-full bg-gray-400 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
+                                            Retail Price: ${formatPrice(car.retail_price)}
+                                        </Button>
+                                        <Button className="w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
+                                            Asking Price: ${formatPrice(car.asking_price)}
                                         </Button>
                                     </div>
                                 </div>
@@ -93,11 +103,11 @@ function CarCard() {
                             </CardContent>
                         </div>
                         <CardFooter>
-                            <div className="flex flex-col sm:flex-row justify-evenly items-center w-full">
-                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">View</Button>
-                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">Buy</Button>
-                                <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>Details</Button>
-                            </div>
+                            {/* <div className="flex flex-col sm:flex-row justify-evenly items-center w-full"> */}
+                                {/* <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">View</Button> */}
+                                {/* <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">Buy</Button> */}
+                                {/* <Button className="w-full sm:w-auto bg-red-400 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>Details</Button> */}
+                            {/* </div> */}
                         </CardFooter>
                     </div>
                 ))}
