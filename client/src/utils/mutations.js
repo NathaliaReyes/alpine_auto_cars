@@ -72,15 +72,25 @@ export const UPDATE_CAR = gql`
 mutation UpdateCar($carData: CarInput!) {
   updateCar(carData: $carData) {
     _id
+    asking_price
+    cabType
     color
     created_at
     description
+    doors
+    driveTrain
+    engine
+    engineType
     images
     make
     mileage
     model
-    price
+    retail_price
+    stock
+    transmission
+    trim
     updated_at
+    vin
     year
   }
 }

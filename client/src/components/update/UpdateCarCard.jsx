@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 import {
     Card,
@@ -9,15 +11,9 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
-// import carPlaceholder from "@/assets/images/placeholder-car.png";
-
 import CustomModal from '@/components/update/CustomModal';
 import EditCarForm from '@/components/update/EditCarForm.jsx';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-
 import { useMutation } from '@apollo/client';
-// import { GET_CARS } from '@/utils/queries';
 import { DELETE_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
 import { formatPrice } from "../../utils/helpers";
@@ -107,18 +103,17 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                     </div>
                 </CardFooter>
             </Card>
-            <CustomModal
+            <Modal
                 isOpen={editModalIsOpen}
                 onClose={closeEditModal}
                 contentLabel="Edit Car"
-                className="modal"
-                style={{ width: '80%' }}
+                className="modal bg-white md:p-2 w-full sm:w-1/2 lg:w-1/3"
                 overlayClassName="modal-overlay"
 
                 onConfirm={() => { }}
             >
                 <EditCarForm closeModal={closeEditModal} refetchCars={refetchCars} carData={car} />
-            </CustomModal>
+            </Modal>
             <CustomModal
                 carId={car._id}
                 isOpen={deleteModalIsOpen}            >
