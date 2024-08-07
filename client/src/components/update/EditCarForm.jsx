@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useMutation } from '@apollo/client';
 import { UPDATE_CAR } from '@/utils/mutations';
@@ -14,8 +15,8 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
     year: '',
     make: '',
     model: '',
-    retailPrice: '',
-    askingPrice: '',
+    retail_price: '',
+    asking_price: '',
     color: '',
     mileage: '',
     description: '',
@@ -79,34 +80,58 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
         closeModal();
       }
     } catch (error) {
+      if (error.networkError) {
+        console.error('Network error:', error.networkError);
+      }
+      if (error.graphQLErrors) {
+        console.error('GraphQL errors:', error.graphQLErrors);
+      }
+      console.error('Error:', error);
       console.log('Failed to update car, ', error.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="edit-car-form space-y-4 overflow-hidden overflow-y-scroll">
+    <form onSubmit={handleSubmit} className="w-full pr-2 md:px-3 mt-3 overflow-hidden overflow-y-scroll z-50">
       <div className='flex justify-center'>
-        <h1>Edit {carData.year} {carData.make} {carData.model}</h1>
+        <h1 className='text-blue-500 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'><span className='text-gray-600 tracking-wide'>Edit:</span> {carData.year} {carData.make} {carData.model}</h1>
       </div>
-      <Button type="button" onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:bg-red-700 transition-colors rounded-full">×</Button>
+      <Button type="button" onClick={closeModal} className="absolute top-0.5 md:top-4 right-3 md:right-12 p-1.5 md:p-3 border-gray-400 text-gray-800 hover:bg-red-600 hover:font-bold transition-colors rounded bg-white border-4">×</Button>
+      <Label htmlFor="year" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Car Year:</Label>
       <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
+      <Label htmlFor="make" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Make:</Label>
       <Input name="make" type="text" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
+      <Label htmlFor="model" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Model:</Label>
       <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
         onChange={handleChange} required />
+      <Label htmlFor="color" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Color:</Label>
       <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
+      <Label htmlFor="trim" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Trim:</Label>
       <Input name="trim" type="text" placeholder="Trim Color" value={carDetails.trim} onChange={handleChange} required />
+      <Label htmlFor="mileage" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Mileage:</Label>
       <Input name="mileage" type="number" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} required />
+      <Label htmlFor="stock" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Stock No.</Label>
       <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} required />
+      <Label htmlFor="engine" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine:</Label>
       <Input name="engine" type="text" placeholder="Car Engine" value={carDetails.engine} onChange={handleChange} required />
+      <Label htmlFor="engineType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine Type:</Label>
       <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
+      <Label htmlFor="transmission" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Transmission:</Label>
       <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} required />
+      <Label htmlFor="driveTrain" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Drive Train:</Label>
       <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
+      <Label htmlFor="doors" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Number of Doors:</Label>
       <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
+      <Label htmlFor="cabType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Cab Type:</Label>
       <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
-      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
-      <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
-      <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
-      <Textarea name="description" label="Description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />
+      <Label htmlFor="vin" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">VIN:</Label>
+      <Input name="vin" type="text" value={carDetails.vin} onChange={handleChange} required />
+      <Label htmlFor="retail_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
+      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
+      <Label htmlFor="asking_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Asking Price:</Label>
+      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
+      <Label htmlFor="description" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Description:</Label>
+      <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />
       <div className="form-group">
         <label htmlFor="images">Images:</label>
         <textarea id="images" name="images" value={carDetails.images.join(', ')} onChange={(e) => setCarDetails(prevState => ({
@@ -118,7 +143,7 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
         <label className="block text-sm font-medium text-gray-700">Upload Images</label>
         <input type="file" name="images" multiple onChange={handleFileChange} className="mt-1 block w-full" />
       </div>
-      <div className="form-actions">
+      <div className="form-actions mt-4">
         <button type="submit" className="btn btn-primary">Save Changes</button>
         <button type="button" className="btn btn-secondary" onClick={closeModal}>Cancel</button>
       </div>
