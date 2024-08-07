@@ -43,7 +43,7 @@ function Update() {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Add New Car"
-          className="modal"
+          className="modal bg-white md:p-2 w-full sm:w-1/2 lg:w-1/3"
           overlayClassName="modal-overlay"
         >
           <NewCarForm closeModal={closeModal} refetchCars={refetch} />
