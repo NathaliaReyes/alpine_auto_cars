@@ -31,7 +31,7 @@ function Update() {
       <div style={{ zIndex: 10 }}>
         <div className='flex justify-center'>
           <Button
-            className="sm:w-full lg:w-1/4 bg-white border-2 rounded-lg border-blue-500 hover:border-blue-300 text-blue-500 hover:bg-blue-800 hover:text-white transition-colors mt-10 mb-10 pt-4 pb-4"
+            className="w-1/2 lg:w-1/4 bg-blue-200 text-black font-bold border-2 rounded-lg border-blue-500 hover:border-blue-300 hover:bg-blue-800 hover:text-white transition-colors mt-3 md:mt-8 mb-2 py-4"
             onClick={openModal}
           >
             Add a New Vehicle

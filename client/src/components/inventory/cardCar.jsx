@@ -40,7 +40,7 @@ function CarCard() {
     };
 
     return (
-        <Card className="m-2 max-w-7xl md:p-4 shadow-md mx-auto">
+        <Card className="max-w-7xl md:p-4 shadow-md mx-auto">
             <CardHeader>
                 {cars.map((car, index) => (
                     <div key={index} className="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
