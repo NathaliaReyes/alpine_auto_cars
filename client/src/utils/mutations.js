@@ -41,29 +41,29 @@ export const ADD_CLIENT = gql`
 `;
 
 export const ADD_CAR = gql`
-mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mileage: Int, $retail_price: Int, $asking_price: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
-  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retail_price, asking_price: $asking_price, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
+mutation AddCar($make: String, $model: String, $year: Int, $stock: Int, $mileage: Int, $retailPrice: Int, $askingPrice: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
+  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retailPrice, asking_price: $askingPrice, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
     _id
-    make
-    model
-    year
-    stock
-    mileage
-    retail_price
     asking_price
-    color
-    trim
-    engine
-    vin
-    transmission
-    description
-    engineType
-    driveTrain
-    doors
     cabType
-    images
+    color
     created_at
+    description
+    doors
+    driveTrain
+    engine
+    engineType
+    images
+    make
+    mileage
+    model
+    retail_price
+    stock
+    transmission
+    trim
     updated_at
+    vin
+    year
   }
 }
 `;
