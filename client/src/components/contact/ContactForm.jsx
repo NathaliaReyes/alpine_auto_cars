@@ -79,14 +79,14 @@ function ContactForm() {
 
       // Call the mutation to add the client
       await addClient({
-          variables: {
-            firstName,
-            lastName,
-            email,
-            phone,
-            inquiry,
-            message,
-          },
+        variables: {
+          firstName,
+          lastName,
+          email,
+          phone,
+          inquiry,
+          message,
+        },
       });
 
       // Reset the form and show the success modal
@@ -127,9 +127,8 @@ function ContactForm() {
           </div>
         </div>
       )}
-
-      <div className="flex justify-center">
-        <form onSubmit={handleSubmit} className="p-5 md:w-9/12 w-full ml-4 mr-4 mb-5 bg-gray-100 rounded-lg mt-10">
+      <div className="flex justify-center bg-black">
+        <form onSubmit={handleSubmit} className="p-5 md:w-9/12 w-full mb-2 ml-4 mr-4 bg-gray-100 rounded-lg mt-5">
           <h2 className="text-2xl font-extrabold  mt-5 mb-5 tracking-normal">Get in touch</h2>
           <p className="text-black mb-6">We are here for you! How can we help?</p>
           <h2 className="text-xl font-bold tracking-normal mt-4 md:mt-8 mb-5 md:mb-10">Drop us a line</h2>
