@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
+import { Carousel } from "@material-tailwind/react";
 
 import {
     Card,
@@ -53,44 +54,64 @@ const UpdateCarCard = ({ refetchCars, car }) => {
 
     return (
         <>
-            <Card className="mt-3 ml-0 mr-0 w-full">
+            <Card className="md:m-3 w-full md:p-4 shadow-md">
                 <CardHeader>
-                    <CardTitle className="tracking-normal">{car.year} {car.make} {car.model}</CardTitle>
-                    <CardDescription>
-                        <div className="flex items-center pt-1">
-                            <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
-                                {car.description}
-                            </span>
+                    <div className='grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
+                        <div>
+                            <Carousel className="rounded-xl ">
+                                {car.images.map((image, index) => (
+                                    <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
+                                        <img src={image} alt="image 1" className="h-96 w-full object-cover" />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
-                    </CardDescription>
-                    <CardContent>
-                        <div className="flex flex-col lg:flex-row justify-between p-0">
-                            <div className="md:flex justify-evenly w-full">
-                                <div className="w-full">
-                                    <div className="grid sm:grid-cols-2 gap-4">
+                        <div className='flex flex-col justify-evenly space-y-4 md:ml-2'>
+                            <CardTitle className="tracking-normal text-base md:text-lg">{car.year} {car.make} {car.model}</CardTitle>
+                            <CardDescription>
+                                <div className="flex items-center">
+                                    <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                        {car.description}
+                                    </span>
+                                </div>
+                            </CardDescription>
+                            <CardContent>
+                                <div className="flex flex-col justify-between">
+                                    <div className="w-full grid grid-cols-2 gap-2 text-xs md:text-base mb-3">
                                         <ul className="flex flex-col text-left space-y-2">
                                             <li><strong>Make: </strong>{car.make}</li>
                                             <li><strong>Model: </strong>{car.model}</li>
                                             <li><strong>Year: </strong>{car.year}</li>
-                                            <li><strong>Price: </strong>${formatPrice(car.asking_price)}</li>
+                                            <li><strong>Color: </strong>{car.color}</li>
+                                            <li><strong>Trim: </strong>{car.trim}</li>
+                                            <li><strong>Doors: </strong>{car.doors}</li>
+                                            <li><strong>Drive Train: </strong>{car.driveTrain}</li>
+                                            <li><strong>Engine Type: </strong>{car.engineType}</li>
                                         </ul>
                                         <ul className="flex flex-col text-left space-y-2">
-                                            <li><strong>Mileage: </strong>{car.mileage}</li>
+                                            <li><strong>Stock: </strong>{car.stock}</li>
                                             <li><strong>Color: </strong>{car.color}</li>
-                                            <li className='hidden' id='carId'>{car._id}</li>
-                                            {/* <li><strong>Engine: </strong>{car.engine}</li>
-                                            <li><strong>Trans: </strong>{car.transmission}</li> */}
+                                            <li><strong>Engine: </strong>{car.engine}</li>
+                                            <li><strong>Transmission: </strong>{car.transmission}</li>
+                                            <li><strong>Cabine Type: </strong>{car.cabType}</li>
+                                            <li><strong>VIN: </strong>{car.trim}</li>
+                                            <li><strong>Mileage: </strong>{car.mileage}</li>
                                         </ul>
                                     </div>
+                                    <div className="flex flex-col sm:mt-4 w-full space-y-2 items-center">
+                                        <Button className="w-full bg-gray-400 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
+                                            Retail Price: ${formatPrice(car.retail_price)}
+                                        </Button>
+                                        <Button className="w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
+                                            Asking Price: ${formatPrice(car.asking_price)}
+                                        </Button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
-                                <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
-                                    Price: ${formatPrice(car.asking_price)}
-                                </Button>
-                            </div>
+                            </CardContent>
+
                         </div>
-                    </CardContent>
+
+                    </div>
                 </CardHeader>
                 <CardFooter>
                     <div className="flex flex-col sm:flex-row justify-evenly items-center w-full gap-8">
