@@ -11,9 +11,9 @@ import {
    } from '@/components/ui/dialog';
 
 
-const ConfirmationModal = ({ errors, onConfirm, onCancel, showConfirmationModal, setShowConfirmationModal }) => (
-    <Dialog open={showConfirmationModal} onOpenChange={setShowConfirmationModal}>
-      <DialogContent className="z-50 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+const ConfirmationModal = ({ errors, onConfirm, onCancel }) => (
+    <Dialog className="z-50" open={showConfirmationModal} onOpenChange={setShowConfirmationModal}>
+      <DialogContent className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold text-red-600">Incomplete Fields</DialogTitle>
           <DialogDescription>
