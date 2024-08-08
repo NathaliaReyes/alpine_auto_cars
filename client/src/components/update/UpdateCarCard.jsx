@@ -100,11 +100,11 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                                         </ul>
                                     </div>
                             </div>
-                            <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
+                            {/* <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
                                 <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
                                     Asking Price: ${formatPrice(car.asking_price)}
                                 </Button>
-                            </div>
+                            </div> */}
                             </CardContent>
 
                         </div>
@@ -133,9 +133,14 @@ const UpdateCarCard = ({ refetchCars, car }) => {
             >
                 <EditCarForm closeModal={closeEditModal} refetchCars={refetchCars} carData={car} />
             </Modal>
-            <CustomModal
-                carId={car._id}
-                isOpen={deleteModalIsOpen}            >
+            <Modal
+                // carId={car._id}
+                isOpen={deleteModalIsOpen}  
+                onRequestClose={closeDeleteModal}
+                contentLabel="Modal"
+                className="modal-content"
+                overlayClassName="modal-overlay"
+             >
                 <div className="modal-body flex justify-center">
                     <h1 className='block font-bold'>Are you sure you want to delete this car?</h1>
                 </div>
@@ -149,7 +154,7 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                 <div className="modal-body font-bold flex justify-center">
                     <p className='block text-base'><i>* You will have to manually add this vehicle again to restore it once it is deleted * </i></p>
                 </div>
-            </CustomModal>
+            </Modal>
         </>
     );
 };

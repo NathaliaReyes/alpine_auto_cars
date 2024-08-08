@@ -38,7 +38,7 @@ function NewCarForm({ closeModal, refetchCars }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-  const [validationMessages, setValidationMessages] = useState({});
+  // const [validationMessages, setValidationMessages] = useState({});
 
 
   const handleChange = (e) => {
@@ -49,11 +49,11 @@ function NewCarForm({ closeModal, refetchCars }) {
     }));
 
     // Clear validation message for the field being changed
-    setValidationMessages((prevMessages) => ({
-      ...prevMessages,
-      [name]: '',
+    // setValidationMessages((prevMessages) => ({
+    //   ...prevMessages,
+    //   [name]: '',
 
-    }));
+    // }));
   };
 
   const handleFileChange = (e) => {
@@ -91,6 +91,7 @@ function NewCarForm({ closeModal, refetchCars }) {
   }
 
   const validateForm = (carDetails) => {
+    console.log(carDetails.retail_price);
   const errors = [];
   for (const [key, value] of Object.entries(carDetails)) {
     if (!value) {
@@ -181,7 +182,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
         onChange={handleChange} required />
       <Label htmlFor="vehicleType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Vehicle Type:</Label>
-      <Input name="vehicleType" type="number" placeholder="Vehicle Type" value={carDetails.vehicleType} onChange={handleChange} required />
+      <Input name="vehicleType" type="text" placeholder="Vehicle Type" value={carDetails.vehicleType} onChange={handleChange} required />
       <Label htmlFor="color" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Color:</Label>
       <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
       <Label htmlFor="trim" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Trim:</Label>
@@ -202,10 +203,10 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
       <Label htmlFor="vin" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">VIN:</Label>
       <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
-      <Label htmlFor="retailPrice" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
-      <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
-      <Label htmlFor="askingPrice" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Asking Price:</Label>
-      <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
+      <Label htmlFor="retail_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
+      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
+      <Label htmlFor="asking_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Asking Price:</Label>
+      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
       <Label htmlFor="description" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Description:</Label>
       <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} rows="4" />
       <div>
