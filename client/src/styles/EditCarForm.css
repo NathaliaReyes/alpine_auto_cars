@@ -35,7 +35,7 @@
 }
 
 /* Styling for the form inside the modal */
-.edit-car-form {
+/* .edit-car-form {
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -43,7 +43,7 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Heading styling */
 .edit-car-form h2 {
