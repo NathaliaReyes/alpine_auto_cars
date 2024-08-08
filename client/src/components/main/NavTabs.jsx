@@ -62,20 +62,20 @@ function NavTabs() {
           <img src={logo} alt="logo" className='h-16 w-32'></img>
           <span className='font-bold lg:text-3xl md:text-xl text-xl tracking-tight' id="nav-name" style={{ textShadow: '2px 2px rgba(0, 0, 0, 0.1)' }}>Alpine Auto Sales, LLC.</span>
         </div>
-        <div className="block md:hidden mr-2">
-          <button onClick={toggleMenu} className="flex flex-col justify-around items-center w-10 h-10 rounded mt-2 mb-2 bg-customWhite hover:bg-customGray p-2">
-            <div className="w-3 h-0.5 bg-stone"></div>
-            <div className="w-6 h-0.5 bg-stone"></div>
-            <div className="w-3 h-0.5 bg-stone"></div>
-          </button>
-        </div>
-        {console.log('Auth.loggedIn():', Auth.loggedIn())}
         {Auth.loggedIn() && (
           <>
             {/* <Link to="/Admin" onClick={toggleMenu} className={getLinkClass('/Admin')}>Logout</Link> */}
             <AdminMenu />
           </>
         )}
+        <div className="block md:hidden mr-2">
+          <button onClick={toggleMenu} className="flex flex-col justify-around items-center w-10 h-10 rounded mt-2 mb-2 bg-customWhite hover:bg-customGray p-2">
+            <div className="w-3 h-0.5 bg-gray-500"></div>
+            <div className="w-6 h-0.5 bg-gray-500"></div>
+            <div className="w-3 h-0.5 bg-gray-500"></div>
+          </button>
+        </div>
+        {console.log('Auth.loggedIn():', Auth.loggedIn())}
 
         <div className={`w-full ${isActive ? 'block' : 'hidden'} md:flex md:items-center md:w-auto`} id="navMenu">
           <div className="lg:text-lg md:text-base sm:text-sm md:flex-grow ml-1 ">

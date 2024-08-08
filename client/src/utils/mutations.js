@@ -44,26 +44,26 @@ export const ADD_CAR = gql`
 mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mileage: Int, $retail_price: Int, $asking_price: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $vehicleType: String, $images: [String], $fuelType: String) {
   addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retail_price, asking_price: $asking_price, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, vehicleType: $vehicleType, images: $images, fuelType: $fuelType) {
     _id
+    year
     make
     model
-    year
-    stock
-    mileage
-    retail_price
     asking_price
     color
     trim
-    engine
-    vin
-    transmission
+    created_at
     description
+    engine
     engineType
+    transmission
+    vin
     driveTrain
     vehicleType
     images
     fuelType
     created_at
-    updated_at
+    retail_price
+    mileage
+    stock
   }
 }
 `;
@@ -72,25 +72,26 @@ export const UPDATE_CAR = gql`
 mutation UpdateCar($carData: CarInput!) {
   updateCar(carData: $carData) {
     _id
+    asking_price
     color
     created_at
     description
+    driveTrain
+    engine
+    engineType
     images
     make
     mileage
     model
-    updated_at
-    year
-    asking_price
-    vehicleType
-    driveTrain
-    engine
-    engineType
     retail_price
     stock
     transmission
     trim
+    updated_at
     vin
+    year
+    vehicleType
+    stock
     fuelType
   }
 }

@@ -21,13 +21,33 @@ module.exports = withMT({
     extend: {
       colors: {
         neutral: colors.neutral,
-      }
+      },
+      textShadow: {
+        'default': '2px 2px 4px rgba(0, 0, 0, 0.5)',
+        'md': '3px 3px 6px rgba(0, 0, 0, 0.5)',
+        'lg': '4px 4px 8px rgba(0, 0, 0, 0.5)',
+      },
     },
   },
   plugins: [
     addVariablesForColors,
     require("tailwindcss-animate"),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow': {
+          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+        },
+        '.text-shadow-md': {
+          textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)',
+        },
+        '.text-shadow-lg': {
+          textShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)',
+        },
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
   ],
 });
 

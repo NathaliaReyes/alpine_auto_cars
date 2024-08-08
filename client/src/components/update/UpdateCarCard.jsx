@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
+import { Carousel } from "@material-tailwind/react";
 
 import {
     Card,
@@ -9,15 +12,9 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
-// import carPlaceholder from "@/assets/images/placeholder-car.png";
-
 import CustomModal from '@/components/update/CustomModal';
 import EditCarForm from '@/components/update/EditCarForm.jsx';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-
 import { useMutation } from '@apollo/client';
-// import { GET_CARS } from '@/utils/queries';
 import { DELETE_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
 import { formatPrice } from "../../utils/helpers";
@@ -57,21 +54,30 @@ const UpdateCarCard = ({ refetchCars, car }) => {
 
     return (
         <>
-            <Card className="mt-3 ml-0 mr-0 w-full">
+            <Card className="md:m-3 w-full md:p-4 shadow-md">
                 <CardHeader>
-                    <CardTitle className="tracking-normal">{car.year} {car.make} {car.model}</CardTitle>
-                    <CardDescription>
-                        <div className="flex items-center pt-1">
-                            <span className="text-sm text-left text-muted-foreground tracking-wide sm:ml-0.5">
-                                {car.description}
-                            </span>
+                    <div className='grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
+                        <div>
+                            <Carousel className="rounded-xl ">
+                                {car.images.map((image, index) => (
+                                    <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
+                                        <img src={image} alt="image 1" className="h-96 w-full object-cover" />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
-                    </CardDescription>
-                    <CardContent>
-                        <div className="flex flex-col lg:flex-row justify-between p-0">
-                            <div className="md:flex justify-evenly w-full">
-                                <div className="w-full">
-                                    <div className="grid sm:grid-cols-2 gap-4">
+                        <div className='flex flex-col justify-evenly space-y-4 md:ml-2'>
+                            <CardTitle className="tracking-normal text-base md:text-lg">{car.year} {car.make} {car.model}</CardTitle>
+                            <CardDescription>
+                                <div className="flex items-center">
+                                    <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                        {car.description}
+                                    </span>
+                                </div>
+                            </CardDescription>
+                            <CardContent>
+                                <div className="flex flex-col justify-between">
+                                    <div className="w-full grid grid-cols-2 gap-2 text-xs md:text-base mb-3">
                                         <ul className="flex flex-col text-left space-y-2">
                                             <li><strong>Year: </strong>{car.year}</li>
                                             <li><strong>Make: </strong>{car.make}</li>
@@ -93,15 +99,17 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                                             <li className='hidden' id='carId'>{car._id}</li>
                                         </ul>
                                     </div>
-                                </div>
                             </div>
                             <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
                                 <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
                                     Asking Price: ${formatPrice(car.asking_price)}
                                 </Button>
                             </div>
+                            </CardContent>
+
                         </div>
-                    </CardContent>
+
+                    </div>
                 </CardHeader>
                 <CardFooter>
                     <div className="flex flex-col sm:flex-row justify-evenly items-center w-full gap-8">
@@ -114,18 +122,17 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                     </div>
                 </CardFooter>
             </Card>
-            <CustomModal
+            <Modal
                 isOpen={editModalIsOpen}
                 onClose={closeEditModal}
                 contentLabel="Edit Car"
-                className="modal"
-                style={{ width: '80%' }}
+                className="modal bg-white md:p-2 w-full sm:w-1/2 lg:w-1/3"
                 overlayClassName="modal-overlay"
 
                 onConfirm={() => { }}
             >
                 <EditCarForm closeModal={closeEditModal} refetchCars={refetchCars} carData={car} />
-            </CustomModal>
+            </Modal>
             <CustomModal
                 carId={car._id}
                 isOpen={deleteModalIsOpen}            >

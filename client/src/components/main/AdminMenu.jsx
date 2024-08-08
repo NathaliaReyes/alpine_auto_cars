@@ -46,7 +46,7 @@ function AdminMenu() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Admin Tools</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="font-bold text-sm md:text-base text-blue-600">Admin Tools</NavigationMenuTrigger>
             <NavigationMenuContent style={{ backgroundColor: 'white', zIndex: 100 }}>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {components.map((component) => (
@@ -82,8 +82,8 @@ const ListItem = React.forwardRef(({ className, title, children, onClick, ...pro
           onClick={onClick}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className="text-xs md:text-sm font-semibold leading-none ">{title}</div>
+          <p className="line-clamp-2 text-xs md:text-sm leading-snug text-gray-400">
             {children}
           </p>
         </a>
