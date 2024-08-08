@@ -27,7 +27,7 @@ function BusinessInfo() {
         <div className="flex font-semibold justify-center items-center">
           <ClockIcon className="w-5 h-5 mr-2 text-red-600" />
           <div className="flex flex-col ">
-            <a href="tel:+19704264356">Monday - Friday 8:00 - 17:00</a>
+            <a href="tel:+19704264356">Monday - Friday 8:00am - 5:00pm</a>
             <a href="tel:+19704264356">Saturday - By Appt Only</a>
           </div>
         </div>

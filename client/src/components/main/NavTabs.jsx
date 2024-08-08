@@ -59,8 +59,8 @@ function NavTabs() {
     <div className='navbar-image-container'>
       <nav className={navbarClass()}>
         <div className="flex items-center flex-shrink-0 text-black">
-          <img src={logo} alt="logo" className='h-16 w-32'></img>
-          <span className='font-bold lg:text-3xl md:text-xl text-xl tracking-tight' id="nav-name" style={{ textShadow: '2px 2px rgba(0, 0, 0, 0.1)' }}>Alpine Auto Sales, LLC.</span>
+          <img src={logo} alt="logo" className='lg:h-24 lg:w-52 w-28 h-12 mr-6'></img>
+          <span className='md:block hidden font-bold lg:text-3xl md:text-2xl sm:text-xl text-base tracking-tight text-shadow-md' id="nav-name">Alpine Auto Sales, LLC.</span>
         </div>
         {Auth.loggedIn() && (
           <>
