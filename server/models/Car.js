@@ -24,34 +24,27 @@ const carSchema = new Schema(
         },
         mileage: {
             type: Number,
-            required: true,
         },
         retail_price: {
             type: Number,
-            required: true,
         },
         asking_price: {
             type: Number,
-            required: true,
         },
         color: {
             type: String,
-            required: true,
         },
         trim: {
             type: String,
         },
         engine: {
             type: String,
-            required: true,
         },
         vin : {
             type: String,
-            required: true,
         },
         transmission: {
             type: String,
-            required: true,
         },
         description: {
             type: String,
@@ -63,10 +56,10 @@ const carSchema = new Schema(
         driveTrain: {
             type: String,
         },
-        doors: {
-            type: Number,
+        vehicleType: {
+            type: String,
         },
-        cabType:{
+        fuelType: {
             type: String,
         },
         images: [

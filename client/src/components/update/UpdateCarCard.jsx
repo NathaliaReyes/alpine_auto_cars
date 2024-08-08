@@ -79,34 +79,32 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                                 <div className="flex flex-col justify-between">
                                     <div className="w-full grid grid-cols-2 gap-2 text-xs md:text-base mb-3">
                                         <ul className="flex flex-col text-left space-y-2">
+                                            <li><strong>Year: </strong>{car.year}</li>
                                             <li><strong>Make: </strong>{car.make}</li>
                                             <li><strong>Model: </strong>{car.model}</li>
-                                            <li><strong>Year: </strong>{car.year}</li>
-                                            <li><strong>Color: </strong>{car.color}</li>
-                                            <li><strong>Trim: </strong>{car.trim}</li>
-                                            <li><strong>Doors: </strong>{car.doors}</li>
-                                            <li><strong>Drive Train: </strong>{car.driveTrain}</li>
+                                            <li><strong>Mileage: </strong>{car.mileage}</li>
+                                            <li><strong>Engine Size: </strong>{car.engine}</li>
                                             <li><strong>Engine Type: </strong>{car.engineType}</li>
+                                            <li><strong>Transmission: </strong>{car.transmission}</li>
+                                            <li><strong>Drive Train: </strong>{car.driveTrain}</li>
                                         </ul>
                                         <ul className="flex flex-col text-left space-y-2">
-                                            <li><strong>Stock: </strong>{car.stock}</li>
                                             <li><strong>Color: </strong>{car.color}</li>
-                                            <li><strong>Engine: </strong>{car.engine}</li>
-                                            <li><strong>Transmission: </strong>{car.transmission}</li>
-                                            <li><strong>Cabine Type: </strong>{car.cabType}</li>
-                                            <li><strong>VIN: </strong>{car.trim}</li>
-                                            <li><strong>Mileage: </strong>{car.mileage}</li>
+                                            <li><strong>Trim: </strong>{car.trim}</li>
+                                            <li><strong>Vehicle Type: </strong>{car.vehicleType}</li>
+                                            <li><strong>VIN: </strong>{car.color}</li>
+                                            <li><strong>Stock Number: </strong>{car.color}</li>
+                                            <li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li>
+                                            <li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li>
+                                            <li className='hidden' id='carId'>{car._id}</li>
                                         </ul>
                                     </div>
-                                    <div className="flex flex-col sm:mt-4 w-full space-y-2 items-center">
-                                        <Button className="w-full bg-gray-400 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
-                                            Retail Price: ${formatPrice(car.retail_price)}
-                                        </Button>
-                                        <Button className="w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
-                                            Asking Price: ${formatPrice(car.asking_price)}
-                                        </Button>
-                                    </div>
-                                </div>
+                            </div>
+                            <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
+                                <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
+                                    Asking Price: ${formatPrice(car.asking_price)}
+                                </Button>
+                            </div>
                             </CardContent>
 
                         </div>

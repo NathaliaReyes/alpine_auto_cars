@@ -59,14 +59,16 @@ function CarCard() {
                         </div>
                         <div className="flex flex-col justify-evenly space-y-4 md:ml-2">
                             <CardTitle className="tracking-normal text-base md:text-lg">{car.year} {car.make} {car.model}</CardTitle>
-                            <CardDescription >
-                                <div className="flex items-center">
-                                    <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
-                                    <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
-                                        {car.description}
-                                    </span>
-                                </div>
-                            </CardDescription>
+                            {car.description ? (
+                              <CardDescription >
+                                  <div className="flex items-center">
+                                      <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
+                                      <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                          {car.description}
+                                      </span>
+                                  </div>
+                              </CardDescription>
+                             ) : ''}
                             <CardContent>
                                 <div className="flex flex-col justify-between">
                                     <div className="w-full grid grid-cols-2 gap-2 text-xs md:text-base mb-3">
@@ -85,7 +87,6 @@ function CarCard() {
                                             <li><strong>Color: </strong>{car.color}</li>
                                             <li><strong>Engine: </strong>{car.engine}</li>
                                             <li><strong>Transmission: </strong>{car.transmission}</li>
-                                            <li><strong>Cabine Type: </strong>{car.cabType}</li>
                                             <li><strong>VIN: </strong>{car.trim}</li>
                                             <li><strong>Mileage: </strong>{car.mileage}</li>
                                         </ul>
@@ -102,12 +103,17 @@ function CarCard() {
 
                             </CardContent>
                         </div>
-                        <CardFooter>
+
+//                             <div className="flex flex-col sm:flex-row justify-evenly items-center w-full">
+//                                 <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>View More Details</Button>
+//                             </div>
+
                             {/* <div className="flex flex-col sm:flex-row justify-evenly items-center w-full"> */}
                                 {/* <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">View</Button> */}
                                 {/* <Button className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-700 transition-colors mb-1 sm:mb-0">Buy</Button> */}
                                 {/* <Button className="w-full sm:w-auto bg-red-400 text-white hover:bg-blue-700 transition-colors" onClick={() => handleOpenModal(car)}>Details</Button> */}
                             {/* </div> */}
+
                         </CardFooter>
                     </div>
                 ))}

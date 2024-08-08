@@ -21,15 +21,15 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
     mileage: '',
     description: '',
     images: [],
-    cabType: '',
-    doors: '',
+    vehicleType: '',
     driveTrain: '',
     engine: '',
     engineType: '',
     stock: '',
     transmission: '',
     trim: '',
-    vin: ''
+    vin: '',
+    fuelType: ''
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
     const { name, value } = e.target;
     setCarDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: name === 'year' || name === 'price' || name === 'mileage' ? parseInt(value) : value,
+      [name]: name === 'year' || name === 'mileage' || name === 'retail_price' || name == 'asking_price' || name == 'stock' ? parseInt(value, 10) : value,
     }));
   };
 
@@ -96,14 +96,18 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
       <div className='flex justify-center'>
         <h1 className='text-blue-500 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'><span className='text-gray-600 tracking-wide'>Edit:</span> {carData.year} {carData.make} {carData.model}</h1>
       </div>
-      <Button type="button" onClick={closeModal} className="absolute top-0.5 md:top-4 right-3 md:right-12 p-1.5 md:p-3 border-gray-400 text-gray-800 hover:bg-red-600 hover:font-bold transition-colors rounded bg-white border-4">×</Button>
+      <Button type="button" onClick={closeModal} className="absolute top-0.5 md:top-4 right-3 md:right-12 p-1.5 md:p-3 border-gray-400 text-gray-800 hover:bg-red-600 hover:font-bold transition-colors rounded bg-white border-4">
+        ✕
+      </Button>
       <Label htmlFor="year" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Car Year:</Label>
-      <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
+      <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required  />
       <Label htmlFor="make" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Make:</Label>
-      <Input name="make" type="text" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
+      <Input name="make" type="text" placeholder="Car Make" value={carDetails.make}  onChange={handleChange} required />
       <Label htmlFor="model" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Model:</Label>
       <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
         onChange={handleChange} required />
+      <Label htmlFor="vehicleType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Vehicle Type:</Label>
+      <Input name="vehicleType" type="number" placeholder="Vehicle Type" value={carDetails.vehicleType} onChange={handleChange} required />
       <Label htmlFor="color" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Color:</Label>
       <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
       <Label htmlFor="trim" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Trim:</Label>
@@ -118,20 +122,18 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
       <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
       <Label htmlFor="transmission" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Transmission:</Label>
       <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} required />
+      <Label htmlFor="fuelType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Fuel Type:</Label>
+      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange} required />
       <Label htmlFor="driveTrain" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Drive Train:</Label>
       <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
-      <Label htmlFor="doors" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Number of Doors:</Label>
-      <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
-      <Label htmlFor="cabType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Cab Type:</Label>
-      <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
       <Label htmlFor="vin" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">VIN:</Label>
-      <Input name="vin" type="text" value={carDetails.vin} onChange={handleChange} required />
-      <Label htmlFor="retail_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
-      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
-      <Label htmlFor="asking_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Asking Price:</Label>
-      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
+      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
+      <Label htmlFor="retailPrice" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
+      <Input name="retailPrice" type="number" placeholder="Retail Price" value={carDetails.retailPrice} onChange={handleChange} required />
+      <Label htmlFor="askingPrice" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Asking Price:</Label>
+      <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
       <Label htmlFor="description" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Description:</Label>
-      <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} />
+      <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} rows="4" />
       <div className="form-group">
         <label htmlFor="images">Images:</label>
         <textarea id="images" name="images" value={carDetails.images.join(', ')} onChange={(e) => setCarDetails(prevState => ({

@@ -22,30 +22,6 @@ const typeDefs = `
 
   type Car {
     _id: ID
-    make: String!
-    model: String!
-    year: Int!
-    stock: Int!
-    mileage: Int!
-    retail_price: Int!
-    asking_price: Int!
-    color: String!
-    trim: String!
-    engine: String!
-    vin: String!
-    transmission: String!
-    description: String
-    engineType: String
-    driveTrain: String
-    doors: Int
-    cabType: String
-    images: [String]
-    created_at: Date
-    updated_at: Date
-  }
-
-  input CarInput {
-    carId: ID!
     make: String
     model: String
     year: Int
@@ -61,9 +37,33 @@ const typeDefs = `
     description: String
     engineType: String
     driveTrain: String
-    doors: Int
-    cabType: String
+    vehicleType: String
+    fuelType: String
     images: [String]
+    created_at: Date
+    updated_at: Date
+  }
+
+  input CarInput {
+    carId: ID!
+    make: String!
+    model: String!
+    year: Int!
+    stock: Int
+    mileage: Int
+    retail_price: Int
+    asking_price: Int
+    color: String
+    trim: String
+    engine: String
+    vin: String
+    transmission: String
+    description: String
+    engineType: String
+    driveTrain: String
+    vehicleType: String
+    images: [String]
+    fuelType: String
     created_at: Date
     updated_at: Date
   }
@@ -82,7 +82,7 @@ const typeDefs = `
     
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addCar(make: String, model: String, year: Int, stock: Int, mileage: Int, retail_price: Int, asking_price: Int, color: String, trim: String, engine: String, vin: String, transmission: String, description: String, engineType: String, driveTrain: String, doors: Int, cabType: String, images: [String]): Car
+    addCar(make: String, model: String, year: Int, stock: Int, mileage: Int, retail_price: Int, asking_price: Int, color: String, trim: String, engine: String, vin: String, transmission: String, description: String, engineType: String, driveTrain: String, fuelType: String, vehicleType: String, images: [String]): Car
     login(email: String!, password: String!): Auth
     updateCar(carData: CarInput!): Car
     deleteCar(_id: ID!): Car

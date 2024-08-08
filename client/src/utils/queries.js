@@ -17,11 +17,10 @@ query Cars {
   cars {
     _id
     asking_price
-    cabType
+    vehicleType
     color
     created_at
     description
-    doors
     driveTrain
     engine
     engineType
@@ -36,6 +35,7 @@ query Cars {
     updated_at
     vin
     year
+    fuelType
   }
 }`;
 

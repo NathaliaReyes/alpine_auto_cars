@@ -41,29 +41,29 @@ export const ADD_CLIENT = gql`
 `;
 
 export const ADD_CAR = gql`
-mutation AddCar($make: String, $model: String, $year: Int, $stock: Int, $mileage: Int, $retailPrice: Int, $askingPrice: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $doors: Int, $cabType: String, $images: [String]) {
-  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retailPrice, asking_price: $askingPrice, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, doors: $doors, cabType: $cabType, images: $images) {
+mutation AddCar($make: String!, $model: String!, $year: Int!, $stock: Int, $mileage: Int, $retail_price: Int, $asking_price: Int, $color: String, $trim: String, $engine: String, $vin: String, $transmission: String, $description: String, $engineType: String, $driveTrain: String, $vehicleType: String, $images: [String], $fuelType: String) {
+  addCar(make: $make, model: $model, year: $year, stock: $stock, mileage: $mileage, retail_price: $retail_price, asking_price: $asking_price, color: $color, trim: $trim, engine: $engine, vin: $vin, transmission: $transmission, description: $description, engineType: $engineType, driveTrain: $driveTrain, vehicleType: $vehicleType, images: $images, fuelType: $fuelType) {
     _id
+    year
+    make
+    model
     asking_price
-    cabType
     color
+    trim
     created_at
     description
-    doors
-    driveTrain
     engine
     engineType
-    images
-    make
-    mileage
-    model
-    retail_price
-    stock
     transmission
-    trim
-    updated_at
     vin
-    year
+    driveTrain
+    vehicleType
+    images
+    fuelType
+    created_at
+    retail_price
+    mileage
+    stock
   }
 }
 `;
@@ -73,11 +73,9 @@ mutation UpdateCar($carData: CarInput!) {
   updateCar(carData: $carData) {
     _id
     asking_price
-    cabType
     color
     created_at
     description
-    doors
     driveTrain
     engine
     engineType
@@ -92,6 +90,9 @@ mutation UpdateCar($carData: CarInput!) {
     updated_at
     vin
     year
+    vehicleType
+    stock
+    fuelType
   }
 }
 `;
@@ -107,8 +108,18 @@ mutation DeleteCar($id: ID!) {
     make
     mileage
     model
-    price
     updated_at
     year
+    asking_price
+    vehicleType
+    driveTrain
+    engine
+    engineType
+    retail_price
+    stock
+    transmission
+    trim
+    vin
+    fuelType
   }
 }`;

@@ -7,38 +7,45 @@ import { useMutation } from '@apollo/client';
 import { ADD_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
 import axios from 'axios';
+import CustomModal from './CustomModal';
+
 
 function NewCarForm({ closeModal, refetchCars }) {
   const [carDetails, setCarDetails] = useState({
     year: '',
     make: '',
     model: '',
-    retailPrice: '',
-    askingPrice: '',
+    retail_price: '',
+    asking_price: '',
     color: '',
     mileage: '',
     description: '',
     images: [],
-    cabType: '',
-    doors: '',
+    vehicleType: '',
     driveTrain: '',
     engine: '',
     engineType: '',
     stock: '',
     transmission: '',
     trim: '',
-    vin: ''
+    vin: '',
+    fuelType: ''
   });
 
   const [addCar] = useMutation(ADD_CAR);
   const [files, setFiles] = useState([]);
+
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
   const [validationMessages, setValidationMessages] = useState({});
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCarDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: name === 'year' || name === 'mileage' || name === 'retailPrice' || name == 'askingPrice' || name == 'stock' || name == 'doors' ? parseInt(value, 10) : value,
+      [name]: name === 'year' || name === 'mileage' || name === 'retail_price' || name == 'asking_price' || name == 'stock' ? parseInt(value, 10) : value,
     }));
 
     // Clear validation message for the field being changed
@@ -73,9 +80,37 @@ function NewCarForm({ closeModal, refetchCars }) {
     return uploadedImagePaths;
   };
 
+  function formatFieldName(fieldName) {
+    return fieldName
+      // Convert camelCase to space-separated words
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      // Convert snake_case to space-separated words
+      .replace(/_/g, ' ')
+      // Capitalize the first letter of each word
+      .replace(/\b\w/g, char => char.toUpperCase());
+  }
+
+  const validateForm = (carDetails) => {
+  const errors = [];
+  for (const [key, value] of Object.entries(carDetails)) {
+    if (!value) {
+      errors.push(formatFieldName(key));
+    }
+  }
+  return errors;
+};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const errors = validateForm(carDetails);
+    if (errors.length > 0) {
+      setValidationErrors(errors);
+      setShowConfirmationModal(true);
+      return;
+    }
+
+    console.log(carDetails);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
@@ -84,6 +119,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     try {
       const imagePaths = await uploadFiles();
       console.log('imagePaths', imagePaths);
+
       const { data } = await addCar({
         variables: {
           ...carDetails,
@@ -105,8 +141,32 @@ function NewCarForm({ closeModal, refetchCars }) {
     }
   };
 
+  const handleConfirm = async () => {
+    setShowConfirmationModal(false);
+    // Proceed with form submission
+    try {
+      const imagePaths = await uploadFiles();
+      await addCar({
+        variables: {
+          ...carDetails,
+          images: imagePaths,
+        },
+      });
+      refetchCars(); // Refetch the cars query to update the UI
+      closeModal();  // Close the modal after successful submission
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleCancel = () => {
+    setShowConfirmationModal(false);
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="w-full pr-2 md:px-3 mt-3 overflow-hidden overflow-y-scroll z-50">
+
+    <form onSubmit={handleSubmit} className="w-full pr-2 md:px-3 mt-3 overflow-hidden overflow-y-scroll z-10">
+
       <div className="flex justify-center">
         <h1 className='text-blue-500 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'>Insert a New Vehicle Into Inventory</h1>
       </div>
@@ -120,6 +180,8 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Label htmlFor="model" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Model:</Label>
       <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
         onChange={handleChange} required />
+      <Label htmlFor="vehicleType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Vehicle Type:</Label>
+      <Input name="vehicleType" type="number" placeholder="Vehicle Type" value={carDetails.vehicleType} onChange={handleChange} required />
       <Label htmlFor="color" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Color:</Label>
       <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
       <Label htmlFor="trim" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Trim:</Label>
@@ -134,12 +196,10 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
       <Label htmlFor="transmission" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Transmission:</Label>
       <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} required />
+      <Label htmlFor="fuelType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Fuel Type:</Label>
+      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange} required />
       <Label htmlFor="driveTrain" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Drive Train:</Label>
       <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
-      <Label htmlFor="doors" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Number of Doors:</Label>
-      <Input name="doors" type="number" placeholder="Number of Doors" value={carDetails.doors} onChange={handleChange} required />
-      <Label htmlFor="cabType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Cab Type:</Label>
-      <Input name="cabType" type="text" placeholder="Cab Type" value={carDetails.cabType} onChange={handleChange} required />
       <Label htmlFor="vin" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">VIN:</Label>
       <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
       <Label htmlFor="retailPrice" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
@@ -148,7 +208,6 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="askingPrice" type="number" placeholder="Asking Price" value={carDetails.askingPrice} onChange={handleChange} required />
       <Label htmlFor="description" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Description:</Label>
       <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} rows="4" />
-
       <div>
         <label className="block text-gray-700 text-base font-medium">Upload Images</label>
         <input type="file" name="images" multiple onChange={handleFileChange} className="mt-1 block w-full" />
@@ -156,6 +215,28 @@ function NewCarForm({ closeModal, refetchCars }) {
       <div className="flex justify-center">
         <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-700 transition-colors hover:font-bold">Submit</Button>
       </div>
+
+      <CustomModal
+        isOpen={showConfirmationModal}
+        onConfirm={handleConfirm}
+        onClose={handleCancel}
+        contentLabel="Modal"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <div className="modal-body font-bold flex justify-center">
+          <p className="mt-4  text-xl">Are you sure you want to submit the form with these fields incomplete?</p>
+        </div>
+        <div className="modal-body flex justify-center">
+          <ul className="list-disc pl-5 mt-2">
+            {validationErrors.map((error, index) => (
+              <li key={index} className="text-red-500">{error}</li>
+            ))}
+          </ul>
+        </div>
+      </CustomModal>
+
+
     </form>
   );
 }

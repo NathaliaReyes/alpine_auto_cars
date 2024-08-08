@@ -86,7 +86,7 @@ const resolvers = {
       // if (!context.user) throw new AuthenticationError('Not logged in.');
 
       try {
-        const { make, model, year, stock, mileage, retail_price, asking_price, color, trim, engine, vin, transmission, description, engineType, driveTrain, doors, cabType, images } = args;
+        const { make, model, year, stock, mileage, retail_price, asking_price, color, trim, engine, vin, transmission, description, engineType, driveTrain, vehicleType, images, fuelType } = args;
         // Process the image paths if necessary
         // const imagePaths = images.map(file => file.path.replace(/\\/g, '/'));
 
@@ -106,9 +106,9 @@ const resolvers = {
           description,
           engineType,
           driveTrain,
-          doors,
-          cabType,
+          vehicleType,
           images,
+          fuelType
         });
 
         console.log('Car created successfully...');
