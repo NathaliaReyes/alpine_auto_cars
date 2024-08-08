@@ -34,10 +34,10 @@ function Home() {
       <AboutUs />
       </div>
       <CarouselTestimonials />
-      <BusinessInfo />
       <div className="flex justify-center">
         <a href={reviewLink} target="_blank" rel="noopener noreferrer" className='w-1/3 bg-blue-500 text-white hover:bg-blue-700 transition-colors p-3 rounded-lg mt-2 md:mt-4 text-center'>Worked with us before? Let us know how we did!</a>
       </div>
+      <BusinessInfo />
       <LocationMap />
     </>
   )

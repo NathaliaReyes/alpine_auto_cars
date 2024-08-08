@@ -78,18 +78,16 @@ function CarCard() {
                                         <li><strong>Year: </strong>{car.year}</li>
                                         <li><strong>Color: </strong>{car.color}</li>
                                         <li><strong>Trim: </strong>{car.trim}</li>
-                                        <li><strong>Doors: </strong>{car.doors}</li>
-                                        <li><strong>Drive Train: </strong>{car.driveTrain}</li>
-                                        <li><strong>Engine Type: </strong>{car.engineType}</li>
+                                        <li><strong>Vehicle Type: </strong>{car.vehicleType}</li>
                                     </ul>
                                     <ul className="flex flex-col text-left space-y-2">
-                                    <li><strong>Stock: </strong>{car.stock}</li>
-                                        <li><strong>Color: </strong>{car.color}</li>
+                                        {/* <li><strong>Stock: </strong>{car.stock}</li> */}
                                         <li><strong>Engine: </strong>{car.engine}</li>
+                                        <li><strong>Engine Type: </strong>{car.engineType}</li>
                                         <li><strong>Transmission: </strong>{car.transmission}</li>
-                                        <li><strong>Cabine Type: </strong>{car.cabType}</li>
-                                        <li><strong>VIN: </strong>{car.trim}</li>
                                         <li><strong>Mileage: </strong>{car.mileage}</li>
+                                        <li><strong>Drive Train: </strong>{car.driveTrain}</li>
+
                                     </ul>
                                 </div>
                                 <div className="flex flex-col sm:mt-4 w-full space-y-2 items-center">
