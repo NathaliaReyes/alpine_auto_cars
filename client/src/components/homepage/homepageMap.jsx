@@ -14,7 +14,8 @@ const LocationMap = () => {
           referrerPolicy="no-referrer-when-downgrade">
         </iframe>
         <div className="text-center mt-3 mb-3">
-          <p className="text-neutral-400 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-2 lg:text-lg md:text-base text-sm text-center">
+          <p className="text-neutral-400 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-2 lg:text-lg md:text-base text-sm text-center"
+          style={{ fontFamily: 'Abel' }}>
             To schedule an appointment, you can reach us by <a href='tel:9704264256' className='text-blue-500 hover:text-blue-900'>Phone</a>, <a href="mailto:chriswright47@hotmail.com" target="_blank" rel="noopener noreferrer" className=" text-blue-500 hover:text-blue-900">Email</a>, or fill out the form in our <a href="/Contact" className="text-blue-500 hover:text-blue-900">Contact</a> section. <br /><br />We appreciate you choosing Alpine Auto Sales, LLC!
           </p>
         </div>
