@@ -127,8 +127,8 @@ function ContactForm() {
           </div>
         </div>
       )}
-      <div className="flex justify-center bg-black">
-        <form onSubmit={handleSubmit} className="p-5 md:w-9/12 w-full mb-2 ml-4 mr-4 bg-gray-100 rounded-lg mt-5">
+      <div className="flex justify-center items-center bg-black">
+        <form onSubmit={handleSubmit} className="p-5 md:w-9/12 w-11/12 mb-2 mx-auto bg-gray-100 rounded-lg mt-5">
           <h2 className="text-2xl font-extrabold  mt-5 mb-5 tracking-normal">Get in touch</h2>
           <p className="text-black mb-6">We are here for you! How can we help?</p>
           <h2 className="text-xl font-bold tracking-normal mt-4 md:mt-8 mb-5 md:mb-10">Drop us a line</h2>
@@ -141,7 +141,7 @@ function ContactForm() {
                 value={firstName}
                 className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                placeholder="Please enter your first name"
+                placeholder="First Name"
                 onChange={handleChange}
               />
               {nameRequired && <p className="text-red-500 text-xs mt-2">Name is required.</p>}
@@ -154,7 +154,7 @@ function ContactForm() {
                 value={lastName}
                 className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                placeholder="Please enter your last name"
+                placeholder="Last Name"
                 onChange={handleChange}
               />
               {nameRequired && <p className="text-red-500 text-xs mt-2">Last name is required.</p>}
