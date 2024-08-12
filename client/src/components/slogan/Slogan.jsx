@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { FaHandshake, FaCar, FaShieldAlt, FaStar, FaThumbsUp } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import '../../styles/fonts.css';
 
 export default function Slogan() {
   useEffect(() => {
@@ -11,9 +12,13 @@ export default function Slogan() {
   }, []);
 
   return (
-    <div className="mx-3">
+    <div className="mx-3 "
+    style={{ fontFamily: 'Abel' }}
+    >
       <div>
-        <p className="text-base md:text-lg text-black font-semibold text-center p-2">
+        <p 
+          className="text-base md:text-lg text-black font-semibold text-center p-2"
+          >
           Your Trusted Partner in Car Deals <span className="inline-block"><FaHandshake /></span>
         </p>
       </div>
@@ -24,7 +29,7 @@ export default function Slogan() {
             className="flex flex-col items-center"
             data-aos="zoom-in-up"
             >
-            <FaCar className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-3" />
+            <FaCar className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-3 " />
             <div className="flex items-center">
               <span className="text-black font-bold xl-text">Buy</span>
             </div>

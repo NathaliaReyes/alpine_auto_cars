@@ -1,10 +1,11 @@
 import { Carousel, Typography, Rating } from "@material-tailwind/react";
 import BgTest from "../../../../assets/images/bg-route.jpg";
+import '../../../../styles/fonts.css';
 
 export default function CarouselTestimonials() {
   return (
     <div className=" justify-center items-center p-4">
-      <h2 className="text-xl font-bold text-center text-gray-800 my-4 italic">Customer Testimonials</h2>
+      <h2 className="text-xl font-bold text-center text-gray-800 my-4 italic lora">Customer Testimonials</h2>
       <Carousel className="rounded-xl ">
       <div className="relative h-full w-full ">
           <img
@@ -17,7 +18,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
               >
                 "M.R. ~ Bayfield, CO"
               </Typography>
@@ -25,6 +26,7 @@ export default function CarouselTestimonials() {
                 variant="lead"
                 color="white"
                 className="mb-5 lg:text-xl md:text-lg sm:text-base text-base opacity-80"
+                style={{ fontFamily: 'Abel' }}
               >
                 "They are fair and honest guys. Scott made sure the vehicle we bought was 
                 in good shape, everything was in working order and he was very accommodating.
@@ -45,7 +47,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
               >
                 "Dj Lybarger. ~ Bayfield, CO"
               </Typography>
@@ -53,6 +55,7 @@ export default function CarouselTestimonials() {
                 variant="lead"
                 color="white"
                 className="mb-5 lg:text-xl md:text-lg sm:text-base text-base opacity-80"
+                style={{ fontFamily: 'Abel' }}
               >
                 "I personally would recommend this business to anybody looking for a 
                 used vehicle! We just picked up our 2nd Truck from Chris and Scott with 
@@ -76,7 +79,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
               >
                 "Brandi Pemble. ~ Bayfield, CO"
               </Typography>
@@ -84,6 +87,7 @@ export default function CarouselTestimonials() {
                 variant="lead"
                 color="white"
                 className="mb-5 lg:text-xl md:text-lg sm:text-base text-xl opacity-80"
+                style={{ fontFamily: 'Abel' }}
               >
                 "The crew is top notch they went above and beyond any other dealerships 
                 I've ever had! Thank you sooo much for being dabomb!!!"
@@ -103,7 +107,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
               >
                 "LeRoy Holley. ~ Bayfield, CO"
               </Typography>
@@ -111,6 +115,7 @@ export default function CarouselTestimonials() {
                 variant="lead"
                 color="white"
                 className="mb-5 lg:text-xl md:text-lg sm:text-base text-sm opacity-80"
+                style={{ fontFamily: 'Abel' }}
               >
                 "Friendly, Courteous, Fair. Traded in a couple of vehicles for a couple 
                 of newer vehicles. Got good deals all around."
