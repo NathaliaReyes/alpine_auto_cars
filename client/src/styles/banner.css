@@ -42,7 +42,7 @@ p {
 @media (max-width: 975px) {
   .bannerRes {
     position: absolute;
-    top: 19%;
+    top: 21%;
     transform: translateY(-70%);
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
@@ -52,21 +52,8 @@ p {
   }
 }
 
-@media (max-width: 823px) {
+@media (max-width: 700px) {
   .bannerRes2 {
-    position: absolute;
-    top: 15%;
-    transform: translateY(-70%);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Fondo semitransparente */
-    padding: 5px;
-    border-radius: 5px;
-  }
-}
-
-@media (max-width: 481px) {
-  .bannerRes3 {
     position: absolute;
     top: 13%;
     transform: translateY(-70%);
@@ -78,15 +65,3 @@ p {
   }
 }
 
-@media (max-width: 437px) {
-  .bannerRes4 {
-    position: absolute;
-    top: 10%;
-    transform: translateY(-70%);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Fondo semitransparente */
-    padding: 5px;
-    border-radius: 5px;
-  }
-}
