@@ -148,8 +148,8 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                     <h2 className=' font-bold block text-xl'>{car.year} {car.make} {car.model}</h2>
                 </div>
                 <div className="modal-footer">
-                    <button onClick={() => handleDelete(car._id)} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
                     <button onClick={closeDeleteModal} className="modal-button bg-gray-500 text-white hover:bg-gray-700">Cancel</button>
+                    <button onClick={() => handleDelete(car._id)} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
                 </div>
                 <div className="modal-body font-bold flex justify-center">
                     <p className='block text-base'><i>* You will have to manually add this vehicle again to restore it once it is deleted * </i></p>
