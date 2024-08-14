@@ -11,4 +11,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    target: 'esnext', 
+  },
+  server: {
+    host: '0.0.0.0', // Esto le dice a Vite que escuche en todas las interfaces de red
+    port: 5173, // Asegúrate de que el puerto coincide con el puerto configurado en AWS Security Group
+  },
 })
