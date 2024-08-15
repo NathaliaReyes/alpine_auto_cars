@@ -46,18 +46,18 @@ const ModalCar = ({ isOpen, onClose, carInfo }) => {
                 <span className='mt-2 block md:mt-0'>{carInfo.description}</span>
               </p>
             ) : ''}
-            <p><strong>Mileage:</strong> {carInfo.mileage}</p>
-            <p><strong>Color:</strong> {carInfo.color}</p>
-            <p><strong>Trim:</strong> {carInfo.trim}</p>
-            <p><strong>Vehicle/Cab Type:</strong> {carInfo.vehicleType}</p>
-            <p><strong>Engine Size:</strong> {carInfo.engine}</p>
-            <p><strong>Engine Type:</strong> {carInfo.engineType}</p>
-            <p><strong>Transmission:</strong> {carInfo.transmission}</p>
-            <p><strong>Drive Train:</strong> {carInfo.driveTrain}</p>
-            <p><strong>VIN:</strong> {carInfo.vin}</p>
-            <p><strong>Stock No.:</strong> {carInfo.stock}</p>
-            <p><strong>Retail Price:</strong> ${formatPrice(carInfo.retail_price)}</p>
-            <p><strong>Asking Price:</strong> ${formatPrice(carInfo.asking_price)}</p>
+            {carInfo.mileage ? ( <p><strong>Mileage:</strong> {carInfo.mileage}</p> ) : ''}
+            {carInfo.color ? ( <p><strong>Color:</strong> {carInfo.color}</p> ) : ''}
+            {carInfo.trim ? ( <p><strong>Trim:</strong> {carInfo.trim}</p> ) : ''}
+            {carInfo.vehicleType ? ( <p><strong>Vehicle/Cab Type:</strong> {carInfo.vehicleType}</p> ) : ''}
+            {carInfo.engine ? ( <p><strong>Engine Size:</strong> {carInfo.engine}</p> ) : ''}
+            {carInfo.engineType ? ( <p><strong>Engine Type:</strong> {carInfo.engineType}</p> ) : ''}
+            {carInfo.transmission ? ( <p><strong>Transmission:</strong> {carInfo.transmission}</p> ) : ''}
+            {carInfo.driveTrain ? ( <p><strong>Drive Train:</strong> {carInfo.driveTrain}</p> ) : ''}
+            {carInfo.vin ? ( <p><strong>VIN:</strong> {carInfo.vin}</p> ) : ''}
+            {carInfo.stock ? ( <p><strong>Stock No.:</strong> {carInfo.stock}</p> ) : ''}
+            {carInfo.retail_price ? ( <p><strong>Retail Price:</strong> ${formatPrice(carInfo.retail_price)}</p> ) : ''}
+            {carInfo.asking_price ? ( <p><strong>Asking Price:</strong> ${formatPrice(carInfo.asking_price)}</p> ) : ''}
           </div>
             <p className='text-sm md:text-base text-center text-blue-900'><strong>CARFAX available for this vehicle - call us today!</strong></p>
         </div>
