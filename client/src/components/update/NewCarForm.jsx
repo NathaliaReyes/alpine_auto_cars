@@ -66,7 +66,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const response = await axios.post('http://localhost:3001/upload', formData);
+        const response = await axios.post('http://52.201.219.120:3001/upload', formData);
         console.log('File upload response:', response.data); // Debug response
         if (response.data.filePath) {
           uploadedImagePaths.push(response.data.filePath);
