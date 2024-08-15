@@ -68,13 +68,15 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                         </div>
                         <div className='flex flex-col justify-evenly space-y-4 md:ml-2'>
                             <CardTitle className="tracking-normal text-base md:text-lg">{car.year} {car.make} {car.model}</CardTitle>
-                            <CardDescription>
-                                <div className="flex items-center">
-                                    <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
-                                        {car.description}
-                                    </span>
-                                </div>
-                            </CardDescription>
+                            {car.description ? (
+                                <CardDescription>
+                                    <div className="flex items-center">
+                                        <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
+                                            {car.description}
+                                        </span>
+                                    </div>
+                                </CardDescription>
+                            ) : ''}
                             <CardContent>
                                 <div className="flex flex-col justify-between">
                                     <div className="w-full grid grid-cols-2 gap-2 text-xs md:text-base mb-3">
@@ -82,20 +84,20 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                                             <li><strong>Year: </strong>{car.year}</li>
                                             <li><strong>Make: </strong>{car.make}</li>
                                             <li><strong>Model: </strong>{car.model}</li>
-                                            <li><strong>Mileage: </strong>{car.mileage}</li>
-                                            <li><strong>Engine Size: </strong>{car.engine}</li>
-                                            <li><strong>Engine Type: </strong>{car.engineType}</li>
-                                            <li><strong>Transmission: </strong>{car.transmission}</li>
-                                            <li><strong>Drive Train: </strong>{car.driveTrain}</li>
+                                            { car.mileage ? ( <li><strong>Mileage: </strong>{car.mileage}</li> ) : '' }
+                                            { car.engine ? ( <li><strong>Engine Size: </strong>{car.engine}</li> ) : '' }
+                                            { car.engineType ? ( <li><strong>Engine Type: </strong>{car.engineType}</li> ) : '' }
+                                            { car.transmission ? ( <li><strong>Transmission: </strong>{car.transmission}</li> ) : '' }
+                                            { car.driveTrain ? ( <li><strong>Drive Train: </strong>{car.driveTrain}</li> ) : '' }
                                         </ul>
                                         <ul className="flex flex-col text-left space-y-2">
-                                            <li><strong>Color: </strong>{car.color}</li>
-                                            <li><strong>Trim: </strong>{car.trim}</li>
-                                            <li><strong>Vehicle Type: </strong>{car.vehicleType}</li>
-                                            <li><strong>VIN: </strong>{car.color}</li>
-                                            <li><strong>Stock Number: </strong>{car.color}</li>
-                                            <li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li>
-                                            <li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li>
+                                            { car.color ? ( <li><strong>Color: </strong>{car.color}</li> ) : '' }
+                                            { car.trim ? ( <li><strong>Trim: </strong>{car.trim}</li> ) : '' }
+                                            { car.vehicleType ? ( <li><strong>Vehicle Type: </strong>{car.vehicleType}</li> ) : '' }
+                                            { car.vin ? ( <li><strong>VIN: </strong>{car.vin}</li> ) : '' }
+                                            { car.stock ? ( <li><strong>Stock Number: </strong>{car.stock}</li> ) : '' }
+                                            { car.retail_price ? (  <li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li> ) : '' }
+                                            { car.asking_price ? ( <li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li> ) : '' }
                                             <li className='hidden' id='carId'>{car._id}</li>
                                         </ul>
                                     </div>
@@ -148,8 +150,8 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                     <h2 className=' font-bold block text-xl'>{car.year} {car.make} {car.model}</h2>
                 </div>
                 <div className="modal-footer">
-                    <button onClick={() => handleDelete(car._id)} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
                     <button onClick={closeDeleteModal} className="modal-button bg-gray-500 text-white hover:bg-gray-700">Cancel</button>
+                    <button onClick={() => handleDelete(car._id)} className="modal-button bg-red-500 text-white hover:bg-red-700">Confirm</button>
                 </div>
                 <div className="modal-body font-bold flex justify-center">
                     <p className='block text-base'><i>* You will have to manually add this vehicle again to restore it once it is deleted * </i></p>

@@ -76,27 +76,31 @@ function CarCard() {
                                             <li><strong>Make: </strong>{car.make}</li>
                                             <li><strong>Model: </strong>{car.model}</li>
                                             <li><strong>Year: </strong>{car.year}</li>
-                                            <li><strong>Color: </strong>{car.color}</li>
-                                            <li><strong>Trim: </strong>{car.trim}</li>
-                                            <li><strong>Vehicle Type: </strong>{car.vehicleType}</li>
+                                            { car.color ? ( <li><strong>Color: </strong>{car.color}</li> ) : '' }
+                                            { car.trim ? ( <li><strong>Trim: </strong>{car.trim}</li> ) : '' }
+                                            { car.vehicleType ? ( <li><strong>Vehicle Type: </strong>{car.vehicleType}</li> ) : '' }
                                         </ul>
                                         <ul className="flex flex-col text-left space-y-2">
                                             {/* <li><strong>Stock: </strong>{car.stock}</li> */}
-                                            <li><strong>Engine: </strong>{car.engine}</li>
-                                            <li><strong>Engine Type: </strong>{car.engineType}</li>
-                                            <li><strong>Transmission: </strong>{car.transmission}</li>
-                                            <li><strong>Mileage: </strong>{car.mileage}</li>
-                                            <li><strong>Drive Train: </strong>{car.driveTrain}</li>
+                                            { car.engine ? ( <li><strong>Engine Size: </strong>{car.engine}</li> ) : '' }
+                                            { car.engineType ? ( <li><strong>Engine Type: </strong>{car.engineType}</li> ) : '' }
+                                            { car.transmission ? ( <li><strong>Transmission: </strong>{car.transmission}</li> ) : '' }
+                                            { car.mileage ? ( <li><strong>Mileage: </strong>{car.mileage}</li> ) : '' }
+                                            { car.driveTrain ? ( <li><strong>Drive Train: </strong>{car.driveTrain}</li> ) : '' }
 
                                         </ul>
                                     </div>
                                     <div className="flex flex-col sm:mt-4 w-full space-y-2 items-center">
+                                        {car.retail_price ? (
                                         <Button className="w-full bg-gray-400 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
                                             Retail Price: ${formatPrice(car.retail_price)}
                                         </Button>
+                                        ) : ''}
+                                        {car.asking_price ? (
                                         <Button className="w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
                                             Asking Price: ${formatPrice(car.asking_price)}
                                         </Button>
+                                        ) : ''}
                                     </div>
                                 </div>
 

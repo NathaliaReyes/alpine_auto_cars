@@ -22,7 +22,7 @@ function Home() {
         <div className="hidden md:block bannerRes bannerRes2 bannerRes3 bannerRes4 banner-text left">
           <h1 className='sm:text-base text-lg md:text-3xl lg:text-4xl uppercase text-center md:tracking-wider font-bold md:leading-relaxed lora' >Conquer <br />every road </h1>
           <p className='text-sm md:text-lg text-center tracking-widest leading-4' style={{ fontFamily: 'Abel' }}>with the power<br /> that drives you beyond <br />your limits</p>
-          <Button className="w-full bg-red-600 text-white hover:bg-blue-600 transition-colors mt-2 md:mt-4" style={{ fontFamily: 'Abel' }}>
+          <Button className="w-full bg-red-600 text-white hover:bg-red-900 transition-colors mt-2 md:mt-4" style={{ fontFamily: 'Abel' }}>
             <a href='/Inventory'>Browse for your next car</a>
           </Button>
         </div>
@@ -37,7 +37,7 @@ function Home() {
       <Slogan />
       <CarouselTestimonials />
       <div className="flex justify-center text-lg md:text-xl font-semibold" style={{ fontFamily: 'Abel' }}>
-        <a href={reviewLink} target="_blank" rel="noopener noreferrer" className='w-11/12 md:w-1/3 bg-blue-500 text-white hover:bg-blue-700 transition-colors p-4 rounded-lg mt-2 md:mt-4 mb-4 md:mb-0 text-center'>Worked with us before? Let us know how we did!</a>
+        <a href={reviewLink} target="_blank" rel="noopener noreferrer" className='w-11/12 md:w-1/3 bg-red-500 text-white hover:bg-red-700 transition-colors p-4 rounded-lg mt-2 md:mt-4 mb-4 md:mb-0 text-center'>Worked with us before? Let us know how we did!</a>
       </div>
       <BusinessInfo />
       <LocationMap />

@@ -52,7 +52,7 @@ function NavTabs() {
   };
 
   const getLinkClass = (path) => {
-    return currentPage === path ? 'block mt-4 md:inline-block md:mt-0 text-blue-800 hover:text-sky-300 mr-4 font-bold' : 'font-semibold block mt-4 md:inline-block md:mt-0 text-black hover:text-blue-400 mr-4';
+    return currentPage === path ? 'block mt-4 md:inline-block md:mt-0 text-red-800 hover:text-red-300 mr-4 font-bold' : 'font-semibold block mt-4 md:inline-block md:mt-0 text-black hover:text-red-400 mr-4';
   };
 
   return (

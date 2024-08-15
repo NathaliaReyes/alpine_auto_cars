@@ -15,21 +15,21 @@ function NewCarForm({ closeModal, refetchCars }) {
     year: '',
     make: '',
     model: '',
-    retail_price: '',
-    asking_price: '',
-    color: '',
-    mileage: '',
-    description: '',
+    retail_price: null,
+    asking_price: null,
+    color: null,
+    mileage: null,
+    description: null,
     images: [],
-    vehicleType: '',
-    driveTrain: '',
-    engine: '',
-    engineType: '',
-    stock: '',
-    transmission: '',
-    trim: '',
-    vin: '',
-    fuelType: ''
+    vehicleType: null,
+    driveTrain: null,
+    engine: null,
+    engineType: null,
+    stock: null,
+    transmission: null,
+    trim: null,
+    vin: null,
+    fuelType: null
   });
 
   const [addCar] = useMutation(ADD_CAR);
@@ -169,7 +169,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     <form onSubmit={handleSubmit} className="w-full pr-2 md:px-3 mt-3 overflow-hidden overflow-y-scroll z-10">
 
       <div className="flex justify-center">
-        <h1 className='text-blue-500 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'>Insert a New Vehicle Into Inventory</h1>
+        <h1 className='text-grey-900 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'>Insert a New Vehicle Into Inventory</h1>
       </div>
       <Button type="button" onClick={closeModal} className="absolute top-0.5 md:top-4 right-3 md:right-12 p-1.5 md:p-3 border-gray-400 text-gray-800 hover:bg-red-600 hover:font-bold transition-colors rounded bg-white border-4">
         ✕
@@ -182,31 +182,31 @@ function NewCarForm({ closeModal, refetchCars }) {
       <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
         onChange={handleChange} required />
       <Label htmlFor="vehicleType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Vehicle Type:</Label>
-      <Input name="vehicleType" type="text" placeholder="Vehicle Type" value={carDetails.vehicleType} onChange={handleChange} required />
+      <Input name="vehicleType" type="text" placeholder="Vehicle Type" value={carDetails.vehicleType} onChange={handleChange} />
       <Label htmlFor="color" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Color:</Label>
-      <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} required />
+      <Input name="color" type="text" placeholder="Car Color" value={carDetails.color} onChange={handleChange} />
       <Label htmlFor="trim" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Trim:</Label>
-      <Input name="trim" type="text" placeholder="Trim Color" value={carDetails.trim} onChange={handleChange} required />
+      <Input name="trim" type="text" placeholder="Trim Color" value={carDetails.trim} onChange={handleChange} />
       <Label htmlFor="mileage" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Mileage:</Label>
-      <Input name="mileage" type="number" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} required />
+      <Input name="mileage" type="number" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} />
       <Label htmlFor="stock" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Stock No.</Label>
-      <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} required />
+      <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} />
       <Label htmlFor="engine" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine:</Label>
-      <Input name="engine" type="text" placeholder="Car Engine" value={carDetails.engine} onChange={handleChange} required />
+      <Input name="engine" type="text" placeholder="Car Engine" value={carDetails.engine} onChange={handleChange} />
       <Label htmlFor="engineType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine Type:</Label>
-      <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} required />
+      <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} />
       <Label htmlFor="transmission" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Transmission:</Label>
-      <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} required />
+      <Input name="transmission" type="text" placeholder="Transmission Type" value={carDetails.transmission} onChange={handleChange} />
       <Label htmlFor="fuelType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Fuel Type:</Label>
-      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange} required />
+      <Input name="fuelType" type="text" placeholder="Fuel Type" value={carDetails.fuelType} onChange={handleChange} />
       <Label htmlFor="driveTrain" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Drive Train:</Label>
-      <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} required />
+      <Input name="driveTrain" type="text" placeholder="Drive Train" value={carDetails.driveTrain} onChange={handleChange} />
       <Label htmlFor="vin" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">VIN:</Label>
-      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} required />
+      <Input name="vin" type="text" placeholder="VIN" value={carDetails.vin} onChange={handleChange} />
       <Label htmlFor="retail_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Retail Price:</Label>
-      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} required />
+      <Input name="retail_price" type="number" placeholder="Retail Price" value={carDetails.retail_price} onChange={handleChange} />
       <Label htmlFor="asking_price" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Asking Price:</Label>
-      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} required />
+      <Input name="asking_price" type="number" placeholder="Asking Price" value={carDetails.asking_price} onChange={handleChange} />
       <Label htmlFor="description" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Description:</Label>
       <Textarea name="description" placeholder="Car Description" value={carDetails.description} onChange={handleChange} rows="4" />
       <div>
@@ -214,7 +214,7 @@ function NewCarForm({ closeModal, refetchCars }) {
         <input type="file" name="images" multiple onChange={handleFileChange} className="mt-1 block w-full" />
       </div>
       <div className="flex justify-center">
-        <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-700 transition-colors hover:font-bold">Submit</Button>
+        <Button type="submit" className="bg-red-500 text-white hover:bg-red-900 transition-colors hover:font-bold">Submit</Button>
       </div>
 
       <CustomModal
