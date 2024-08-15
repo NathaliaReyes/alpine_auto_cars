@@ -169,7 +169,7 @@ function NewCarForm({ closeModal, refetchCars }) {
     <form onSubmit={handleSubmit} className="w-full pr-2 md:px-3 mt-3 overflow-hidden overflow-y-scroll z-10">
 
       <div className="flex justify-center">
-        <h1 className='text-blue-500 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'>Insert a New Vehicle Into Inventory</h1>
+        <h1 className='text-grey-900 font-bold tracking-tight md:tracking-wide text-shadow mb-1 text-center text-base md:text-xl'>Insert a New Vehicle Into Inventory</h1>
       </div>
       <Button type="button" onClick={closeModal} className="absolute top-0.5 md:top-4 right-3 md:right-12 p-1.5 md:p-3 border-gray-400 text-gray-800 hover:bg-red-600 hover:font-bold transition-colors rounded bg-white border-4">
         ✕
@@ -214,7 +214,7 @@ function NewCarForm({ closeModal, refetchCars }) {
         <input type="file" name="images" multiple onChange={handleFileChange} className="mt-1 block w-full" />
       </div>
       <div className="flex justify-center">
-        <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-700 transition-colors hover:font-bold">Submit</Button>
+        <Button type="submit" className="bg-red-500 text-white hover:bg-red-900 transition-colors hover:font-bold">Submit</Button>
       </div>
 
       <CustomModal

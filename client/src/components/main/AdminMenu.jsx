@@ -46,7 +46,7 @@ function AdminMenu() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="font-bold text-sm md:text-base text-blue-600">Admin Tools</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="font-bold text-sm md:text-base text-red-600">Admin Tools</NavigationMenuTrigger>
             <NavigationMenuContent style={{ backgroundColor: 'white', zIndex: 100 }}>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {components.map((component) => (
