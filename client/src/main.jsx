@@ -12,7 +12,7 @@ import Update from '@/pages/Update.jsx';
 import AllClients from '@/pages/AllClients.jsx';
 
 const client = new ApolloClient({
-  uri: 'http://52.201.219.120:3001/graphql', // Replace with your GraphQL server URI
+  uri: 'http://localhost:3001/graphql', // Replace with your GraphQL server URI
   cache: new InMemoryCache()
 });
 

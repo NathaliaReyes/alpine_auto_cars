@@ -115,10 +115,10 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                 </CardHeader>
                 <CardFooter>
                     <div className="flex flex-col sm:flex-row justify-evenly items-center w-full gap-8">
-                        <Button onClick={openEditModal} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:bg-blue-900 hover:border-blue-300 transition-colors'>
+                        <Button onClick={openEditModal} className='sm:w-full lg:w-1/4 bg-gray-500 text-white hover:border-2 hover:bg-red-900 hover:border-red-300 transition-colors'>
                             Edit {car.year} {car.make} {car.model}
                         </Button>
-                        <Button onClick={openDeleteModal} id={car._id} className='sm:w-full lg:w-1/4 bg-blue-500 text-white hover:border-2 hover:border-blue-300 hover:bg-blue-900 transition-colors'>
+                        <Button onClick={openDeleteModal} id={car._id} className='sm:w-full lg:w-1/4 bg-red-500 text-white hover:border-2 hover:border-red-300 hover:bg-red-900 transition-colors'>
                             Delete {car.year} {car.make} {car.model}
                         </Button>
                     </div>

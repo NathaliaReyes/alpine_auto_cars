@@ -34,7 +34,7 @@ function AboutUs() {
       <p style={{ lineHeight: '1.5' }} className="text-neutral-300 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-2 lg:text-lg md:text-base text-sm text-start abdel">
         Join us at Alpine Auto Sales, LLC and let us help you find your next adventure buddy. With our
         expertise, enthusiasm, and unwavering commitment to your satisfaction, you’ll drive away with more
-        than just a car—you’ll leave with a trusted partner for the road ahead.
+        than just a car - you’ll leave with a trusted partner for the road ahead.
       </p>
 
     </div>

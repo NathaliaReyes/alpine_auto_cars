@@ -1,3 +1,13 @@
+.loading {
+    justify-content: center;
+    margin-top:7rem;
+}
+
+.loading-text {
+    font-size: 2rem;
+    font-weight: 30px;
+}
+
 @media (max-width: 639px) {
     .hiddenList {
         display: none;
