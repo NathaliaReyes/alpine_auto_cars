@@ -25,6 +25,9 @@ function Home() {
           <Button className="w-full bg-red-600 text-white hover:bg-red-900 transition-colors mt-2 md:mt-4" style={{ fontFamily: 'Abel' }}>
             <a href='/Inventory'>Browse for your next car</a>
           </Button>
+          <Button className="w-full bg-red-600 text-white hover:bg-red-900 transition-colors mt-2 md:mt-4" style={{ fontFamily: 'Abel' }}>
+            <a href='/Contact'>Looking to sell a vehicle? Let us help!</a>
+          </Button>
         </div>
         {/* <div className="banner-text right ">
       <h1 className='uppercase text-center tracking-wider font-bold'>Conquer <br />every road </h1>

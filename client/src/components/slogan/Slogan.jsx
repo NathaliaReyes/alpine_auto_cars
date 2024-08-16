@@ -19,57 +19,57 @@ export default function Slogan() {
         <p 
           className="text-base md:text-lg text-black font-semibold text-center p-2 lora"
           >
-          Your Trusted Partner in Car Deals <span className="inline-block"><FaHandshake /></span>
+          Your Trusted Partner in Car Sales  <span className="inline-block pl-4 pt-4"><FaHandshake /></span>
         </p>
       </div>
       <div className="my-4 rounded border-customWhite border-2 p-4">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
           {/* Buy */}
           <div 
-            className="flex flex-col items-center"
+            className="flex flex-col items-center font-black"
             data-aos="zoom-in-up"
             >
-            <FaCar className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-3 " />
+            <FaCar className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-5 " />
             <div className="flex items-center">
-              <span className="text-black font-bold xl-text">Buy</span>
+              <span className="text-red-800 text-3xl pr-3 pl-3 pb-3 pt-2">Buy</span>
             </div>
-            <p className="text-muted mt-1">Quality Guaranteed</p>
+            <p className="text-xl text-red-800 ">Quality Guaranteed</p>
           </div>
 
           {/* Sell */}
           <div 
-            className="flex flex-col items-center"
+            className="flex flex-col items-center font-black"
             data-aos="zoom-in-up"
             >
             <FaStar className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-3" />
-            <div className="flex items-center">
-              <span className="text-black font-bold xl-text">Sell</span>
+            <div className="flex items- font-black">
+              <span className="text-red-800 text-3xl p-3 pt-4 ">Sell</span>
             </div>
-            <p className="text-neutral">Exceptional Deals</p>
+            <p className="text-xl text-red-800">Exceptional Deals</p>
           </div>
 
           {/* Trade */}
           <div 
-            className="flex flex-col items-center"
+            className="flex flex-col items-center font-black"
             data-aos="zoom-in-up"
             >
             <FaShieldAlt className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-3"/>
             <div className="flex items-center">
-              <span className="text-black font-bold xl-text">Trade</span>
+              <span className="text-red-800 text-3xl p-3 pt-4 ">Trade</span>
             </div>
-            <p className="text-neutral">Fair Value</p>
+            <p className="text-xl text-red-800">Fair Value</p>
           </div>
 
           {/* Find */}
           <div 
-            className="flex flex-col items-center"
+            className="flex flex-col items-center font-black"
             data-aos="zoom-in-up"
             >
             <FaThumbsUp className="text-red-600 text-6xl sm:text-7xl md:text-8xl mt-3" />
             <div className="flex items-center">
-              <span className="text-black font-bold xl-text">Find</span>
+              <span className="text-red-800 text-3xl p-3 pt-4">Find</span>
             </div>
-            <p className="text-neutral">Your Ideal Car</p>
+            <p className="text-xl text-red-800">Your Ideal Car</p>
           </div>
         </div>
       </div>
