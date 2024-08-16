@@ -38,6 +38,7 @@ const startApolloServer = async () => {
   app.use(cors({
     origin: '*',
   }));
+  // app.use(cors());
 
   // app.use('/upload', express.static(path.join(__dirname, 'upload')));
   app.post('/upload', upload.single('file'), (req, res) => {
@@ -53,6 +54,9 @@ const startApolloServer = async () => {
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
   }));
+  // app.use('/', expressMiddleware(server, {
+  //   context: authMiddleware
+  // }));
 }
 
 
@@ -68,8 +72,10 @@ if (process.env.NODE_ENV === 'production') {
 
 db.once('open', () => {
   app.listen(PORT, () => {
+  // app.listen(PORT, '0.0.0.0', () => {
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://52.201.219.120:${PORT}/graphql`);
+    // console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
   });
 });
 
