@@ -10,6 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "^3.10.8",
     "@formspree/react": "^2.5.1",
@@ -30,7 +31,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "animate.css": "^4.1.1",
     "autoprefixer": "^10.4.19",
-    "axios": "^1.7.2",
+    "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "countup.js": "^2.8.0",

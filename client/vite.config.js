@@ -11,4 +11,19 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    target: 'esnext', 
+    sourcemap: false,
+  },
+  server: {
+    host: true, 
+    port: 5174, 
+    proxy: {
+      '/graphql': {
+        target: 'https://usa.alpineauto.xyz',
+        changeOrigin: true,
+        secure: false, // Si tienes un certificado autofirmado, de lo contrario, ponlo en true
+      },
+    },
+  },
 })

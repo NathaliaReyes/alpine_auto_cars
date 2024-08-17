@@ -9,6 +9,10 @@ function AboutUs() {
         We Specialize in Quality Pre-Owned Vehicles
       </h1>
 
+      <h1 style={{ lineHeight: '1.5' }} className="text-white sm:text-xl font-bold relative z-10 text-lg md:text-3xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center lora">
+        PRUEBA 2
+      </h1>
+
       <p style={{ lineHeight: '1.5' }} className="text-neutral-300 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-2 lg:text-lg md:text-base text-sm text-start abdel">
         Welcome to Alpine Auto Sales, LLC, where your journey to finding the perfect car begins.
         We believe every car tells a story, and we're here to help you find the next chapter in your
@@ -34,7 +38,7 @@ function AboutUs() {
       <p style={{ lineHeight: '1.5' }} className="text-neutral-300 lg:max-w-4xl md:max-w-2xl max-w-lg mx-auto my-2 lg:text-lg md:text-base text-sm text-start abdel">
         Join us at Alpine Auto Sales, LLC and let us help you find your next adventure buddy. With our
         expertise, enthusiasm, and unwavering commitment to your satisfaction, you’ll drive away with more
-        than just a car—you’ll leave with a trusted partner for the road ahead.
+        than just a car - you’ll leave with a trusted partner for the road ahead.
       </p>
 
     </div>
