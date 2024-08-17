@@ -240,11 +240,11 @@ function ContactForm() {
           </div>
 
           <div className="flex items-center justify-between">
-            <button type="submit" disabled={state.submitting} className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline">
-              Send
-            </button>
-            <button type="button" className="bg-gray-600 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" onClick={handleCancel}>
+          <button type="button" className="bg-gray-600 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" onClick={handleCancel}>
               Cancel
+            </button>
+            <button type="submit" disabled={state.submitting} className="bg-red-600 hover:bg-red-800 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline">
+              Send
             </button>
           </div>
         </form>
