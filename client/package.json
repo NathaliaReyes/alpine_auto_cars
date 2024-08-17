@@ -10,6 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "^3.10.8",
     "@formspree/react": "^2.5.1",

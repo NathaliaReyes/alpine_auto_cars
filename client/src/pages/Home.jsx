@@ -31,9 +31,10 @@ function Home() {
         </div>
         {/* <div className="banner-text right ">
       <h1 className='uppercase text-center tracking-wider font-bold'>Conquer <br />every road </h1>
-        <h2></h2>
-        <p className='text-center tracking-widest leading-4'>with the power<br /> that drives you beyond <br />your limits</p>
+      <h2></h2>
+      <p className='text-center tracking-widest leading-4'>with the power<br /> that drives you beyond <br />your limits</p>
       </div> */}
+      <h1 className='text-red-600'>PRUEBA</h1>
       <BackgroundBeams className="bg-black absolute inset-0 z-[-1]" />
       <AboutUs />
       </div>

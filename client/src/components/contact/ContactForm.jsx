@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_CLIENT } from '@/utils/mutations';
 
 function ContactForm() {
-  const [state, handleSubmitFormspree] = useForm("uig7uug");
+  const [state, handleSubmitFormspree] = useForm("xpwaaenw");
   const [addClient] = useMutation(ADD_CLIENT);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -75,29 +75,32 @@ function ContactForm() {
     }
     try {
       // Submit the form to Formspree
-      await handleSubmitFormspree(event);
+      const formspreeResponse = await handleSubmitFormspree(event);
+      if (formspreeResponse.ok) {
+        // Call the mutation to add the client
+        await addClient({
+          variables: {
+            firstName,
+            lastName,
+            email,
+            phone,
+            inquiry,
+            message,
+          },
+        });
 
-      // Call the mutation to add the client
-      await addClient({
-        variables: {
-          firstName,
-          lastName,
-          email,
-          phone,
-          inquiry,
-          message,
-        },
-      });
-
-      // Reset the form and show the success modal
-      setSubmitted(true);
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setPhone('');
-      setInquiry('');
-      setMessage('');
-      document.querySelector('#success-modal').classList.add('is-active');
+        // Reset the form and show the success modal
+        setSubmitted(true);
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPhone('');
+        setInquiry('');
+        setMessage('');
+        document.querySelector('#success-modal').classList.add('is-active');
+      } else {
+        console.error("Formspree submission failed:", formspreeResponse);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }

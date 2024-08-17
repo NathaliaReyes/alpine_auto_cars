@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
+import { ApolloProvider, InMemoryCache, ApolloClient, HttpLink } from '@apollo/client';
 
 import App from '@/App.jsx';
 import Error from '@/pages/Error.jsx';
