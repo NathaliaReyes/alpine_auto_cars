@@ -162,6 +162,8 @@ const UpdateCarCard = ({ refetchCars, car }) => {
 };
 
 const UpdateCarList = ({ cars, refetchCars }) => {
+    console.log(cars);
+
     return (
         <>
             {cars ? (
