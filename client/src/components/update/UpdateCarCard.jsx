@@ -84,25 +84,25 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                                             <li><strong>Year: </strong>{car.year}</li>
                                             <li><strong>Make: </strong>{car.make}</li>
                                             <li><strong>Model: </strong>{car.model}</li>
-                                            { car.mileage ? ( <li><strong>Mileage: </strong>{car.mileage}</li> ) : '' }
-                                            { car.engine ? ( <li><strong>Engine Size: </strong>{car.engine}</li> ) : '' }
-                                            { car.engineType ? ( <li><strong>Engine Type: </strong>{car.engineType}</li> ) : '' }
-                                            { car.transmission ? ( <li><strong>Transmission: </strong>{car.transmission}</li> ) : '' }
-                                            { car.driveTrain ? ( <li><strong>Drive Train: </strong>{car.driveTrain}</li> ) : '' }
+                                            {car.mileage ? (<li><strong>Mileage: </strong>{car.mileage}</li>) : ''}
+                                            {car.engine ? (<li><strong>Engine Size: </strong>{car.engine}</li>) : ''}
+                                            {car.engineType ? (<li><strong>Engine Type: </strong>{car.engineType}</li>) : ''}
+                                            {car.transmission ? (<li><strong>Transmission: </strong>{car.transmission}</li>) : ''}
+                                            {car.driveTrain ? (<li><strong>Drive Train: </strong>{car.driveTrain}</li>) : ''}
                                         </ul>
                                         <ul className="flex flex-col text-left space-y-2">
-                                            { car.color ? ( <li><strong>Color: </strong>{car.color}</li> ) : '' }
-                                            { car.trim ? ( <li><strong>Trim: </strong>{car.trim}</li> ) : '' }
-                                            { car.vehicleType ? ( <li><strong>Vehicle Type: </strong>{car.vehicleType}</li> ) : '' }
-                                            { car.vin ? ( <li><strong>VIN: </strong>{car.vin}</li> ) : '' }
-                                            { car.stock ? ( <li><strong>Stock Number: </strong>{car.stock}</li> ) : '' }
-                                            { car.retail_price ? (  <li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li> ) : '' }
-                                            { car.asking_price ? ( <li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li> ) : '' }
+                                            {car.color ? (<li><strong>Color: </strong>{car.color}</li>) : ''}
+                                            {car.trim ? (<li><strong>Trim: </strong>{car.trim}</li>) : ''}
+                                            {car.vehicleType ? (<li><strong>Vehicle Type: </strong>{car.vehicleType}</li>) : ''}
+                                            {car.vin ? (<li><strong>VIN: </strong>{car.vin}</li>) : ''}
+                                            {car.stock ? (<li><strong>Stock Number: </strong>{car.stock}</li>) : ''}
+                                            {car.retail_price ? (<li><strong>Retail Price: </strong>${formatPrice(car.retail_price)}</li>) : ''}
+                                            {car.asking_price ? (<li><strong>Asking Price: </strong>${formatPrice(car.asking_price)}</li>) : ''}
                                             <li className='hidden' id='carId'>{car._id}</li>
                                         </ul>
                                     </div>
-                            </div>
-                            {/* <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
+                                </div>
+                                {/* <div className="flex-1 sm:w-full md:mt-4 sm:mt-4 w-full">
                                 <Button className="sm:w-full w-full bg-blue-500 text-white hover:bg-blue-900 hover:border-blue-300 transition-colors">
                                     Asking Price: ${formatPrice(car.asking_price)}
                                 </Button>
@@ -137,12 +137,12 @@ const UpdateCarCard = ({ refetchCars, car }) => {
             </Modal>
             <Modal
                 // carId={car._id}
-                isOpen={deleteModalIsOpen}  
+                isOpen={deleteModalIsOpen}
                 onRequestClose={closeDeleteModal}
                 contentLabel="Modal"
                 className="modal-content"
                 overlayClassName="modal-overlay"
-             >
+            >
                 <div className="modal-body flex justify-center">
                     <h1 className='block font-bold'>Are you sure you want to delete this car?</h1>
                 </div>
@@ -164,11 +164,17 @@ const UpdateCarCard = ({ refetchCars, car }) => {
 const UpdateCarList = ({ cars, refetchCars }) => {
     return (
         <>
-            <div className="flex flex-wrap justify-center">
-                {Object.keys(cars).map(key => (
-                    <UpdateCarCard key={key} car={cars[key]} refetchCars={refetchCars} />
-                ))}
-            </div>
+            {cars ? (
+                <div className="flex flex-wrap justify-center">
+                    {Object.keys(cars).map(key => (
+                        <UpdateCarCard key={key} car={cars[key]} refetchCars={refetchCars} />
+                    ))}
+                </div>
+            ) : (
+                <div className="flex justify-center">
+                    <p className='font-black text-2xl'>No vehicles in inventory yet</p>
+                </div>
+            )}
         </>
     );
 };

@@ -6,10 +6,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { useMutation } from '@apollo/client';
 import { UPDATE_CAR } from '@/utils/mutations';
 import Auth from '@/utils/auth';
+import axios from 'axios';
 import '../../styles/EditCarForm.css'; // Import your CSS file
 
 const EditCarForm = ({ closeModal, refetchCars, carData }) => {
   const [updateCar] = useMutation(UPDATE_CAR);
+  const [files, setFiles] = useState([]);
+
 
   const [carDetails, setCarDetails] = useState({
     year: '',
@@ -47,10 +50,27 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
   };
 
   const handleFileChange = (e) => {
-    setCarDetails({
-      ...carDetails,
-      images: Array.from(e.target.files),
-    });
+    setFiles(e.target.files);
+  };
+
+  const uploadFiles = async () => {
+    const uploadedImagePaths = [];
+    for (let file of files) {
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const response = await axios.post('http://52.201.219.120:3001/upload', formData);
+        console.log('File upload response:', response.data); // Debug response
+        if (response.data.filePath) {
+          uploadedImagePaths.push(response.data.filePath);
+        } else {
+          console.error('No file path in response:', response.data);
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
+    return uploadedImagePaths;
   };
 
   const handleSubmit = async (e) => {
@@ -61,19 +81,28 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
     if (!token) {
       return false;
     }
+
+    const imagePaths = await uploadFiles();
+    console.log('imagePaths', imagePaths);
   
     const { __typename, ...filteredCarDetails } = carDetails;
-    console.log(filteredCarDetails);
+    // console.log(filteredCarDetails);
     const { _id, ...rest } = filteredCarDetails;
     const transformedCarDetails = {
       carId: _id,
       ...rest
     };
-    console.log(transformedCarDetails);
+    const finalInput = {
+      ...transformedCarDetails,
+      images: imagePaths
+    }
+    // console.log(transformedCarDetails);
 
     try {
       const updatedCar = await updateCar({
-        variables: { carData: transformedCarDetails },
+        variables: { 
+          carData: finalInput
+         },
       });
       if (updatedCar) {
         refetchCars();
@@ -116,7 +145,7 @@ const EditCarForm = ({ closeModal, refetchCars, carData }) => {
       <Input name="mileage" type="number" placeholder="Car Mileage" value={carDetails.mileage} onChange={handleChange} />
       <Label htmlFor="stock" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Stock No.</Label>
       <Input name="stock" type="number" placeholder="Stock No." value={carDetails.stock} onChange={handleChange} />
-      <Label htmlFor="engine" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine:</Label>
+      <Label htmlFor="engine" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine Size:</Label>
       <Input name="engine" type="text" placeholder="Car Engine" value={carDetails.engine} onChange={handleChange} />
       <Label htmlFor="engineType" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Engine Type:</Label>
       <Input name="engineType" type="text" placeholder="Engine Type" value={carDetails.engineType} onChange={handleChange} />

@@ -34,7 +34,7 @@ function Home() {
       <h2></h2>
       <p className='text-center tracking-widest leading-4'>with the power<br /> that drives you beyond <br />your limits</p>
       </div> */}
-      <h1 className='text-red-600'>PRUEBA</h1>
+      {/* <h1 className='text-red-600'>PRUEBA</h1> */}
       <BackgroundBeams className="bg-black absolute inset-0 z-[-1]" />
       <AboutUs />
       </div>
