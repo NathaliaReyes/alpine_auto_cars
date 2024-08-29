@@ -28,6 +28,7 @@ dist-ssr
 .AppleDouble
 .LSOverride
 .env
+.env.production
 
 # Icon must end with two \r
 Icon
