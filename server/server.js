@@ -6,6 +6,9 @@ const { authMiddleware } = require('./utils/auth');
 const cors = require('cors');
 const multer = require('multer');
 
+const { ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default');
+
+
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -16,6 +19,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   csrfPrevention: false,
+  introspection: true, // Enables introspection in development mode
+  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })] // Enables the Apollo Sandbox
 });
 
 const storage = multer.diskStorage({
@@ -42,6 +47,13 @@ const startApolloServer = async () => {
   };
   app.use(cors(corsOptions));
 
+  // Apply Apollo Server middleware to the '/graphql' endpoint
+  app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
+  console.log('Apollo Server middleware applied to /graphql');
+
+// }
   // Ruta para manejar la subida de archivos
   app.post('/upload', upload.single('file'), (req, res) => {
     console.log('File received on server:', req.file); // Asegúrate de que req.file existe
@@ -53,15 +65,6 @@ const startApolloServer = async () => {
     res.send({ filePath: imageUrl });
   });
 
-  app.use('/graphql', (req, res, next) => {
-    console.log(`Received ${req.method} request at ${req.path}`);
-    console.log('Request headers:', req.headers);
-    console.log('Request body:', req.body);
-    next();
-  }, expressMiddleware(server, {
-    context: authMiddleware
-  }));
-}
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -79,6 +82,7 @@ db.once('open', () => {
     console.log(`API server running on port ${PORT}!`);
   });
 });
+}
 
 // Call the async function to start the server
 startApolloServer();
