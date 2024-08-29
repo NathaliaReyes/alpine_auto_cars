@@ -33,7 +33,7 @@ export default function Slogan() {
             <div className="flex items-center">
               <span className="text-red-800 text-3xl pr-3 pl-3 pb-3 pt-2">Buy</span>
             </div>
-            <p className="text-xl text-red-800 ">Quality Guaranteed</p>
+            <p className="text-xl text-red-800 ">Quality Vehicles</p>
           </div>
 
           {/* Sell */}

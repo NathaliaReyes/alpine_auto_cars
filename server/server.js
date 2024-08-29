@@ -40,10 +40,10 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   const corsOptions = {
-    origin: ['http://localhost:5174', 'https://usa.alpineauto.xyz'], // Permite solicitudes desde estos orígenes
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Permite estos métodos HTTP
-    allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados
-    credentials: true, // Permite el uso de cookies y encabezados de autorización
+    origin: ['http://localhost:5174', 'https://usa.alpineauto.xyz'], // Allow both development / Production
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Methods allowed
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
+    credentials: true, // Allow the use of cookis and authorization headers
   };
   app.use(cors(corsOptions));
 
@@ -56,7 +56,7 @@ const startApolloServer = async () => {
 // }
   // Ruta para manejar la subida de archivos
   app.post('/upload', upload.single('file'), (req, res) => {
-    console.log('File received on server:', req.file); // Asegúrate de que req.file existe
+    console.log('File received on server:', req.file); // Debugging
     if (!req.file) {
       return res.status(400).send({ message: 'No file uploaded' });
     }
