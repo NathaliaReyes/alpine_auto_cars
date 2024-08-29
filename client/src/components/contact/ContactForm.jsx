@@ -69,16 +69,18 @@ function ContactForm() {
     event.preventDefault();
     if (!firstName || !lastName || !email || !phone || !message) {
       setFieldsCompleted(false);
+      console.log('Fields are not completed'); // Debugging log
       return;
     } else if (!emailValid) {
+      console.log('Email is not valid'); // Debugging log
       return;
     }
     try {
-      // Submit the form to Formspree
-      const formspreeResponse = await handleSubmitFormspree(event);
-      if (formspreeResponse.ok) {
+      await handleSubmitFormspree(event);
+      console.log('Formspree submission successful'); // Debugging log
         // Call the mutation to add the client
-        await addClient({
+        console.log('Calling addClient mutation'); // Debugging log
+        const response = await addClient({
           variables: {
             firstName,
             lastName,
@@ -88,9 +90,17 @@ function ContactForm() {
             message,
           },
         });
+        console.log('addClient mutation response:', response); // Debugging log  
 
+        // Check if the response has errors
+      if (response.errors) {
+        console.error('addClient mutation errors:', response.errors);
+        return;
+      }
+      
         // Reset the form and show the success modal
         setSubmitted(true);
+        console.log('Form submitted successfully, setting submitted to true'); // Debugging log
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -98,9 +108,6 @@ function ContactForm() {
         setInquiry('');
         setMessage('');
         document.querySelector('#success-modal').classList.add('is-active');
-      } else {
-        console.error("Formspree submission failed:", formspreeResponse);
-      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }

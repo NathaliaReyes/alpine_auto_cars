@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
+    "prebuild": "node remove-use-client.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "proxy": "http://localhost:3001",
+  "resolutions": {
+    "@tanstack/virtual-core": "3.10.0"
+  },
   "dependencies": {
     "@apollo/client": "^3.10.8",
     "@formspree/react": "^2.5.1",
@@ -35,10 +38,12 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "countup.js": "^2.8.0",
+    "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.1.5",
     "flowbite": "^2.4.1",
     "flowbite-react": "^0.10.1",
     "framer-motion": "^11.3.17",
+    "graphql": "^16.9.0",
     "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.395.0",

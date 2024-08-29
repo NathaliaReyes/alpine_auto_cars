@@ -57,7 +57,9 @@ function NewCarForm({ closeModal, refetchCars }) {
   };
 
   const handleFileChange = (e) => {
-    setFiles(e.target.files);
+    const selectedFiles = e.target.files; // Convert FileList to an Array
+    setFiles(selectedFiles);
+    console.log('Selected files:', selectedFiles);
   };
 
   const uploadFiles = async () => {
@@ -66,7 +68,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const response = await axios.post('http://52.201.219.120:3001/upload', formData);
+        const response = await axios.post('http://localhost:3001/upload', formData);
         console.log('File upload response:', response.data); // Debug response
         if (response.data.filePath) {
           uploadedImagePaths.push(response.data.filePath);
@@ -77,6 +79,7 @@ function NewCarForm({ closeModal, refetchCars }) {
         console.error('Error uploading file:', error);
       }
     }
+    console.log('Uploaded image paths:', uploadedImagePaths); // Add this line
     return uploadedImagePaths;
   };
 
@@ -92,14 +95,14 @@ function NewCarForm({ closeModal, refetchCars }) {
 
   const validateForm = (carDetails) => {
     console.log(carDetails.retail_price);
-  const errors = [];
-  for (const [key, value] of Object.entries(carDetails)) {
-    if (!value) {
-      errors.push(formatFieldName(key));
+    const errors = [];
+    for (const [key, value] of Object.entries(carDetails)) {
+      if (!value) {
+        errors.push(formatFieldName(key));
+      }
     }
-  }
-  return errors;
-};
+    return errors;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,7 +114,7 @@ function NewCarForm({ closeModal, refetchCars }) {
       return;
     }
 
-    console.log(carDetails);
+    console.log("Submitting form with car details:", carDetails);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
@@ -175,9 +178,9 @@ function NewCarForm({ closeModal, refetchCars }) {
         ✕
       </Button>
       <Label htmlFor="year" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Car Year:</Label>
-      <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required  />
+      <Input name="year" type="number" placeholder="Car Year" value={carDetails.year} onChange={handleChange} required />
       <Label htmlFor="make" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Make:</Label>
-      <Input name="make" type="text" placeholder="Car Make" value={carDetails.make}  onChange={handleChange} required />
+      <Input name="make" type="text" placeholder="Car Make" value={carDetails.make} onChange={handleChange} required />
       <Label htmlFor="model" className="block text-gray-700 text-base font-semibold mt-2 md:mt-3 tracking-tight md:tracking-normal">Model:</Label>
       <Input name="model" type="text" placeholder="Car Model" value={carDetails.model}
         onChange={handleChange} required />

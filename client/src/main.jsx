@@ -11,11 +11,16 @@ import Contact from '@/pages/Contact.jsx';
 import Update from '@/pages/Update.jsx';
 import AllClients from '@/pages/AllClients.jsx';
 
-const mongoUri = process.env.REACT_APP_MONGODB_URI;
+
 
 const client = new ApolloClient({
-  uri: mongoUri, // Replace with your GraphQL server URI
-  cache: new InMemoryCache()
+  link: new HttpLink({
+    uri: process.env.NODE_ENV === 'development' 
+      ? 'http://localhost:3001/graphql' 
+      : 'https://usa.alpineauto.xyz/graphql',
+    credentials: 'include',
+  }),
+  cache: new InMemoryCache(),
 });
 
 const router = createBrowserRouter([

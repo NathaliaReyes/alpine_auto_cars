@@ -15,17 +15,18 @@ import Auth from "@/utils/auth";
 
 
 function AdminMenu() {
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const components = [
     {
       title: "Update Inventory",
-      href: "/Update",
+      to: "/Update",
       description: "Add, edit, or delete cars in inventory.",
     },
     {
       title: "Create new Admin user",
       description: "Add a new administrator to this page.",
-      onClick: () => setDialogOpen(true), // Update this part
+      onClick: () => setDialogOpen(true),
     },
     {
       title: "Logout",
@@ -34,12 +35,11 @@ function AdminMenu() {
     },
     {
       title: "See All Clients",
-      href: "/clients",
+      to: "/clients",
       description: "See a list of all clients.",
     },
   ];
 
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <>
@@ -53,7 +53,7 @@ function AdminMenu() {
                   <ListItem 
                     key={component.title} 
                     title={component.title} 
-                    href={component.href}
+                    to={component.to}
                     onClick={component.onClick}
                   >
                     {component.description}
@@ -69,24 +69,41 @@ function AdminMenu() {
   );
 }
 
-const ListItem = React.forwardRef(({ className, title, children, onClick, ...props }, ref) => {
-  return (
+const ListItem = React.forwardRef(({ className, title, children, to, onClick, ...props }, ref) => {
+   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          onClick={onClick}
-          {...props}
-        >
-          <div className="text-xs md:text-sm font-semibold leading-none ">{title}</div>
-          <p className="line-clamp-2 text-xs md:text-sm leading-snug text-gray-400">
-            {children}
-          </p>
-        </a>
+        {to ? (
+          <Link
+            ref={ref}
+            to={to}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className
+            )}
+            {...props}
+          >
+            <div className="text-xs md:text-sm font-semibold leading-none ">{title}</div>
+            <p className="line-clamp-2 text-xs md:text-sm leading-snug text-gray-400">
+              {children}
+            </p>
+          </Link>
+        ) : (
+          <a
+            ref={ref}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className
+            )}
+            onClick={onClick}
+            {...props}
+          >
+            <div className="text-xs md:text-sm font-semibold leading-none ">{title}</div>
+            <p className="line-clamp-2 text-xs md:text-sm leading-snug text-gray-400">
+              {children}
+            </p>
+          </a>
+        )}
       </NavigationMenuLink>
     </li>
   );
