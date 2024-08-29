@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ApolloProvider, InMemoryCache, ApolloClient, HttpLink } from '@apollo/client';
+import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
 
 import App from '@/App.jsx';
 import Error from '@/pages/Error.jsx';
@@ -12,7 +12,6 @@ import Update from '@/pages/Update.jsx';
 import AllClients from '@/pages/AllClients.jsx';
 
 
-
 const client = new ApolloClient({
   link: new HttpLink({
     uri: process.env.NODE_ENV === 'development' 
@@ -20,9 +19,8 @@ const client = new ApolloClient({
       : 'https://usa.alpineauto.xyz/graphql',
     credentials: 'include',
   }),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache();
 });
-
 const router = createBrowserRouter([
   {
     path: '/',
