@@ -17,9 +17,9 @@ export default function Slogan() {
     >
       <div>
         <p 
-          className="text-base md:text-lg text-black font-semibold text-center p-2 lora"
+          className="text-base md:text-lg text-black font-semibold text-center p-2 roboto700"
           >
-          Your Trusted Partner in Car Sales  <span className="inline-block pl-4 pt-4"><FaHandshake /></span>
+          Your Trusted Partner in Car Sales  <span className="inline-block pl-2 pt-4"><FaHandshake /></span>
         </p>
       </div>
       <div className="my-4 rounded border-customWhite border-2 p-4">

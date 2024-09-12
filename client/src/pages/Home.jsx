@@ -21,7 +21,7 @@ function Home() {
       <div className="banner-container">
         <img src={img} alt="Banner" className="banner-image" />
         <div className="hidden md:block bannerRes bannerRes2 bannerRes3 bannerRes4 banner-text left">
-          <h1 className='sm:text-base text-lg md:text-3xl lg:text-4xl uppercase text-center md:tracking-wider font-bold md:leading-relaxed lora' >Conquer <br />every road </h1>
+          <h1 className='sm:text-base text-lg md:text-3xl lg:text-4xl uppercase text-center md:tracking-wider font-bold md:leading-relaxed roboto600' >Conquer <br />every road </h1>
           <p className='text-sm md:text-lg text-center tracking-widest leading-4' style={{ fontFamily: 'Abel' }}>with the power<br /> that drives you beyond <br />your limits</p>
           <Button className="w-full bg-red-600 text-white hover:bg-red-900 transition-colors mt-2 md:mt-4" style={{ fontFamily: 'Abel' }}>
             <Link to='/Inventory'>Browse for your next car</Link>

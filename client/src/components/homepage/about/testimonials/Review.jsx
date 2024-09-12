@@ -5,7 +5,7 @@ import '../../../../styles/fonts.css';
 export default function CarouselTestimonials() {
   return (
     <div className=" justify-center items-center p-4">
-      <h2 className="text-xl font-bold text-center text-gray-800 my-4 italic lora">Customer Testimonials</h2>
+      <h2 className="text-xl font-bold text-center text-gray-800 my-4 roboto700">Customer Testimonials</h2>
       <Carousel className="rounded-xl ">
       <div className="relative h-full w-full ">
           <img
@@ -18,7 +18,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 roboto600"
               >
                 "M.R. ~ Bayfield, CO"
               </Typography>
@@ -47,7 +47,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 roboto600"
               >
                 "Dj Lybarger. ~ Bayfield, CO"
               </Typography>
@@ -79,7 +79,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 roboto600"
               >
                 "Brandi Pemble. ~ Bayfield, CO"
               </Typography>
@@ -107,7 +107,7 @@ export default function CarouselTestimonials() {
               <Typography
                 variant="h2"
                 color="white"
-                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 lora400"
+                className="mb-4 lg:text-xl md:text-lg sm:text-base text-base mt-2 roboto600"
               >
                 "LeRoy Holley. ~ Bayfield, CO"
               </Typography>

@@ -42,50 +42,50 @@ function AllClients() {
   const clients = data.allClients;
 
   return (
-    <Table className="custom-table">
-      <TableCaption>A list of all your clients.</TableCaption>
+    <Table className="custom-table md:w-5/6 sm:w-9/12	w-3/6 bg-blue-gray-50">
+      <TableCaption className="font-bold text-lightSlate uppercase mt-8 text-center">A list of all clients.</TableCaption>
       <TableHeader>
-        <TableRow>
-          <TableHead className="w-[50px]">Number</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Last name</TableHead>
-          <TableHead className="text-right">Date</TableHead>
-          <TableHead className="w-[50px]">Details</TableHead>
+        <TableRow className="text-lightSlate font-extrabold">
+          <TableHead className="font-bold text-stone  sm:text-sm md:text-lg text-xs">Number</TableHead>
+          <TableHead className="font-bold text-stone sm:text-sm md:text-lg text-xs">Name</TableHead>
+          <TableHead className="font-bold text-stone sm:text-sm md:text-lg text-xs">Last Name</TableHead>
+          <TableHead className="text-right font-bold text-stone sm:text-sm md:text-lg text-xs">Date</TableHead>
+          <TableHead className="text-right font-bold text-stone sm:text-sm md:text-lg text-xs">Details</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody className="sm:text-base lg:text-lg text-xs">
         {clients.map((client, index) => (
           <React.Fragment key={index}>
             <TableRow
               onClick={() => toggleRow(index)}
               style={{ cursor: 'pointer' }}
-              className={!readRows.has(index) ? 'unread' : ''}
+              // className={!readRows.has(index) ? 'unread' : ''}
             >
-              <TableCell className="font-medium">{index + 1}</TableCell>
-              <TableCell>{client.firstName}</TableCell>
-              <TableCell>{client.lastName}</TableCell>
-              <TableCell className="text-right">{client.created_at}</TableCell>
+              <TableCell className={`${readRows.has(index) ? 'text-cyan font-bold' : 'text-stone'}`}>{index + 1}</TableCell>
+              <TableCell className={readRows.has(index) ? 'text-cyan font-bold' : 'text-stone'}>{client.firstName}</TableCell>
+              <TableCell className={readRows.has(index) ? 'text-cyan font-bold' : 'text-stone'}>{client.lastName}</TableCell>
+              <TableCell className={`text-right ${readRows.has(index) ? 'text-cyan font-bold' : 'text-stone'}`}>{client.created_at}</TableCell>
               <TableCell className="text-center">🔽</TableCell>
             </TableRow>
             {expandedRow === index && (
               <TableRow>
                 <TableCell colSpan="5">
-                  <div className="flex flex-col bg-gray-100 border border-gray-300 p-4 rounded shadow-md">
+                  <div className="flex flex-col bg-blue-gray-200 border border-gray-300 p-4 rounded shadow-md">
                     <div className="flex justify-between py-2 border-b border-gray-200">
-                      <p className="font-medium">Email:</p>
-                      <p >{client.email}</p>
+                      <p className="text-xs md:text-base">Email:</p>
+                      <p className='text-xs md:text-base'>{client.email}</p>
                     </div>
                     <div className="flex justify-between py-2 border-b border-gray-200">
-                      <p className="font-medium">Phone:</p>
-                      <p>{client.phone}</p>
+                      <p className="text-xs md:text-base">Phone:</p>
+                      <p className='text-xs md:text-base'>{client.phone}</p>
                     </div>
                     <div className="flex justify-between py-2 border-b border-gray-200">
-                      <p className="font-medium">Inquiry:</p>
-                      <p>{client.inquiry}</p>
+                      <p className="text-xs md:text-base">Inquiry:</p>
+                      <p className='text-xs md:text-base'>{client.inquiry}</p>
                     </div>
                     <div className="flex justify-between py-2">
-                      <p className="font-medium">Message:</p>
-                      <p>{client.message}</p>
+                      <p className="text-xs md:text-base">Message:</p>
+                      <p className='text-xs md:text-base'>{client.message}</p>
                     </div>
                   </div>
 

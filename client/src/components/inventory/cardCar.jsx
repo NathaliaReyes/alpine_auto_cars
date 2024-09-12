@@ -57,7 +57,7 @@ function CarCard() {
                                 {car.images.map((image, index) => (
                                     <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
                                         <img 
-                                            src={`${import.meta.env.VITE_API_URL}${image}`}   alt="image 1" className="h-96 w-full object-cover" />
+                                            src={`${image}`}   alt="image 1" className="h-96 w-full object-cover" />
                                     </div>
                                 ))}
                             </Carousel>
@@ -71,7 +71,7 @@ function CarCard() {
                             {car.description ? (
                                 <CardDescription >
                                     <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" />
+                                        {/* <FontAwesomeIcon icon={faExclamationCircle} className="hiddenIcon mr-2 h-4 w-4 opacity-70" /> */}
                                         <span className="text-sm md:text-base text-left text-muted-foreground tracking-wide sm:ml-0.5">
                                             {car.description}
                                         </span>

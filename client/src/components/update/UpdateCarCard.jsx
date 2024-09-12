@@ -61,7 +61,7 @@ const UpdateCarCard = ({ refetchCars, car }) => {
                             <Carousel className="rounded-xl ">
                                 {car.images.map((image, index) => (
                                     <div key={index} className="overflow-hidden relative h-full w-full carousel-slide">
-                                        <img src={`${import.meta.env.VITE_API_URL}${image}`} alt="image 1" className="h-96 w-full object-cover" />
+                                        <img src={`${image}`} alt="image 1" className="h-96 w-full object-cover" />
                                     </div>
                                 ))}
                             </Carousel>

@@ -32,7 +32,7 @@ const ModalCar = ({ isOpen, onClose, carInfo }) => {
             <Carousel className="rounded-xl ">
               {carInfo.images.map((image, index) => (
                 <div key={index} className="relative h-full w-full flex justify-center items-center carousel-slide">
-                  <img  src={`${import.meta.env.VITE_API_URL}${image}`}  alt="image 1" className="h-[30rem] w-[50rem] object-cover" />
+                  <img  src={`${image}`}  alt="image 1" className="h-[30rem] w-[50rem] object-cover" />
                 </div>
               ))}
             </Carousel>          

@@ -2,7 +2,9 @@ import AllClients from "@/components/clients/AllClients";
 
 function Clients() {
   return (
-    <AllClients />
+    <div className="bg-darkBg">
+      <AllClients />
+    </div>
   )
 }
 

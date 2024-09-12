@@ -22,7 +22,7 @@
 }
 
 .left {
-  left: 10%;
+  left: 5%;
 }
 
 .right {
@@ -42,12 +42,12 @@ p {
 @media (max-width: 975px) {
   .bannerRes {
     position: absolute;
-    top: 21%;
+    top: 26%;
     transform: translateY(-70%);
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
     /* Fondo semitransparente */
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
   }
 }
@@ -60,7 +60,7 @@ p {
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
     /* Fondo semitransparente */
-    padding: 5px;
+    padding: 2px;
     border-radius: 5px;
   }
 }

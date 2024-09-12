@@ -21,6 +21,11 @@ module.exports = withMT({
     extend: {
       colors: {
         neutral: colors.neutral,
+        darkBg: '#020617',
+        lightSlate: '#e2e8f0',
+        lightZinc:'#d4d4d8',
+        cyan:'#06b6d4',
+        stone:'#44403c'
       },
       textShadow: {
         'default': '2px 2px 4px rgba(0, 0, 0, 0.5)',
