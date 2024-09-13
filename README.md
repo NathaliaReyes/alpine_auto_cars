@@ -140,11 +140,20 @@ _To get a local copy up and running follow these simple example steps:_
    ```
 3. Create a .env file in the server directory and add the following environment variables:
    ```sh
-   MONGO_URI=<your-mongodb-uri>
-   JWT_SECRET=<your-jwt-secret>
-   S3_BUCKET=<your-aws-s3-bucket>
+   MONGODB_URI=<your-mongodb-uri>
+   AUTH_SECRET=<your-auth-secret>
+   DB_NAME=<your-db-name>
+   AWS_ACCESS_KEY_ID=<your-aws-access-key-id>
+   AWS_SECRET_ACCESS_KEY=<your-aws-secret-access-key>
+   AWS_REGION=<your-aws-region>
+   AWS_BUCKET_NAME=<your-aws-s3-bucket>
    ```
-4. Start the project:
+4. Create a .env file in the client directory and add the following environment variables:
+   ```sh
+   VITE_AWS_REGION=<your-aws-region>
+   VITE_AWS_BUCKET_NAME=<your-aws-bucket-name>
+   ```
+5. Start the project:
    ```sh
    npm run develop
    ```
